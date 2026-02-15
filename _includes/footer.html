@@ -1,16 +1,4 @@
 <footer class='c-footer'>
-  {% if page.url == '/' %}
-  <div class='c-projects'>
-    <div class='o-grid'>
-      <div class='o-grid__col o-grid__col--full'>
-        <h3 class='c-projects__title'>Other Apps</h3>
-        <div id="embedlink" data-list="33bc6d2c-ae75-4a20-978f-9b2e4c86a0f9"></div>
-        <script src="https://embed-link.com/embed.js" defer></script>
-      </div>
-    </div>
-  </div>
-  {% endif %}
-
   <div class='o-grid'>
     <div class='o-grid__col o-grid__col--full'>
 
@@ -52,6 +40,14 @@
           </a>
         {% endunless %}
       </div>
+
+      {% if page.url == '/' %}
+      <div class='c-projects'>
+        <h3 class='c-projects__title'>Other Apps</h3>
+        <div id="embedlink" data-list="33bc6d2c-ae75-4a20-978f-9b2e4c86a0f9"></div>
+        <script src="https://embed-link.com/embed.js" defer></script>
+      </div>
+      {% endif %}
 
       <p class='c-footer__copyright'>&copy;edihasaj {{ site.time | date: '%Y' }}</p>
 

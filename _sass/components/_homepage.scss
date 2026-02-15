@@ -1,0 +1,115 @@
+/*------------------------------------*\
+  Components > Homepage
+\*------------------------------------*/
+
+.c-homepage__stripe {
+  height: 4px;
+  background: #fd8f0f;
+}
+
+.c-homepage__intro {
+  max-width: $grid-width;
+  margin: 0 auto;
+  padding: 48px $base-spacing-unit 40px;
+  text-align: center;
+
+  @include mq($from: medium) {
+    padding: 64px $base-spacing-unit 48px;
+  }
+}
+
+.c-homepage__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
+.c-homepage__headline {
+  font-size: 1.35rem;
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  line-height: 1.4;
+  margin-bottom: 16px;
+
+  @include mq($from: medium) {
+    font-size: 1.65rem;
+  }
+}
+
+.c-homepage__highlight {
+  background: linear-gradient(180deg, transparent 50%, #fd8f0f 50%);
+  padding: 0 4px;
+}
+
+.c-homepage__bio {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: $color-gray;
+  max-width: 540px;
+  margin: 0 auto 24px;
+}
+
+.c-homepage__social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.c-homepage__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.c-homepage__posts {
+  max-width: $grid-width;
+  margin: 0 auto;
+  padding: 0 $base-spacing-unit 40px;
+  border-top: 1px solid $color-border;
+}
+
+.c-homepage__posts-title {
+  font-size: 0.85rem;
+  font-weight: $font-weight-bold;
+  color: $color-gray;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-top: 32px;
+  margin-bottom: 8px;
+}
+
+.c-homepage__more {
+  text-align: center;
+  padding: 32px 0 8px;
+}
+
+.c-homepage__more-link {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  padding: 10px 24px;
+  border: 2px solid $color-text;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $color-text;
+    color: $color-white;
+  }
+}
