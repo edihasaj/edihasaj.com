@@ -27,7 +27,7 @@ Legal text is not a normal document collection. A constitution, a statute, a reg
 
 So the main work was not building a chat UI. The main work was turning a messy legal corpus into something that can be searched, cited, and trusted.
 
-## **A Lot Of The Work Is Ingestion**
+## A Lot Of The Work Is Ingestion
 
 Before the RAG part can be good, the documents have to be clean enough.
 
@@ -39,7 +39,7 @@ This is why I care about chunking by article or section instead of just cutting 
 
 The constitution is a good example. You do not want it only as one big PDF blob. You want each article to exist as a searchable unit, while still keeping its connection to the whole document. Same for statutes. Same for future versions.
 
-## **Vector Space Is Useful, But Not Magic**
+## Vector Space Is Useful, But Not Magic
 
 The way most people explain this is: embed every chunk, put it in vector space, then find the closest chunks to the user question.
 
@@ -59,7 +59,7 @@ So the retrieval layer is more like:
 
 That last part matters. The model should not answer from memory. It should answer from evidence.
 
-## **Language Makes It Harder**
+## Language Makes It Harder
 
 Another problem is how people actually ask questions.
 
@@ -71,7 +71,7 @@ This helps a lot because the user might say "qka duhet per shpk", while the law 
 
 That is the kind of detail that makes the difference between a nice demo and a tool people can actually use.
 
-## **Performance Is Its Own Product Feature**
+## Performance Is Its Own Product Feature
 
 RAG systems can get slow very fast, idk this part is where the nice demos usually start to break.
 
@@ -89,7 +89,7 @@ So a lot of the engineering becomes unglamorous things:
 
 This is maybe the least flashy part of AI apps, but probably one of the most important. A legal assistant that takes forever is not good software. It is just a slow demo.
 
-## **Citations Change The Whole Design**
+## Citations Change The Whole Design
 
 The answer is not the product by itself. The citation is part of the product.
 
@@ -108,7 +108,7 @@ This is also why I like building this as a legal platform, not only one Kosovo c
 
 Simple principle, but a lot of engineering underneath.
 
-## **What I Learned**
+## What I Learned
 
 The funny thing about building AI products now is that the model is not always the hard part.
 
