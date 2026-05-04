@@ -4,21 +4,25 @@ title: About
 permalink: /about/
 ---
 
-Software engineer. Building things in the AI space, mostly agents, infra and the small tools around them.
+Software engineer. Building the next layer of software.
 
-Based in Prishtinë. Been writing code for over a decade. Started with backend and systems, now deep in vibe-coding mode with agents, MCP, local-first apps, and whatever shortens the loop between an idea and a shipped feature.
+Over a decade of shipping code. Backend, systems, infra, and now deep in AI Engineering. Agents, local-first tools, and the sharp little things that replace bloated SaaS.
 
-I build what I actually use. That is why most of my recent work is about memory, agents, CLIs, and removing bloat from daily workflows. If a tool is slow, bloated, or charges too much for what it does, I would rather build a smaller version that does the job well.
+The future is autonomous, local, and open. Closed bloat loses. I am betting on the other side, and shipping the proof every week.
+
+Based in Prishtinë. Mostly online.
 
 ## GitHub Activity
-
-I build what excites me and release most of it as open source.
-
-Follow me on [GitHub](https://github.com/edihasaj) to see what I am shipping.
 
 <a href="https://github.com/edihasaj">
   <img src="https://ghchart.rshah.org/fd8f0f/edihasaj" alt="edihasaj GitHub contributions" style="max-width:100%;">
 </a>
+
+## What I'm Doing
+
+- **Opening more code** — especially useful agent, memory, and workflow patterns.
+- **Building AI products** — tools that connect to real business and government systems.
+- **Writing on [edihasaj.com](/)** — software, AI, and thinking.
 
 ## Connect
 
@@ -27,4 +31,4 @@ Follow me on [GitHub](https://github.com/edihasaj) to see what I am shipping.
 - LinkedIn: [edihasaj](https://www.linkedin.com/in/edihasaj/)
 - Email: edihasaj@gmail.com
 
-If you want to talk shop, agents, infra, EU tech, shipping, reach out on any of these.
+If you want to talk shop, agents, infra, cloud tech, shipping, reach out on any of these.
