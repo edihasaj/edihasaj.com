@@ -38,8 +38,6 @@ $color-link-hover:  $color-brand;
   --theme-shadow: rgba(20, 38, 48, .08);
   --theme-glow-warm: rgba(253, 143, 15, .10);
   --theme-glow-cool: rgba(0, 160, 255, .08);
-  --theme-post-accent: rgba(253, 143, 15, .16);
-  --theme-post-accent-soft: rgba(253, 143, 15, 0);
 }
 
 .theme-dark {
@@ -56,6 +54,4 @@ $color-link-hover:  $color-brand;
   --theme-shadow: rgba(0, 0, 0, .36);
   --theme-glow-warm: rgba(253, 143, 15, .12);
   --theme-glow-cool: rgba(0, 160, 255, .10);
-  --theme-post-accent: rgba(253, 143, 15, .28);
-  --theme-post-accent-soft: rgba(253, 143, 15, 0);
 }

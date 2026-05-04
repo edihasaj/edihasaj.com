@@ -2,6 +2,7 @@
   Components > Homepage
 \*------------------------------------*/
 
+.c-page-stripe,
 .c-homepage__stripe {
   height: 4px;
   background: #fd8f0f;
@@ -11,19 +12,39 @@
   max-width: $grid-width;
   margin: 0 auto;
   padding: 48px $base-spacing-unit 40px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+  text-align: left;
 
   @include mq($from: medium) {
-    padding: 64px $base-spacing-unit 48px;
+    grid-template-columns: 180px 1fr;
+    gap: 44px;
+    padding: 64px $base-spacing-unit 56px;
   }
 }
 
 .c-homepage__avatar {
-  width: 56px;
-  height: 56px;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 24px;
+  margin: 0 auto;
+
+  @include mq($from: medium) {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+.c-homepage__intro-copy {
+  min-width: 0;
+  text-align: center;
+
+  @include mq($from: medium) {
+    text-align: left;
+  }
 }
 
 .c-homepage__headline {
@@ -47,14 +68,24 @@
   font-size: 1rem;
   line-height: 1.7;
   color: var(--theme-muted);
-  max-width: 540px;
-  margin: 0 auto 24px;
+  max-width: 620px;
+  margin: 0 0 24px;
+
+  @include mq($until: medium) {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 .c-homepage__social {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
+
+  @include mq($from: medium) {
+    justify-content: flex-start;
+  }
 }
 
 .c-homepage__social-link {
@@ -62,16 +93,24 @@
   align-items: center;
   justify-content: center;
   color: var(--theme-text);
-  opacity: 0.5;
-  transition: opacity 0.2s ease;
+  opacity: 0.58;
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 
   &:hover {
+    color: $color-brand;
     opacity: 1;
+    transform: translateY(-1px);
   }
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  &--rss {
+    color: #fd8f0f;
+    opacity: 0.9;
   }
 }
 

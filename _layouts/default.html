@@ -20,6 +20,10 @@
   <div class='js-off-canvas-container c-off-canvas-container'>
     {% include header.html %}
 
+    {% unless page.url == '/' %}
+      <div class='c-page-stripe'></div>
+    {% endunless %}
+
     {{ content }}
 
     {% include footer.html %}
