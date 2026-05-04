@@ -29,7 +29,7 @@
 .c-homepage__headline {
   font-size: 1.35rem;
   font-weight: $font-weight-bold;
-  color: $color-text;
+  color: var(--theme-text);
   line-height: 1.4;
   margin-bottom: 16px;
 
@@ -46,7 +46,7 @@
 .c-homepage__bio {
   font-size: 1rem;
   line-height: 1.7;
-  color: $color-gray;
+  color: var(--theme-muted);
   max-width: 540px;
   margin: 0 auto 24px;
 }
@@ -61,7 +61,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $color-text;
+  color: var(--theme-text);
   opacity: 0.5;
   transition: opacity 0.2s ease;
 
@@ -79,13 +79,13 @@
   max-width: $grid-width;
   margin: 0 auto;
   padding: 0 $base-spacing-unit 40px;
-  border-top: 1px solid $color-border;
+  border-top: 1px solid var(--theme-border);
 }
 
 .c-homepage__posts-title {
   font-size: 0.85rem;
   font-weight: $font-weight-bold;
-  color: $color-gray;
+  color: var(--theme-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
   padding-top: 32px;
@@ -101,15 +101,15 @@
   display: inline-block;
   font-size: 0.95rem;
   font-weight: $font-weight-bold;
-  color: $color-text;
+  color: var(--theme-text);
   padding: 10px 24px;
-  border: 2px solid $color-text;
+  border: 2px solid var(--theme-text);
   border-radius: 6px;
   text-decoration: none;
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: $color-text;
-    color: $color-white;
+    background-color: var(--theme-text);
+    color: var(--theme-bg);
   }
 }

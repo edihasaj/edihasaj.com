@@ -4,7 +4,7 @@
 
 .c-footer {
   padding: double($base-spacing-unit) 0;
-  background-color: $bg-color-gray;
+  background-color: var(--theme-surface);
 
   li.single-icon {
     display: inline-block;
@@ -23,7 +23,7 @@
   &__find-me {
     text-align: center;
     font-size: 0.95rem;
-    color: $color-text;
+    color: var(--theme-text);
     padding-top: $base-spacing-unit;
     margin-bottom: $base-spacing-unit;
   }
@@ -40,7 +40,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: $color-text;
+    color: var(--theme-text);
     text-decoration: none;
     font-size: 0.9rem;
     transition: opacity 0.2s ease;
@@ -58,7 +58,7 @@
   &__copyright {
     text-align: center;
     font-size: 0.85rem;
-    color: $color-gray;
+    color: var(--theme-muted);
     margin: 0;
   }
 }
@@ -71,14 +71,14 @@
   padding-top: $base-spacing-unit * 2;
   padding-bottom: $base-spacing-unit * 2;
   margin-bottom: $base-spacing-unit * 0.5;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--theme-border);
 
   &__title {
     text-align: center;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: $color-gray;
+    color: var(--theme-muted);
     padding-top: 0;
     margin-top: 0;
     margin-bottom: $base-spacing-unit * 0.75;
@@ -113,7 +113,7 @@
       transition: background-color 0.2s ease;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
+        background-color: var(--theme-hover);
       }
     }
   }
@@ -128,7 +128,7 @@
   &__name {
     font-size: 0.75rem;
     font-weight: 600;
-    color: $color-text;
+    color: var(--theme-text);
     white-space: nowrap;
   }
 }
@@ -150,11 +150,11 @@
     padding: $base-spacing-unit * 0.4;
     border-radius: 6px;
     text-decoration: none;
-    color: $color-text;
+    color: var(--theme-text);
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.04);
+      background-color: var(--theme-hover);
       text-decoration: none;
     }
 
@@ -170,6 +170,7 @@
 
       strong {
         color: $color-text;
+        color: var(--theme-text);
       }
 
       a {

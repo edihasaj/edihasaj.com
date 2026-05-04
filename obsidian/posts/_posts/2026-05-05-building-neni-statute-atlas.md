@@ -1,9 +1,9 @@
 ---
-share: false
+share: true
 layout: post
 title: "Building Neni: legal search that actually has to know the law"
 date: 2026-05-05
-published: false
+published: true
 filename: essay/_posts/2026-05-05-building-neni-statute-atlas
 tags:
   - AI

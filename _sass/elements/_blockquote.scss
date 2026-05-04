@@ -5,10 +5,10 @@
 blockquote {
   padding-left: $blockquote-padding;
   margin-left: $base-margin-unit;
-  border-left: 4px solid $color-border-blockquote;
+  border-left: 4px solid var(--theme-border-strong);
 
   &, & * {
-    color: $color-blockquote;
+    color: var(--theme-muted);
     // font-style: italic;
   }
 }

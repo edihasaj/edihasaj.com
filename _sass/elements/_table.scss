@@ -3,10 +3,10 @@
 \*------------------------------------*/
 
 table {
-  background: $bg-color-gray;
+  background: var(--theme-surface);
   thead {
     tr {
-      background: $color-code-bg;
+      background: var(--theme-code-bg);
 
       th {
         box-sizing: border-box;
@@ -19,7 +19,7 @@ table {
   td {
     box-sizing: border-box;
     text-align: left;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--theme-bg);
     padding: 3px 6px;
   }
 

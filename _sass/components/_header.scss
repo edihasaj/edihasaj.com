@@ -3,6 +3,8 @@
 \*------------------------------------*/
 
 .c-header {
+  background: var(--theme-bg);
+
   img.logo-image {
     border-radius: 50%;
     float: left;
@@ -18,9 +20,16 @@
     padding-top: 6px;
   }
 
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: half($base-spacing-unit);
+  }
+
   &__inner {
     padding: $base-spacing-unit 0;
-    border-bottom: 1px solid $color-border;
+    border-bottom: 1px solid var(--theme-border);
   }
 
   @media only screen and (min-width: $mobile-width) {
@@ -32,6 +41,68 @@
 
   &__icon {
     vertical-align: middle;
+  }
+}
+
+.c-theme-toggle {
+  position: relative;
+  top: half($base-spacing-unit);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--theme-border);
+  border-radius: 999px;
+  color: var(--theme-text);
+  background: var(--theme-surface);
+  box-shadow: 0 10px 24px var(--theme-shadow);
+  cursor: pointer;
+  transition: $global-transition;
+
+  @include attention() {
+    color: $color-brand;
+    border-color: var(--theme-border-strong);
+  }
+
+  &__icon {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  &__icon--sun {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    box-shadow:
+      0 -8px 0 -6px currentColor,
+      0 8px 0 -6px currentColor,
+      8px 0 0 -6px currentColor,
+      -8px 0 0 -6px currentColor,
+      6px 6px 0 -6px currentColor,
+      -6px 6px 0 -6px currentColor,
+      6px -6px 0 -6px currentColor,
+      -6px -6px 0 -6px currentColor;
+  }
+
+  &__icon--moon {
+    border-radius: 50%;
+    box-shadow: inset -5px -2px 0 0 currentColor;
+    opacity: 0;
+    transform: rotate(-20deg) scale(.8);
+  }
+
+  .theme-dark & {
+    &__icon--sun {
+      opacity: 0;
+      transform: rotate(20deg) scale(.8);
+    }
+
+    &__icon--moon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
   }
 }
 

@@ -23,3 +23,35 @@ $color-border-blockquote: #eee;
 // Links
 $color-link:        $color-text;
 $color-link-hover:  $color-brand;
+
+:root {
+  --theme-bg: #ffffff;
+  --theme-surface: #fafafa;
+  --theme-text: #323232;
+  --theme-muted: #2b5f72;
+  --theme-link: #323232;
+  --theme-border: #e9eff3;
+  --theme-border-strong: #d5e1e8;
+  --theme-code-bg: #f2f2f2;
+  --theme-hover: rgba(0, 0, 0, .04);
+  --theme-overlay: rgba(0, 0, 0, .2);
+  --theme-shadow: rgba(20, 38, 48, .08);
+  --theme-glow-warm: rgba(253, 143, 15, .10);
+  --theme-glow-cool: rgba(0, 160, 255, .08);
+}
+
+.theme-dark {
+  --theme-bg: #101014;
+  --theme-surface: #17171d;
+  --theme-text: #f1f1ec;
+  --theme-muted: #9caeb8;
+  --theme-link: #f1f1ec;
+  --theme-border: #2a2a33;
+  --theme-border-strong: #3a3a46;
+  --theme-code-bg: #20202a;
+  --theme-hover: rgba(255, 255, 255, .06);
+  --theme-overlay: rgba(0, 0, 0, .55);
+  --theme-shadow: rgba(0, 0, 0, .36);
+  --theme-glow-warm: rgba(253, 143, 15, .12);
+  --theme-glow-cool: rgba(0, 160, 255, .10);
+}

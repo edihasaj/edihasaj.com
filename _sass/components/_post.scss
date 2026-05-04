@@ -29,7 +29,7 @@
     font-size: $font-size-small;
     font-weight: $font-weight-bold;
     line-height: $line-height-small;
-    color: $color-gray;
+    color: var(--theme-muted);
 
     &:after {
       position: absolute;
@@ -38,7 +38,7 @@
       left: 50%;
       height: 1px;
       width: quadruple($base-spacing-unit);
-      background: $bg-color-gray;
+      background: var(--theme-border);
       transform: translateX(-50%);
     }
   }

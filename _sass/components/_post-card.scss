@@ -6,7 +6,7 @@
   display: block;
   padding: double($base-spacing-unit) 0;
   word-break: break-word;
-  border-bottom: 1px solid $color-border;
+  border-bottom: 1px solid var(--theme-border);
 
   &--first {
     padding-top: 0;
@@ -42,7 +42,7 @@
 
   &__date {
     display: block;
-    color: $color-gray;
+    color: var(--theme-muted);
     direction: ltr;
     font-size: $font-size-tiny;
     font-weight: $font-weight-bold;
@@ -51,7 +51,7 @@
   }
 
   &:hover {
-    color: $color-text;
+    color: var(--theme-text);
     text-decoration: none;
 
     .c-post-card__title {

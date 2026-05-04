@@ -3,10 +3,15 @@
 \*------------------------------------*/
 
 body {
-  color: $color-text;
+  color: var(--theme-text);
   font-size: $font-size-base;
   font-family: $font-base;
   line-height: $line-height-base;
+  background:
+    radial-gradient(circle at 18% -10%, var(--theme-glow-warm), transparent 28rem),
+    radial-gradient(circle at 100% 0%, var(--theme-glow-cool), transparent 30rem),
+    var(--theme-bg);
+  transition: color 180ms ease, background-color 180ms ease;
 
   //-webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;

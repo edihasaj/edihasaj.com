@@ -6,7 +6,7 @@ pre,
 span.code,
 code {
   font-family: $font-monospace;
-  background-color: $color-code-bg;
+  background-color: var(--theme-code-bg);
   border-radius: 3px;
   font-size: $font-size-small;
 
@@ -16,7 +16,7 @@ code {
 }
 
 .highlighter-rouge, .highlight {
-  background-color: $color-code-bg !important;
+  background-color: var(--theme-code-bg) !important;
   overflow-x: auto;
 
   @include mq($until: tablet) {
@@ -56,6 +56,7 @@ pre {
 
 pre {
   padding: double($base-spacing-unit);
+  border: 1px solid var(--theme-border);
 }
 
 table,

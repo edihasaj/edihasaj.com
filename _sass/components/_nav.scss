@@ -15,7 +15,7 @@
       color: $color-brand;
 
       .home-template &:not(:hover) {
-        color: $color-link;
+        color: var(--theme-link);
       }
     }
 
