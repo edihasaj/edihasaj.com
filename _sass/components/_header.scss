@@ -45,7 +45,7 @@
 
   &__nav-link {
     position: relative;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--theme-text);
     padding-bottom: 4px;
@@ -135,7 +135,7 @@
 
   &__link {
     padding-top: 0;
-    font-size: $font-size-sitename + 2;
+    font-size: $font-size-sitename + 6;
     font-weight: $font-weight-bold;
     line-height: 1;
     transition: $global-transition;
