@@ -47,16 +47,14 @@ title: Home
 
       <div class="o-grid">
         {% assign posts_list = site.posts | where_exp: "post", "post.categories contains 'posts'" %}
-        {% for post in posts_list limit:10 %}
+        {% for post in posts_list limit:5 %}
           {% include post-card.liquid %}
         {% endfor %}
       </div>
 
-      {% if posts_list.size > 10 %}
-        <div class="c-homepage__more">
-          <a href="/blog" class="c-homepage__more-link">View all posts</a>
-        </div>
-      {% endif %}
+      <div class="c-homepage__more">
+        <a href="/blog" class="c-homepage__more-link">Show all posts <span aria-hidden="true">→</span></a>
+      </div>
     </section>
   </div>
 </div>

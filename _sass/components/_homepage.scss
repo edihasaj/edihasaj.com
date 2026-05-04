@@ -137,7 +137,9 @@
 }
 
 .c-homepage__more-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 0.95rem;
   font-weight: $font-weight-bold;
   color: var(--theme-text);
