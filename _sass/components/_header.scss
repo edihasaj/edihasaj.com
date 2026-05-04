@@ -44,14 +44,31 @@
   }
 
   &__nav-link {
+    position: relative;
     font-size: 15px;
     font-weight: 500;
     color: var(--theme-text);
+    padding-bottom: 4px;
     transition: $global-transition;
 
     @include attention() {
       color: $color-brand;
       text-decoration: none;
+    }
+
+    &.is-active {
+      color: $color-brand;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        height: 2px;
+        background: $color-brand;
+        border-radius: 2px;
+      }
     }
   }
 }
@@ -60,20 +77,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #111;
-  border-radius: 999px;
-  color: #111;
-  background: #fff;
-  box-shadow: 0 8px 22px var(--theme-shadow);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--theme-text);
   cursor: pointer;
   transition: $global-transition;
 
+  &:focus { outline: 0; }
+  &:focus-visible { outline: 0; }
+
   @include attention() {
-    color: #fff;
-    background: #111;
-    border-color: #111;
+    color: $color-brand;
+    background: transparent;
     text-decoration: none;
   }
 
@@ -95,16 +113,6 @@
   }
 
   .theme-dark & {
-    color: #fff;
-    background: #111;
-    border-color: transparent;
-
-    @include attention() {
-      color: #111;
-      background: #fff;
-      border-color: transparent;
-    }
-
     &__icon--sun {
       opacity: 0;
       transform: rotate(20deg) scale(.8);
@@ -127,14 +135,9 @@
 
   &__link {
     padding-top: 0;
-
-    @media only screen and (min-width: $mobile-width) {
-      font-size: $font-size-sitename;
-    }
-    @media only screen and (max-width: $mobile-width) {
-      font-size: $font-size-sitename;
-    }
-    // font-weight: $font-weight-bolder;
+    font-size: $font-size-sitename + 2;
+    font-weight: $font-weight-bold;
+    line-height: 1;
     transition: $global-transition;
 
     @include attention() {

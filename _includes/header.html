@@ -14,8 +14,8 @@
           <div class='o-grid__col o-grid__col--1-4-s'>
             <div class='c-header__actions'>
               <nav class='c-header__nav' aria-label='Primary'>
-                <a class='c-header__nav-link' href='{{ "/blog/" | relative_url }}'>Posts</a>
-                <a class='c-header__nav-link' href='{{ "/about/" | relative_url }}'>About</a>
+                <a class='c-header__nav-link{% if page.url contains "/blog" or page.url == "/" and page.title == "Blog" %} is-active{% endif %}{% if page.collection == "posts" %} is-active{% endif %}' href='{{ "/blog/" | relative_url }}'>Posts</a>
+                <a class='c-header__nav-link{% if page.url contains "/about" %} is-active{% endif %}' href='{{ "/about/" | relative_url }}'>About</a>
               </nav>
               <button class='js-theme-toggle c-theme-toggle' type='button' aria-label='Toggle dark mode' title='Toggle dark mode'>
                 <svg class='c-theme-toggle__icon c-theme-toggle__icon--sun' aria-hidden='true' viewBox='0 0 24 24' fill='none'>
