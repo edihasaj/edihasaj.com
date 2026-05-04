@@ -12,12 +12,17 @@
     font-family: $font-base;
     line-height: $line-height-medium;
 
-    background-color: $bg-color-gray;
+    color: var(--theme-text);
+    background-color: var(--theme-surface);
+    border: 1px solid var(--theme-border);
+    border-radius: 999px;
     transition: $global-transition;
 
     @include attention() {
+      color: var(--theme-link);
       text-decoration: none;
-      background-color: $bg-color-gray;
+      background-color: var(--theme-hover);
+      border-color: var(--theme-border-strong);
     }
   }
 
