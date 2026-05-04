@@ -5,23 +5,32 @@
 .c-header {
   background: var(--theme-bg);
 
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 $grid-gutter;
+  }
+
   &__actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 28px;
+    gap: 22px;
     height: 40px;
+
+    @include mq($from: tablet) {
+      gap: 28px;
+    }
   }
 
   &__inner {
-    padding: $base-spacing-unit 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--theme-border);
-  }
 
-  @media only screen and (min-width: $mobile-width) {
-    &__inner {
-      padding-top: 16px;
-      padding-bottom: 16px;
+    @include mq($from: tablet) {
+      padding: 16px 0;
     }
   }
 
@@ -30,22 +39,26 @@
   }
 
   &__nav {
-    display: none;
+    display: inline-flex;
     align-items: center;
-    gap: 22px;
+    gap: 14px;
 
-    @media only screen and (min-width: $mobile-width) {
-      display: inline-flex;
+    @include mq($from: tablet) {
+      gap: 22px;
     }
   }
 
   &__nav-link {
     position: relative;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--theme-text);
     padding-bottom: 4px;
     transition: $global-transition;
+
+    @include mq($from: tablet) {
+      font-size: 18px;
+    }
 
     @include attention() {
       color: $color-brand;
@@ -132,10 +145,14 @@
 
   &__link {
     padding-top: 0;
-    font-size: $font-size-sitename + 6;
+    font-size: 22px;
     font-weight: $font-weight-bold;
     line-height: 1;
     transition: $global-transition;
+
+    @include mq($from: tablet) {
+      font-size: $font-size-sitename + 6;
+    }
 
     @include attention() {
       color: $color-brand;
