@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 14px;
+    gap: 17px;
     height: 40px;
   }
 
@@ -81,12 +81,12 @@
   .theme-dark & {
     color: #fff;
     background: #111;
-    border-color: #fff;
+    border-color: transparent;
 
     @include attention() {
       color: #111;
       background: #fff;
-      border-color: #fff;
+      border-color: transparent;
     }
 
     &__icon--sun {
