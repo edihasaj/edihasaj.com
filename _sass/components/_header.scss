@@ -32,6 +32,28 @@
   &__icon {
     vertical-align: middle;
   }
+
+  &__nav {
+    display: none;
+    align-items: center;
+    gap: 22px;
+
+    @media only screen and (min-width: $mobile-width) {
+      display: inline-flex;
+    }
+  }
+
+  &__nav-link {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--theme-text);
+    transition: $global-transition;
+
+    @include attention() {
+      color: $color-brand;
+      text-decoration: none;
+    }
+  }
 }
 
 .c-theme-toggle {

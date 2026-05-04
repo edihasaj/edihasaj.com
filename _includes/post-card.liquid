@@ -9,18 +9,22 @@
 
     <h3 class='c-post-card__title'>{{ post.title }}</h3>
 
-    {% if post.front_page_image %}
-      <img src='{{ post.front_page_image | prepend: site.baseurl }}'
-           class='c-post__image' alt='{{ post.title }}'>
-    {% endif %}
-
-    <span class='c-post-card__excerpt'>
-      {% if post.excerpt %}
-        {{ post.excerpt | markdownify }}
-      {% else %}
-        {{ post.content | strip_html | truncatewords:35 }}
+    <div class='c-post-card__body{% if post.front_page_image %} c-post-card__body--with-image{% endif %}'>
+      {% if post.front_page_image %}
+        <span class='c-post-card__thumb'>
+          <img src='{{ post.front_page_image | prepend: site.baseurl }}'
+               loading='lazy' alt='{{ post.title }}'>
+        </span>
       {% endif %}
-    </span>
+
+      <span class='c-post-card__excerpt'>
+        {% if post.excerpt %}
+          {{ post.excerpt | markdownify }}
+        {% else %}
+          {{ post.content | strip_html | truncatewords:35 }}
+        {% endif %}
+      </span>
+    </div>
 
     {% comment %}
       <span class='c-post-card__date'>{{ post.display_date | default: post.date | date: '%d %b %Y' }}</span>
