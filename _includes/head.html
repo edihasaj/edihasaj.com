@@ -1,4 +1,6 @@
 <head>
+  {% assign og_image = page.image | default: '/images/pages/edi-og.png' %}
+
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -16,14 +18,14 @@
   <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <meta property="og:title" content="{% if page.title and page.title != 'Home' %}{{ page.title }}{% else %}{{ site.title }} - Software, AI & insights{% endif %}">
   <meta property="og:description" content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <meta property="og:image" content="{{ '/images/header-edi.jpg' | prepend: site.baseurl | prepend: site.url }}">
+  <meta property="og:image" content="{{ og_image | prepend: site.baseurl | prepend: site.url }}">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <meta name="twitter:title" content="{% if page.title and page.title != 'Home' %}{{ page.title }}{% else %}{{ site.title }} - Software, AI & insights{% endif %}">
   <meta name="twitter:description" content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <meta name="twitter:image" content="{{ '/images/header-edi.jpg' | prepend: site.baseurl | prepend: site.url }}">
+  <meta name="twitter:image" content="{{ og_image | prepend: site.baseurl | prepend: site.url }}">
   <meta name="twitter:site" content="@hasajedi">
   <meta name="twitter:creator" content="@hasajedi">
 

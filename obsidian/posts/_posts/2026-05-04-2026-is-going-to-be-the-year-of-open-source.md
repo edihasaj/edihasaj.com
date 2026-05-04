@@ -11,6 +11,7 @@ tags:
   - software
   - agents
 excerpt: "Software is getting cheaper to build, agents are getting better, and the things that are easy to create will be harder and harder to sell as closed source."
+image: /images/pages/edi-og.png
 ---
 
 # 2026 is going to be the year of open source
