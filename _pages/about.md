@@ -6,7 +6,7 @@ permalink: /about/
 
 Software engineer. Building the next layer of software.
 
-Over a decade of shipping code. Backend, systems, infra, and now deep in AI Engineering. Agents, local-first tools, and the sharp little things that replace bloated SaaS.
+Over a decade of shipping code. Deep in AI Engineering, with a backbone of backend, systems, and infra. Agents, local-first tools, and the sharp little things that replace bloated SaaS.
 
 The future is autonomous, local, and open. Closed bloat loses. I am betting on the other side, and shipping the proof every week.
 
@@ -29,6 +29,5 @@ Based in Prishtinë. Mostly online.
 - GitHub: [edihasaj](https://github.com/edihasaj)
 - X: [@hasajedi](https://x.com/hasajedi)
 - LinkedIn: [edihasaj](https://www.linkedin.com/in/edihasaj/)
-- Email: edihasaj@gmail.com
 
 If you want to talk shop, agents, infra, cloud tech, shipping, reach out on any of these.
