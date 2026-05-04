@@ -13,7 +13,7 @@ details.
 
 ## Theme
 
-The site supports light and dark themes. The toggle lives in
+The site supports light and dark themes, with light mode as the default. The toggle lives in
 `_includes/header.html`, the saved preference is handled in `js/app.js`, and
 the palette is exposed through CSS variables compiled from the Sass partials.
 Use `var(--theme-*)` tokens for new surfaces so posts, navigation, and footer

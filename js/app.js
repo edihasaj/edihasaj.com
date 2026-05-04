@@ -38,8 +38,7 @@ $(document).ready(function() {
   try {
     savedTheme = localStorage.getItem('theme');
   } catch (e) {}
-  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  setTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
+  setTheme(savedTheme === 'dark');
 
   $themeToggle.click(function() {
     var isDark = !$html.hasClass('theme-dark');
