@@ -4,11 +4,15 @@
 
 .c-content {
   a:not(.c-btn) {
+    color: $color-brand;
     text-decoration: underline;
-    text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
 
     @include attention() {
       color: $color-brand;
+      text-decoration-thickness: 2px;
     }
   }
 

@@ -9,10 +9,11 @@
 
     <h3 class='c-post-card__title'>{{ post.title }}</h3>
 
-    <div class='c-post-card__body{% if post.front_page_image %} c-post-card__body--with-image{% endif %}'>
-      {% if post.front_page_image %}
+    {% assign card_image = post.front_page_image | default: post.image %}
+    <div class='c-post-card__body{% if card_image %} c-post-card__body--with-image{% endif %}'>
+      {% if card_image %}
         <span class='c-post-card__thumb'>
-          <img src='{{ post.front_page_image | prepend: site.baseurl }}'
+          <img src='{{ card_image | prepend: site.baseurl }}'
                loading='lazy' alt='{{ post.title }}'>
         </span>
       {% endif %}

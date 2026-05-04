@@ -5,15 +5,11 @@
 .c-header {
   background: var(--theme-bg);
 
-  .c-logo__link, .js-off-canvas-toggle {
-    display: table;
-  }
-
   &__actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 17px;
+    gap: 28px;
     height: 40px;
   }
 
@@ -132,6 +128,7 @@
 .c-logo {
   display: flex;
   align-items: center;
+  height: 40px;
 
   &__link {
     padding-top: 0;
