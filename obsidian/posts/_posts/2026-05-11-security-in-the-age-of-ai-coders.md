@@ -5,6 +5,7 @@ title: "Security in the age of AI coders"
 date: 2026-05-11
 published: true
 filename: essay/_posts/2026-05-11-security-in-the-age-of-ai-coders
+image: /images/posts/security-in-the-age-of-ai-coders-2026-05-11.jpg
 tags:
   - AI
   - security
