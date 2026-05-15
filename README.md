@@ -11,6 +11,21 @@ details.
 
 ## Organization
 
+## SEO and crawler discovery
+
+Public posts are exposed through multiple machine-readable surfaces:
+
+- `/sitemap.xml` lists canonical pages, posts, topic hubs, and guides.
+- `/robots.txt` allows normal search crawlers and major AI/search crawlers, and points to the sitemap.
+- `/agents.txt` states the public agent policy for search, citation, summarization, and agentic reading.
+- `/llms.txt` gives LLMs a concise site index with core pages, topic hubs, and current posts.
+- `/atom.xml` remains the primary RSS/Atom feed.
+
+Post and topic pages also emit JSON-LD structured data from `_includes/seo-jsonld.html`.
+When adding a new recurring subject area, create a topic page under `_pages/topics/`
+with `layout: topic` and matching `topic_tags` so it appears in the sitemap and
+LLM index.
+
 ## Theme
 
 The site supports light and dark themes, with light mode as the default. The toggle lives in

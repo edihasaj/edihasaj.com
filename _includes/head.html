@@ -7,6 +7,7 @@
   <meta name='color-scheme' content='light dark'>
   <meta name='theme-color' content='#ffffff' media='(prefers-color-scheme: light)'>
   <meta name='theme-color' content='#101014' media='(prefers-color-scheme: dark)'>
+  <meta name='robots' content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'>
   <script>
     (function() {
       try {
@@ -19,7 +20,7 @@
   </script>
 
   <title>{% if page.title and page.title != 'Home' %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} - Software, AI & insights to help you build on the internet{% endif %}</title>
-  <meta name='description' content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name='description' content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | prepend: site.baseurl }}">
@@ -30,14 +31,14 @@
   <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
   <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <meta property="og:title" content="{% if page.title and page.title != 'Home' %}{{ page.title }}{% else %}{{ site.title }} - Software, AI & insights{% endif %}">
-  <meta property="og:description" content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:description" content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta property="og:image" content="{{ og_image | prepend: site.baseurl | prepend: site.url }}">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <meta name="twitter:title" content="{% if page.title and page.title != 'Home' %}{{ page.title }}{% else %}{{ site.title }} - Software, AI & insights{% endif %}">
-  <meta name="twitter:description" content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.url == '/' %}I'm the CEO of Applifyer – building agentic and traditional software internet businesses. Writing about building digital products, AI integrations, and lessons learned from over a decade of software engineering.{% elsif page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta name="twitter:image" content="{{ og_image | prepend: site.baseurl | prepend: site.url }}">
   <meta name="twitter:site" content="@hasajedi">
   <meta name="twitter:creator" content="@hasajedi">
@@ -45,6 +46,9 @@
   <link rel='canonical' href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel='alternate' type='application/rss+xml' title='{{ site.title }}'
   href="{{ '/atom.xml' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel='sitemap' type='application/xml' title='Sitemap' href="{{ '/sitemap.xml' | absolute_url }}">
+
+  {% include seo-jsonld.html %}
 
   <style>
     {% capture inlineCSS %}

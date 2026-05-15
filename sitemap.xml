@@ -1,0 +1,29 @@
+---
+layout: null
+permalink: /sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% assign html_pages = site.pages | where_exp: "item", "item.sitemap != false" %}
+  {% for item in html_pages %}
+    {% unless item.url contains '/404' or item.url contains '/admin/' or item.url contains '.xml' or item.url contains '.txt' or item.url contains '.json' %}
+  <url>
+    <loc>{{ item.url | replace:'index.html','' | absolute_url | xml_escape }}</loc>
+    <lastmod>{{ item.date | default: site.time | date_to_xmlschema }}</lastmod>
+  </url>
+    {% endunless %}
+  {% endfor %}
+  {% for post in site.posts %}
+  <url>
+    <loc>{{ post.url | absolute_url | xml_escape }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod>
+  </url>
+  {% endfor %}
+  {% for item in site.guide %}
+  <url>
+    <loc>{{ item.url | absolute_url | xml_escape }}</loc>
+    <lastmod>{{ item.last_modified_at | default: item.date | default: site.time | date_to_xmlschema }}</lastmod>
+  </url>
+  {% endfor %}
+</urlset>

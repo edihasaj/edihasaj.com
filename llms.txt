@@ -1,0 +1,35 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.title }}
+
+{{ site.description }}
+
+Author: {{ site.author }}
+Site: {{ site.url }}
+Contact: {{ site.email | default: 'edihasaj@gmail.com' }}
+Feed: {{ '/atom.xml' | absolute_url }}
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
+
+## Core Pages
+
+- [Home]({{ '/' | absolute_url }}) - Edi Hasaj's writing and projects.
+- [Blog]({{ '/blog/' | absolute_url }}) - All essays and posts.
+- [About]({{ '/about' | absolute_url }}) - Bio, links, and current work.
+
+## Topic Hubs
+
+- [AI Agents]({{ '/topics/ai-agents/' | absolute_url }}) - Agents, MCP, computer use, and agentic software.
+- [Security]({{ '/topics/security/' | absolute_url }}) - Security in the age of AI coders and automated systems.
+- [Open Source]({{ '/topics/open-source/' | absolute_url }}) - Open-source strategy, tooling, and local-first systems.
+- [MCP]({{ '/topics/mcp/' | absolute_url }}) - Model Context Protocol and agent-tool interfaces.
+- [Software]({{ '/topics/software/' | absolute_url }}) - Product engineering and practical software work.
+
+## Blog Posts
+
+{% assign public_posts = site.posts | sort: 'date' | reverse %}
+{% for post in public_posts %}
+- [{{ post.title }}]({{ post.url | absolute_url }}){% if post.excerpt %} - {{ post.excerpt | strip_html | strip_newlines }}{% endif %}
+{% endfor %}

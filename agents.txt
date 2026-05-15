@@ -1,0 +1,56 @@
+---
+layout: null
+permalink: /agents.txt
+sitemap: false
+---
+# Agents Policy
+
+Site: {{ site.title }}
+URL: {{ site.url }}
+Contact: {{ site.email | default: 'edihasaj@gmail.com' }}
+
+Policy: Allow crawling, indexing, search retrieval, citation, summarization, and agentic reading of public pages.
+Preferred citation: Link to the canonical page URL.
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
+Feed: {{ '/atom.xml' | absolute_url }}
+LLM index: {{ '/llms.txt' | absolute_url }}
+
+User-agent: *
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /

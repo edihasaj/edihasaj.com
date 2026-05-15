@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<div class='o-wrapper'>
+  <div class='o-grid'>
+    <div class='o-grid__col o-grid__col--4-4-s'>
+      <article class='c-post'>
+        <h1 class='c-post__title u-text-center'>{{ page.title }}</h1>
+
+        {% if page.description %}
+          <p class='u-text-center'>{{ page.description }}</p>
+        {% endif %}
+
+        <div class='c-tags u-text-center'>
+          <a href='{{ "/atom.xml" | relative_url }}'>RSS</a>
+          <a href='{{ "/sitemap.xml" | relative_url }}'>Sitemap</a>
+          <a href='{{ "/llms.txt" | relative_url }}'>LLM index</a>
+        </div>
+      </article>
+    </div>
+
+    {% for post in site.posts %}
+      {% assign include_post = false %}
+      {% for topic_tag in page.topic_tags %}
+        {% if post.tags contains topic_tag %}
+          {% assign include_post = true %}
+        {% endif %}
+      {% endfor %}
+      {% if include_post %}
+        {% include post-card.liquid %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
