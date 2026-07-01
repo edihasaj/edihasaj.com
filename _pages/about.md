@@ -12,6 +12,25 @@ The future is autonomous, local, and open. Closed bloat loses. I am betting on t
 
 Based in Prishtinë. Mostly online.
 
+## Building & Shipping
+
+Open source, products, and the odd legacy thing. New apps land here as I ship them.
+
+### Open Source
+
+{% for p in site.data.projects.open_source %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** — {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
+{% endfor %}
+
+### Projects
+
+{% for p in site.data.projects.projects %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** — {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
+{% endfor %}
+
+### Legacy
+
+{% for p in site.data.projects.legacy %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** — {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
+{% endfor %}
+
 ## GitHub Activity
 
 <a href="https://github.com/edihasaj">

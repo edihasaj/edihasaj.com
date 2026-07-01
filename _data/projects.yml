@@ -1,0 +1,164 @@
+# Single source of truth for the apps/projects list.
+# Rendered on /about/ (Jekyll) and synced into the profile README
+# (../edihasaj/README.md) via `node bin/gen-readme.js`.
+#
+# Add a new app: append an entry to the right section, then run:
+#   node bin/gen-readme.js
+# Fields: emoji, name, url, source (optional), desc
+
+open_source:
+  - emoji: "🌐"
+    name: Universal Memory Protocol
+    url: https://universalmemoryprotocol.io
+    source: https://github.com/edihasaj/universal-memory-protocol
+    desc: open standard for agent memory.
+  - emoji: "🧠"
+    name: Recall
+    url: https://recallmemory.dev/
+    source: https://github.com/edihasaj/recall
+    desc: quality-gated local memory layer for coding agents. macOS, Linux, and Windows.
+  - emoji: "🖥️"
+    name: guiport
+    url: https://guiport.dev
+    source: https://github.com/edihasaj/guiport
+    desc: Playwright for desktop apps, built for coding agents.
+  - emoji: "🧪"
+    name: vmlab
+    url: https://github.com/edihasaj/vmlab
+    desc: one CLI for agents to test and verify software across any target.
+  - emoji: "🚢"
+    name: shipyard
+    url: https://github.com/edihasaj/shipyard
+    desc: point an agent at a repo + task, get a PR-ready branch back (gates, security + code review).
+  - emoji: "📈"
+    name: spendwatch
+    url: https://github.com/edihasaj/spendwatch
+    desc: "token/$ leaderboards for coding agents (Claude Code, Codex): see what your tools and prompts cost."
+  - emoji: "🖼️"
+    name: shotport
+    url: https://github.com/edihasaj/shotport
+    desc: "token-cheap screenshot capture for agents: text first, budgeted pixels only when needed."
+  - emoji: "⚡"
+    name: slash-x
+    url: https://github.com/edihasaj/slash-x
+    desc: local X/Twitter CLI for posting, replying, reading, and search.
+  - emoji: "💼"
+    name: slash-linkedin
+    url: https://github.com/edihasaj/slash-linkedin
+    desc: "local LinkedIn CLI: post, repost, and comment from the command line."
+  - emoji: "👽"
+    name: slash-reddit
+    url: https://github.com/edihasaj/slash-reddit
+    desc: "local Reddit CLI: comment, reply, submit, and read via the official API."
+  - emoji: "🦋"
+    name: slash-bluesky
+    url: https://github.com/edihasaj/slash-bluesky
+    desc: "local Bluesky CLI: post and reply over the AT Protocol."
+  - emoji: "🟧"
+    name: slash-hn
+    url: https://github.com/edihasaj/slash-hn
+    desc: "local Hacker News CLI: comment and reply from the command line."
+  - emoji: "🐙"
+    name: slash-github
+    url: https://github.com/edihasaj/slash-github
+    desc: "local GitHub CLI: comment on issues and pull requests."
+  - emoji: "📋"
+    name: Klyp
+    url: https://github.com/edihasaj/klyp
+    desc: lightweight macOS menu-bar clipboard manager.
+  - emoji: "⭐"
+    name: tuspyserver
+    url: https://github.com/edihasaj/tuspyserver
+    desc: Python TUS protocol server.
+
+projects:
+  - emoji: "🐙"
+    name: Oktapod
+    url: https://oktapod.ai
+    desc: personal agent runtime.
+  - emoji: "🤖"
+    name: Agentic Suite
+    url: https://agenticsuite.io
+    desc: AI workflow automation platform.
+  - emoji: "⚖️"
+    name: Neni
+    url: https://neni.me
+    desc: Kosovo law RAG with citations.
+  - emoji: "📊"
+    name: Dialekt AI
+    url: https://dialektai.com
+    desc: AI over business data.
+  - emoji: "🇪🇺"
+    name: Eunifyer
+    url: https://eunifyer.com
+    desc: cloud solution for Europe.
+  - emoji: "🗣️"
+    name: ChirpGo
+    url: https://chirpgo.app
+    desc: offline macOS voice-to-text.
+  - emoji: "🚀"
+    name: Starterbase
+    url: https://starterbase.dev
+    desc: SaaS base for agent-built apps.
+  - emoji: "🧾"
+    name: Invoicing
+    url: https://invoicing.applifyer.com
+    desc: AI invoices and expenses.
+  - emoji: "📺"
+    name: Teleprompt Overlay
+    url: https://teleprompt.applifyer.com
+    desc: teleprompter overlay.
+  - emoji: "🐛"
+    name: Zapfeed
+    url: https://zapfeed.io
+    desc: bug board and help center.
+  - emoji: "🧩"
+    name: Problem Digest
+    url: https://problemdigest.com
+    desc: problem discovery.
+  - emoji: "🏢"
+    name: KosovoBiz
+    url: https://kosovobiz.com
+    desc: Kosovo business registry.
+  - emoji: "💸"
+    name: SettleLoop
+    url: http://settle-loop.applifyer.com
+    desc: split expenses.
+
+legacy:
+  - emoji: "🔗"
+    name: EmbedLink
+    url: https://embed-link.com
+    desc: link embedding.
+  - emoji: "📶"
+    name: BLE Priority
+    url: https://play.google.com/store/apps/details?id=com.applifyer.blepriority
+    desc: BLE device management.
+  - emoji: "🗺️"
+    name: leaflet-coord-projection
+    url: https://github.com/edihasaj/leaflet-coord-projection
+    desc: Leaflet coordinate projection.
+  - emoji: "🛒"
+    name: medusa-plugin-reviews
+    url: https://github.com/edihasaj/medusa-plugin-reviews
+    desc: Medusa reviews plugin.
+  - emoji: "📟"
+    name: ecr-bluetooth
+    url: https://github.com/edihasaj/ecr-bluetooth
+    desc: Bluetooth fiscal integration.
+  - emoji: "📠"
+    name: scanner-ctrl-toshiba
+    url: https://github.com/edihasaj/scanner-ctrl-toshiba
+    desc: Toshiba scanner control.
+  - emoji: "🖥️"
+    name: cash-display-toshiba
+    url: https://github.com/edihasaj/cash-display-toshiba
+    desc: Toshiba cash display.
+  - emoji: "📊"
+    name: MetricShot
+    url: http://metricshot.dev
+    desc: metric snapshots.
+  - emoji: "💰"
+    name: Price&Promotion Engine
+    url: https://pricepromoengine.com
+    desc: pricing and promotions.
