@@ -9,6 +9,19 @@ For testing Obsidian's obsidian-github-publisher's regex,
 run `bin/test-obsidian-regex`. See `obsidian_regex_publisher.test.js` for more
 details.
 
+## Apps / projects list (single source)
+
+The apps shown on `/about/` **and** in the profile README
+(`../edihasaj/README.md`) both come from `_data/projects.yml`.
+
+To add or edit an app:
+
+1. Edit `_data/projects.yml` (sections: `open_source`, `projects`, `legacy`).
+2. Run `node bin/gen-readme.js` to sync the profile README.
+3. Commit both repos.
+
+`node bin/gen-readme.js --check` fails if the README has drifted (CI-friendly).
+
 ## Organization
 
 ## SEO and crawler discovery
