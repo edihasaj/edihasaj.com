@@ -22,6 +22,10 @@ open_source:
     url: https://guiport.dev
     source: https://github.com/edihasaj/guiport
     desc: Playwright for desktop apps, built for coding agents.
+  - emoji: "🗄️"
+    name: Strata
+    url: https://github.com/edihasaj/strata
+    desc: modern YAML-driven homelab dashboard with live status and previews.
   - emoji: "🧪"
     name: vmlab
     url: https://github.com/edihasaj/vmlab
