@@ -205,7 +205,6 @@
 
 .c-post-page {
   background:
-    linear-gradient(90deg, transparent 0, transparent calc(50% - 1px), var(--theme-border) 50%, transparent calc(50% + 1px)),
     radial-gradient(circle at 12% 7%, var(--theme-glow-warm), transparent 30rem),
     radial-gradient(circle at 88% 30%, var(--theme-glow-cool), transparent 34rem),
     var(--theme-bg);
