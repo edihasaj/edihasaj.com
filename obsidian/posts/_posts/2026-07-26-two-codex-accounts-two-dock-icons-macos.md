@@ -3,7 +3,7 @@ share: true
 layout: post
 title: "Two Codex Accounts, Two Dock Icons on macOS"
 date: 2026-07-26
-published: false
+published: true
 filename: essay/_posts/2026-07-26-two-codex-accounts-two-dock-icons-macos
 tags:
   - AI
