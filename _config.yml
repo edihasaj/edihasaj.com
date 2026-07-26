@@ -40,8 +40,6 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
-  - codex_guides.test.js
-  - obsidian_regex_publisher.test.js
 
 # Tags
 tag_page_dir:         tag
@@ -61,10 +59,6 @@ collections:
   guide:
     output: true
     permalink: /:title
-
-  codex_guides:
-    output: true
-    permalink: /guides/codex/:name/
 
 # Pages path
 defaults:
@@ -103,10 +97,3 @@ defaults:
     values:
       layout: page
       permalink: /:basename
-
-  - scope:
-      path: '_codex_guides'
-      type: codex_guides
-    values:
-      layout: codex-guide
-      sitemap: true

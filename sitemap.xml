@@ -26,10 +26,4 @@ sitemap: false
     <lastmod>{{ item.last_modified_at | default: item.date | default: site.time | date_to_xmlschema }}</lastmod>
   </url>
   {% endfor %}
-  {% for item in site.codex_guides %}
-  <url>
-    <loc>{{ item.url | absolute_url | xml_escape }}</loc>
-    <lastmod>{{ item.last_modified_at | default: item.date | default: site.time | date_to_xmlschema }}</lastmod>
-  </url>
-  {% endfor %}
 </urlset>

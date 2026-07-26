@@ -1,13 +1,6 @@
 {
   "scripts": {
-    "build": "bundle exec jekyll build --quiet",
-    "test": "npm run build && jest"
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/_site/"
-    ]
+    "test": "jest"
   },
   "dependencies": {
     "jest": "^29.7.0"

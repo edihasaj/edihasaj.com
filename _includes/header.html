@@ -15,11 +15,8 @@
               {% if page.collection == 'posts' %}{% assign posts_active = true %}{% endif %}
               {% assign about_active = false %}
               {% if page.url contains '/about' %}{% assign about_active = true %}{% endif %}
-              {% assign guides_active = false %}
-              {% if page.url contains '/guides' %}{% assign guides_active = true %}{% endif %}
               <nav class='c-header__nav' aria-label='Primary'>
                 <a class='c-header__nav-link{% if posts_active %} is-active{% endif %}' href='{{ "/blog/" | relative_url }}'>Posts</a>
-                <a class='c-header__nav-link{% if guides_active %} is-active{% endif %}' href='{{ "/guides/codex/" | relative_url }}'>Guides</a>
                 <a class='c-header__nav-link{% if about_active %} is-active{% endif %}' href='{{ "/about/" | relative_url }}'>About</a>
               </nav>
               <button class='js-theme-toggle c-theme-toggle' type='button' aria-label='Toggle dark mode' title='Toggle dark mode'>

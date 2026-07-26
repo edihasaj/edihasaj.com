@@ -39,23 +39,6 @@ When adding a new recurring subject area, create a topic page under `_pages/topi
 with `layout: topic` and matching `topic_tags` so it appears in the sitemap and
 LLM index.
 
-### Programmatic guide collections
-
-Codex setup and troubleshooting pages live in `_codex_guides/`. Each document is
-a structured content record rendered by `_layouts/codex-guide.html` at
-`/guides/codex/<slug>/`.
-
-Required front matter:
-
-- `title`, `description`, `date`, and `last_modified_at`
-- `intent`, `category`, `level`, and `tested_on`
-- `keywords` and `related` guide slugs
-
-The `/guides/codex/` hub, sitemap, breadcrumbs, related-guide links, JSON-LD, and
-`llms.txt` index are generated from the collection. Every guide must answer a
-distinct search intent with original instructions or verified evidence. Do not
-create keyword-swapped doorway pages.
-
 ## Theme
 
 The site supports light and dark themes, with light mode as the default. The toggle lives in

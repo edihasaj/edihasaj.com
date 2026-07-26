@@ -30,65 +30,6 @@
   "keywords": {{ page.tags | join: ", " | jsonify }}
 }
 </script>
-{% elsif page.layout == 'codex-guide' %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": {{ page.title | jsonify }},
-  "description": {{ page_description | jsonify }},
-  "url": {{ canonical_url | jsonify }},
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": {{ canonical_url | jsonify }}
-  },
-  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-  "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
-  "proficiencyLevel": {{ page.level | default: "Beginner" | jsonify }},
-  "author": {
-    "@type": "Person",
-    "name": {{ site.author | jsonify }},
-    "url": {{ site.url | jsonify }}
-  },
-  "publisher": {
-    "@type": "Person",
-    "name": {{ site.author | jsonify }},
-    "url": {{ site.url | jsonify }}
-  },
-  "isPartOf": {
-    "@type": "CollectionPage",
-    "name": "Codex Field Guide",
-    "url": {{ "/guides/codex/" | absolute_url | jsonify }}
-  },
-  "keywords": {{ page.keywords | join: ", " | jsonify }}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": {{ "/" | absolute_url | jsonify }}
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Codex Guides",
-      "item": {{ "/guides/codex/" | absolute_url | jsonify }}
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": {{ page.title | jsonify }},
-      "item": {{ canonical_url | jsonify }}
-    }
-  ]
-}
-</script>
 {% elsif page.layout == 'topic' %}
 <script type="application/ld+json">
 {
