@@ -1,7 +1,7 @@
 ---
 share: true
 layout: post
-title: "Two Codex Accounts, Two Dock Icons on macOS"
+title: "Run Two Codex Accounts on macOS"
 date: 2026-07-26
 published: true
 filename: essay/_posts/2026-07-26-two-codex-accounts-two-dock-icons-macos
@@ -11,36 +11,23 @@ tags:
   - macOS
   - tooling
   - productivity
-excerpt: "A separate CODEX_HOME isolates Codex state, but it is not enough to run two desktop instances at once. Here is the complete macOS setup, including the Electron data directory and two permanent Dock launchers."
+excerpt: "Keep the installed Codex app for your primary account and add one isolated Codex Second launcher for another account."
 ---
 
-I use two ChatGPT accounts with Codex. One is my primary account. The other is a separate account I want ready when I need it, without logging out, signing in again, and reversing the whole process later.
+Use the installed Codex app for your primary account. You only need one custom launcher for the second account.
 
-The obvious macOS command gets halfway there:
+The second launcher needs two isolated directories:
 
-```zsh
-mkdir -p "$HOME/.codex-work"
-open -n -a Codex --env "CODEX_HOME=$HOME/.codex-work"
-```
+| State | Location |
+| --- | --- |
+| Codex configuration and authentication | `~/.codex-work` |
+| Desktop application data | `~/Library/Application Support/Codex Second` |
 
-`CODEX_HOME` gives the second process its own Codex state. OpenAI documents it as the root for configuration, authentication, logs, sessions, skills, and other local data. The normal profile stays in `~/.codex`; the second one lives in `~/.codex-work`.
+`CODEX_HOME` isolates Codex state. The separate `--user-data-dir` prevents Electron from handing the second launch back to the primary app.
 
-But on the current Codex desktop app, that command alone did not give me two running app processes. I tested it on both my MacBook and Mac Studio. macOS accepted the command, but Electron still pointed both launches at the same desktop data directory:
+## test the second account
 
-```text
-~/Library/Application Support/Codex
-```
-
-That directory owns Electron's single-instance lock. The second launch handed control back to the first app.
-
-The complete setup needs two layers of isolation:
-
-| Layer | Primary account | Second account |
-| --- | --- | --- |
-| Codex state | `~/.codex` | `~/.codex-work` |
-| Desktop data | `~/Library/Application Support/Codex` | `~/Library/Application Support/Codex Second` |
-
-Here is the working command:
+Run this in Terminal:
 
 ```zsh
 mkdir -p "$HOME/.codex-work"
@@ -51,102 +38,73 @@ open -n -a Codex \
   --args "--user-data-dir=$HOME/Library/Application Support/Codex Second"
 ```
 
-`-n` asks macOS to start another application instance. `CODEX_HOME` separates Codex's own state. `--user-data-dir` separates the Electron shell and lets both desktop processes stay alive.
+A second Codex window should open. Sign into your other ChatGPT account.
 
-This is the part worth keeping. `CODEX_HOME` and `--user-data-dir` solve different problems.
+## create one Dock launcher
 
-## turn them into two Dock apps
-
-I do not want to remember a terminal command every time I switch accounts. I want two permanent icons:
-
-- Codex Primary
-- Codex Second
-
-The cleanest built-in option is Script Editor. It ships with macOS and can save a tiny AppleScript as an application.
-
-Open Script Editor and create the primary launcher:
-
-```applescript
-do shell script "/usr/bin/open -a Codex"
-```
-
-Save it as an application:
-
-```text
-~/Applications/Codex Primary.app
-```
-
-Create a second Script Editor document with:
+Open Script Editor and paste:
 
 ```applescript
 set homePath to system attribute "HOME"
 set codexHome to "CODEX_HOME=" & homePath & "/.codex-work"
 set appData to homePath & "/Library/Application Support/Codex Second"
+set processPattern to "^/Applications/ChatGPT\\.app/Contents/MacOS/ChatGPT --user-data-dir=" & appData & "($| )"
+set findProcess to "/usr/bin/pgrep -f " & quoted form of processPattern & " | /usr/bin/head -n 1 || true"
+set secondPid to do shell script findProcess
 
-do shell script "/bin/mkdir -p " & quoted form of (homePath & "/.codex-work") & " " & quoted form of appData & " && /usr/bin/open -n -a Codex --env " & quoted form of codexHome & " --args " & quoted form of ("--user-data-dir=" & appData)
+if secondPid is "" then
+  do shell script "/bin/mkdir -p " & quoted form of (homePath & "/.codex-work") & " " & quoted form of appData & " && /usr/bin/open -n -a Codex --env " & quoted form of codexHome & " --args " & quoted form of ("--user-data-dir=" & appData)
+
+  repeat 20 times
+    delay 0.25
+    set secondPid to do shell script findProcess
+    if secondPid is not "" then exit repeat
+  end repeat
+end if
+
+if secondPid is not "" then
+  tell application "System Events" to set frontmost of first application process whose unix id is (secondPid as integer) to true
+end if
 ```
 
-Save that one as:
+Choose **File → Save**, set **File Format** to **Application**, and save it as:
 
 ```text
 ~/Applications/Codex Second.app
 ```
 
-Open `~/Applications` in Finder, then drag both launchers into the Dock.
+The focus section matters. Clicking the pinned launcher will bring the isolated Codex window forward instead of making you click its temporary running-process icon.
 
-The first icon opens the normal Codex profile. The second opens a simultaneous, isolated instance. Sign into the second ChatGPT account once. Later launches reuse its local account state.
+macOS may ask whether `Codex Second` can control System Events. Allow it so the launcher can focus the correct window.
 
-## use the real Codex icon
+## use the original Codex icon
 
-Script Editor gives launcher apps a generic script icon. If you want both Dock entries to look like Codex:
+To give the launcher the same icon as the installed app:
 
-1. Select the installed Codex app in Finder and press `Command-I`.
-2. Click the icon at the top of the Info window and press `Command-C`.
-3. Open Get Info for each launcher.
-4. Select its icon and press `Command-V`.
+1. Select Codex in `/Applications` and press `Command-I`.
+2. Click the icon in the top-left corner and press `Command-C`.
+3. Select `Codex Second.app` in `~/Applications` and press `Command-I`.
+4. Click its icon and press `Command-V`.
 
-The names still distinguish the two entries when you hover over them. You can also give the second launcher a custom badge if you want the difference visible at a glance.
+Drag only `Codex Second.app` into the Dock. Keep using the normal installed Codex icon for your primary account.
 
-## verify that isolation is real
+## verify both accounts
 
-Launch both Dock entries, then run:
+Open normal Codex, then click `Codex Second` in the Dock. Run:
 
 ```zsh
 pgrep -alf "ChatGPT.app/Contents/MacOS/ChatGPT"
 ```
 
-The exact executable path can vary by release, but you should see two main processes. The second should include something like:
+You should see two main processes. The second includes:
 
 ```text
 --user-data-dir=/Users/you/Library/Application Support/Codex Second
 ```
 
-Then check the profile menu in each window. The primary window should show account A. The second window should show account B. Quit the second instance, reopen `Codex Second`, and confirm it remembers account B.
+Each window should remember its own ChatGPT account after quitting and reopening.
 
-If the second launcher only focuses the first window, check three things:
-
-1. `-n` is present.
-2. `CODEX_HOME` points to the same second directory every time.
-3. `--user-data-dir` is present and points somewhere different from the primary app data.
-
-The third check is the one most instructions miss.
-
-## what this does, and what it does not
-
-This setup isolates local profiles. It does not combine usage limits, transfer quota, or change which account is billed. Every Codex request still belongs to the ChatGPT account signed into that window.
-
-It is also not an official multi-account switcher. `CODEX_HOME` is a documented Codex environment variable, but the two-launcher desktop workflow is a macOS and Electron workaround I verified against the current app. A future Codex release could change its desktop process model.
-
-Treat both profile directories as sensitive:
-
-```text
-~/.codex-work
-~/Library/Application Support/Codex Second
-```
-
-Do not put them in a project repository or public sync folder. Do not copy their credentials to another machine. Create the directories on the other Mac and sign in there normally.
-
-The result is pleasantly boring. Two Dock icons. Two accounts. No repeated logout dance.
+Do not put either profile directory in a repository or public sync folder. The setup isolates local profiles; it does not combine usage limits or billing.
 
 ---
 
