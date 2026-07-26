@@ -2,33 +2,49 @@
 layout: default
 ---
 
-<div class='o-wrapper'>
-  <div class='o-grid'>
-    <div class='o-grid__col o-grid__col--4-4-s'>
-      <article class='c-post' itemscope itemtype='http://schema.org/BlogPosting'>
+{% assign word_count = content | number_of_words %}
+{% assign reading_time = word_count | divided_by: 220 | plus: 1 %}
 
-        <h1 class='c-post__title u-text-center'>{{ page.title }}</h1>
-
-        <time class='c-post__date' datetime='{{ page.date | date_to_xmlschema }}' itemprop='datePublished'>{{ page.display_date | default: page.date | date: '%d %b %Y' }}</time>
-
-        <div class='c-content' itemprop='articleBody'>
-          {% include page-image.html %}
-
-          {{ content }}
+<main class='c-post-page'>
+  <div class='o-wrapper'>
+    <article class='c-post' itemscope itemtype='https://schema.org/BlogPosting'>
+      <header class='c-post__hero'>
+        <div class='c-post__meta'>
+          <span>Field note</span>
+          <time datetime='{{ page.date | date_to_xmlschema }}' itemprop='datePublished'>{{ page.display_date | default: page.date | date: '%d %b %Y' }}</time>
+          <span>{{ reading_time }} min read</span>
         </div>
 
-        <div class='c-tags'>
+        <h1 class='c-post__title' itemprop='headline'>{{ page.title }}</h1>
+
+        {% if page.excerpt %}
+          <p class='c-post__lede' itemprop='description'>{{ page.excerpt | strip_html }}</p>
+        {% endif %}
+      </header>
+
+      {% if page.image %}
+        <figure class='c-post__figure'>
+          {% include page-image.html %}
+        </figure>
+      {% endif %}
+
+      <div class='c-post__body c-content' itemprop='articleBody'>
+        {{ content }}
+      </div>
+
+      <footer class='c-post__footer'>
+        <p>Written by <a href='/about/'>Edi Hasaj</a></p>
+        <div class='c-tags' aria-label='Post topics'>
           {% for tag in page.tags %}
             <a href='{{ site.baseurl }}/tag/{{ tag }}'>{{ tag }}</a>
           {% endfor %}
         </div>
+      </footer>
 
-        {% comment %}
-          <hr>
-          {% include disqus.html %}
-        {% endcomment %}
-
-      </article>
-    </div>
+      {% comment %}
+        <hr>
+        {% include disqus.html %}
+      {% endcomment %}
+    </article>
   </div>
-</div>
+</main>

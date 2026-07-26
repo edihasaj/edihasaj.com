@@ -3,47 +3,274 @@
 \*------------------------------------*/
 
 .c-post {
+  position: relative;
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 1120px;
 
   ol, ul {
     list-style-position: outside;
-    padding-left: 1.0em;
+    padding-left: 1.15em;
   }
 
   &__title {
-    font-size: double($font-size-tiny);
-    margin-bottom: $base-spacing-unit;
+    max-width: 980px;
+    margin: 22px 0 0;
+    color: var(--theme-text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(44px, 7vw, 82px);
+    font-weight: 400;
+    letter-spacing: -.055em;
+    line-height: .98;
+  }
 
-    @include mq($from: tablet) {
-      font-size: double($font-size-small);
+  &__hero {
+    padding: 46px 0 58px;
+    animation: post-reveal .55s ease-out both;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    span,
+    time {
+      padding: 5px 10px;
+      border: 1px solid var(--theme-border-strong);
+      border-radius: 999px;
+      color: var(--theme-muted);
+      font-family: $font-monospace;
+      font-size: 10px;
+      letter-spacing: .07em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    span:first-child {
+      border-color: $color-brand;
+      color: $color-brand;
     }
   }
 
-  &__date {
-    position: relative;
-    padding-top: $base-spacing-unit;
-    display: block;
-    text-align: center;
-    margin-bottom: $base-spacing-unit;
-    font-size: $font-size-small;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-small;
+  &__lede {
+    max-width: 790px;
+    margin: 30px 0 0;
     color: var(--theme-muted);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.45;
+  }
 
-    &:after {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: 50%;
-      height: 1px;
-      width: quadruple($base-spacing-unit);
-      background: var(--theme-border);
-      transform: translateX(-50%);
+  &__figure {
+    margin: 0 0 70px;
+    animation: post-reveal .55s .1s ease-out both;
+
+    .c-post__image {
+      width: 100%;
+      max-height: 620px;
+      margin: 0;
+      border: 1px solid var(--theme-border);
+      object-fit: cover;
+      box-shadow: 16px 16px 0 var(--theme-shadow);
     }
   }
 
-  &__image {
-    margin: 0 auto $base-spacing-unit;
+  &__body {
+    width: min(100%, 740px);
+    min-width: 0;
+    margin-left: clamp(0px, 10vw, 150px);
+    color: var(--theme-text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 19px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+
+    > p:first-child::first-letter {
+      float: left;
+      margin: .08em .1em 0 0;
+      color: $color-brand;
+      font-size: 3.8em;
+      line-height: .75;
+    }
+
+    h2 {
+      margin: 72px 0 18px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(31px, 4vw, 44px);
+      font-weight: 400;
+      letter-spacing: -.035em;
+      line-height: 1.08;
+    }
+
+    h3 {
+      margin: 46px 0 14px;
+      font-family: $font-base;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    a:not(.c-btn) {
+      color: $color-brand;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    blockquote {
+      margin: 40px 0;
+      padding: 24px 28px;
+      border: 0;
+      border-left: 4px solid $color-brand;
+      background: var(--theme-surface);
+      color: var(--theme-text);
+      font-size: 23px;
+      line-height: 1.55;
+    }
+
+    pre {
+      max-width: 100%;
+      margin: 32px 0;
+      padding: 24px;
+      border: 1px solid var(--theme-border-strong);
+      border-left: 4px solid $color-brand;
+      border-radius: 0;
+      background: var(--theme-code-bg);
+      box-shadow: 10px 10px 0 var(--theme-shadow);
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: $font-monospace;
+      font-size: .82em;
+    }
+
+    table {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin: 34px 0;
+      border-collapse: collapse;
+      font-family: $font-base;
+      font-size: 15px;
+      overflow-x: auto;
+
+      th,
+      td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--theme-border);
+      }
+    }
+
+    hr {
+      width: 80px;
+      margin: 70px auto;
+      border: 0;
+      border-top: 3px solid $color-brand;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 820px;
+    margin: 86px 0 0 clamp(0px, 10vw, 150px);
+    padding: 28px 0;
+    border-top: 1px solid var(--theme-border-strong);
+
+    p {
+      margin: 5px 0 0;
+      color: var(--theme-muted);
+      font-family: $font-monospace;
+      font-size: 11px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: var(--theme-text);
+    }
+
+    .c-tags {
+      margin: 0;
+      text-align: right;
+    }
+  }
+}
+
+.c-post-page {
+  background:
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 1px), var(--theme-border) 50%, transparent calc(50% + 1px)),
+    radial-gradient(circle at 12% 7%, var(--theme-glow-warm), transparent 30rem),
+    radial-gradient(circle at 88% 30%, var(--theme-glow-cool), transparent 34rem),
+    var(--theme-bg);
+
+  .o-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px 88px;
+  }
+}
+
+@keyframes post-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-post__hero,
+  .c-post__figure {
+    animation: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .c-post {
+    &__hero {
+      padding: 28px 0 42px;
+    }
+
+    &__title {
+      font-size: clamp(42px, 13vw, 60px);
+    }
+
+    &__figure {
+      margin-bottom: 50px;
+    }
+
+    &__body,
+    &__footer {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    &__body {
+      font-size: 18px;
+
+      .highlighter-rouge,
+      .highlight {
+        max-width: 100%;
+      }
+
+      pre {
+        white-space: pre;
+      }
+    }
+
+    &__footer {
+      flex-direction: column;
+
+      .c-tags {
+        text-align: left;
+      }
+    }
   }
 }
