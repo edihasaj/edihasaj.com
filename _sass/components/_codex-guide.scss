@@ -1,0 +1,308 @@
+/*------------------------------------*\
+  Components > Codex field guide
+\*------------------------------------*/
+
+.c-codex-guide {
+  --guide-ink: var(--theme-text);
+  --guide-paper: var(--theme-bg);
+  --guide-panel: var(--theme-surface);
+  --guide-line: var(--theme-border-strong);
+  --guide-orange: #fd8f0f;
+  --guide-blue: #2b5f72;
+  background:
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 1px), var(--theme-border) 50%, transparent calc(50% + 1px)),
+    radial-gradient(circle at 12% 8%, var(--theme-glow-warm), transparent 28rem),
+    var(--guide-paper);
+
+  .o-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}
+
+.c-codex-guide__breadcrumbs {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 48px;
+  color: var(--theme-muted);
+  font-family: $font-monospace;
+  font-size: 12px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.c-codex-guide__hero {
+  max-width: 920px;
+  padding: 24px 0 56px;
+
+  h1 {
+    max-width: 900px;
+    margin: 20px 0;
+    color: var(--guide-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(44px, 7vw, 82px);
+    font-weight: 400;
+    letter-spacing: -.055em;
+    line-height: .98;
+  }
+}
+
+.c-codex-guide__kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  span {
+    padding: 5px 10px;
+    border: 1px solid var(--guide-line);
+    border-radius: 999px;
+    color: var(--theme-muted);
+    font-family: $font-monospace;
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  span:first-child {
+    border-color: var(--guide-orange);
+    color: var(--guide-orange);
+  }
+}
+
+.c-codex-guide__lede {
+  max-width: 760px;
+  margin: 0;
+  color: var(--theme-muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.45;
+}
+
+.c-codex-guide__facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 760px;
+  margin: 42px 0 0;
+  border-top: 1px solid var(--guide-line);
+  border-bottom: 1px solid var(--guide-line);
+
+  div {
+    padding: 16px 16px 16px 0;
+  }
+
+  dt {
+    color: var(--theme-muted);
+    font-family: $font-monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 3px 0 0;
+    color: var(--guide-ink);
+    font-size: 14px;
+  }
+}
+
+.c-codex-guide__shell {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 720px);
+  gap: clamp(40px, 8vw, 100px);
+  align-items: start;
+  padding: 64px 0 96px;
+}
+
+.c-codex-guide__rail {
+  position: sticky;
+  top: 24px;
+  min-width: 0;
+  padding: 18px 0 18px 18px;
+  border-left: 3px solid var(--guide-orange);
+
+  p {
+    margin: 8px 0 14px;
+    color: var(--theme-muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  a {
+    color: var(--guide-ink);
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.c-codex-guide__rail-label,
+.c-codex-guide__eyebrow {
+  color: var(--guide-orange);
+  font-family: $font-monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.c-codex-guide__content {
+  min-width: 0;
+  color: var(--guide-ink);
+  font-size: 18px;
+  line-height: 1.75;
+
+  h2 {
+    margin: 64px 0 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 400;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+  }
+
+  h2:first-child {
+    margin-top: 0;
+  }
+
+  h3 {
+    margin-top: 40px;
+    font-size: 19px;
+  }
+
+  pre {
+    position: relative;
+    margin: 28px 0;
+    padding: 24px;
+    border: 1px solid var(--guide-line);
+    border-left: 4px solid var(--guide-orange);
+    border-radius: 0;
+    background: var(--theme-code-bg);
+    box-shadow: 10px 10px 0 var(--theme-shadow);
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: $font-monospace;
+    font-size: .86em;
+  }
+
+  blockquote {
+    margin: 32px 0;
+    padding: 18px 22px;
+    border-left: 0;
+    background: var(--guide-panel);
+    color: var(--guide-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+  }
+
+  table {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+.c-codex-guide__related {
+  padding: 64px 0;
+  border-top: 1px solid var(--guide-line);
+
+  h2 {
+    margin: 8px 0 30px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    font-weight: 400;
+  }
+}
+
+.c-codex-guide__related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+
+  a {
+    display: flex;
+    min-height: 210px;
+    flex-direction: column;
+    padding: 22px;
+    border: 1px solid var(--guide-line);
+    background: var(--guide-panel);
+    color: var(--guide-ink);
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease;
+
+    &:hover {
+      border-color: var(--guide-orange);
+      transform: translateY(-4px);
+    }
+  }
+
+  span {
+    color: var(--guide-orange);
+    font-family: $font-monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    margin: 18px 0 10px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  small {
+    margin-top: auto;
+    color: var(--theme-muted);
+    line-height: 1.45;
+  }
+}
+
+.c-codex-guide__footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 0;
+  border-top: 1px solid var(--guide-line);
+  color: var(--theme-muted);
+  font-size: 13px;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--guide-ink);
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 760px) {
+  .c-codex-guide__facts,
+  .c-codex-guide__related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .c-codex-guide__facts div + div {
+    border-top: 1px solid var(--guide-line);
+  }
+
+  .c-codex-guide__shell {
+    grid-template-columns: 1fr;
+    padding-top: 28px;
+  }
+
+  .c-codex-guide__rail {
+    position: static;
+  }
+
+  .c-codex-guide__footer {
+    gap: 16px;
+    flex-direction: column;
+  }
+}
