@@ -20,6 +20,8 @@ To add or edit an app:
 2. Run `node bin/gen-readme.js` to sync the profile README.
 3. Commit both repos.
 
+Hosted private products omit the optional `source` field.
+
 `node bin/gen-readme.js --check` fails if the README has drifted (CI-friendly).
 
 ## Organization

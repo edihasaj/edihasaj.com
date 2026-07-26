@@ -76,6 +76,10 @@ open_source:
     desc: modern YAML-driven homelab dashboard with live status and previews.
 
 projects:
+  - emoji: "☁️"
+    name: Recall Cloud
+    url: https://app.recallmemory.dev
+    desc: hosted memory sync, search, and team access for agents.
   - emoji: "🐙"
     name: Oktapod
     url: https://oktapod.ai
