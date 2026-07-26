@@ -13,18 +13,20 @@
   }
 
   &__title {
-    max-width: 980px;
-    margin: 22px 0 0;
+    max-width: 860px;
+    margin: 22px auto 0;
     color: var(--theme-text);
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(44px, 7vw, 82px);
+    font-size: clamp(40px, 5.8vw, 68px);
     font-weight: 400;
-    letter-spacing: -.055em;
-    line-height: .98;
+    letter-spacing: -.045em;
+    line-height: 1.02;
+    text-align: center;
   }
 
   &__hero {
     padding: 46px 0 58px;
+    text-align: center;
     animation: post-reveal .55s ease-out both;
   }
 
@@ -32,6 +34,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    justify-content: center;
 
     span,
     time {
@@ -53,12 +56,13 @@
   }
 
   &__lede {
-    max-width: 790px;
-    margin: 30px 0 0;
+    max-width: 720px;
+    margin: 28px auto 0;
     color: var(--theme-muted);
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(20px, 3vw, 28px);
-    line-height: 1.45;
+    font-size: clamp(19px, 2.4vw, 24px);
+    line-height: 1.5;
+    text-align: center;
   }
 
   &__figure {
@@ -239,7 +243,8 @@
     }
 
     &__title {
-      font-size: clamp(42px, 13vw, 60px);
+      font-size: clamp(38px, 10.5vw, 48px);
+      letter-spacing: -.04em;
     }
 
     &__figure {
