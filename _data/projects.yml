@@ -78,6 +78,10 @@ open_source:
     name: farm
     url: https://github.com/edihasaj/farm
     desc: "tmux farm + task queue for running many coding agents in parallel across repos."
+  - emoji: "🧭"
+    name: abx
+    url: https://github.com/edihasaj/abx
+    desc: "fast headless browser for AI coding agents: Playwright-backed, CLI-first."
 
 projects:
   - emoji: "☁️"
