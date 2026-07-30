@@ -16,7 +16,7 @@ open_source:
     name: Recall
     url: https://recallmemory.dev/
     source: https://github.com/edihasaj/recall
-    desc: quality-gated local memory layer for coding agents. macOS, Linux, and Windows.
+    desc: quality-gated local memory layer for coding agents with hook-based capture, injection, and deterministic cleanup.
   - emoji: "🖥️"
     name: guiport
     url: https://guiport.dev
@@ -74,6 +74,10 @@ open_source:
     name: Strata
     url: https://github.com/edihasaj/strata
     desc: modern YAML-driven homelab dashboard with live status and previews.
+  - emoji: "🚜"
+    name: farm
+    url: https://github.com/edihasaj/farm
+    desc: "tmux farm + task queue for running many coding agents in parallel across repos."
 
 projects:
   - emoji: "☁️"
