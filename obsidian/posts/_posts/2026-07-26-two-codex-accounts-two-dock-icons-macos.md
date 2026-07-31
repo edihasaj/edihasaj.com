@@ -77,16 +77,44 @@ The focus section matters. Clicking the pinned launcher will bring the isolated 
 
 macOS may ask whether `Codex Second` can control System Events. Allow it so the launcher can focus the correct window.
 
-## use the original Codex icon
+## optional: repair a blank or disappearing Dock icon
 
-To give the launcher the same icon as the installed app:
+If `Codex Second` stays pinned with the correct icon, skip this step.
 
-1. Select Codex in `/Applications` and press `Command-I`.
-2. Click the icon in the top-left corner and press `Command-C`.
-3. Select `Codex Second.app` in `~/Applications` and press `Command-I`.
-4. Click its icon and press `Command-V`.
+If its icon becomes blank or disappears from the Dock after a restart, the
+launcher likely has no stable bundle identifier or its signature was
+invalidated when the icon was pasted through Finder.
 
-Drag only `Codex Second.app` into the Dock. Keep using the normal installed Codex icon for your primary account.
+Embed the installed icon, give the launcher a stable bundle identifier, then
+sign the completed launcher:
+
+```zsh
+launcher="$HOME/Applications/Codex Second.app"
+
+cp /Applications/ChatGPT.app/Contents/Resources/icon-chatgpt.icns \
+  "$launcher/Contents/Resources/applet.icns"
+
+/usr/libexec/PlistBuddy \
+  -c "Delete :CFBundleIdentifier" \
+  "$launcher/Contents/Info.plist" 2>/dev/null || true
+
+/usr/libexec/PlistBuddy \
+  -c "Add :CFBundleIdentifier string com.edihasaj.codex-second" \
+  "$launcher/Contents/Info.plist"
+
+xattr -cr "$launcher"
+codesign --force --deep --sign - \
+  --identifier com.edihasaj.codex-second "$launcher"
+codesign --verify --deep --strict --verbose=2 "$launcher"
+```
+
+Remove any older `Codex Second` Dock entry, then drag the repaired launcher from
+`~/Applications` beside the normal Codex icon. Keep using the installed Codex
+icon for your primary account.
+
+The first launch after assigning the bundle identifier may ask again whether
+`Codex Second` can control System Events. Allow it so the launcher can focus the
+isolated window.
 
 ## verify both accounts
 
