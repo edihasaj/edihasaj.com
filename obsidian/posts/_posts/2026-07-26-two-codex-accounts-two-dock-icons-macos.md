@@ -1,8 +1,9 @@
 ---
 share: true
 layout: post
-title: "Run Two Codex Accounts on macOS"
+title: "How to Run Two Codex Accounts on macOS with Separate Profiles"
 date: 2026-07-26
+last_modified_at: 2026-07-31
 published: true
 filename: essay/_posts/2026-07-26-two-codex-accounts-two-dock-icons-macos
 tags:
@@ -11,7 +12,18 @@ tags:
   - macOS
   - tooling
   - productivity
-excerpt: "Keep the installed Codex app for your primary account and add one isolated Codex Second launcher for another account."
+excerpt: "Run two OpenAI Codex accounts at once on one Mac with separate profiles, logins, app data, and stable Dock icons."
+faq:
+  - question: "Can I run two Codex accounts at the same time on one Mac?"
+    answer: "Yes. Keep the installed Codex app for the primary account and launch a second process with an isolated CODEX_HOME and Electron user-data directory."
+  - question: "Why is CODEX_HOME alone not enough?"
+    answer: "CODEX_HOME separates Codex configuration and authentication, while the Electron user-data directory separates desktop application state and prevents the second launch from returning to the primary process."
+  - question: "Do the two Codex profiles share chats, projects, or usage limits?"
+    answer: "No. Each profile uses its own ChatGPT account and local application state. This setup does not merge chats, projects, billing, or usage limits."
+  - question: "Why does the Codex Second Dock icon disappear or turn blank?"
+    answer: "A Script Editor launcher can lose its Dock identity when it lacks a stable bundle identifier or when its signature becomes invalid after changing the icon. Embed the icon, assign a bundle identifier, sign the launcher, and rebuild its Dock entry."
+  - question: "Does this modify the installed Codex app?"
+    answer: "No. The normal Codex installation remains unchanged. The second launcher only starts another isolated Codex process."
 ---
 
 Use the installed Codex app for your primary account. You only need one custom launcher for the second account.
@@ -133,6 +145,38 @@ You should see two main processes. The second includes:
 Each window should remember its own ChatGPT account after quitting and reopening.
 
 Do not put either profile directory in a repository or public sync folder. The setup isolates local profiles; it does not combine usage limits or billing.
+
+## frequently asked questions
+
+### Can I run two Codex accounts at the same time on one Mac?
+
+Yes. Keep the installed Codex app for the primary account and launch a second
+process with an isolated `CODEX_HOME` and Electron user-data directory.
+
+### Why is `CODEX_HOME` alone not enough?
+
+`CODEX_HOME` separates Codex configuration and authentication. The Electron
+user-data directory separates desktop application state and prevents the
+second launch from returning to the primary process.
+
+### Do the two Codex profiles share chats, projects, or usage limits?
+
+No. Each profile uses its own ChatGPT account and local application state.
+This setup does not merge chats, projects, billing, or usage limits.
+
+### Why does the Codex Second Dock icon disappear or turn blank?
+
+A Script Editor launcher can lose its Dock identity when it lacks a stable
+bundle identifier or when its signature becomes invalid after changing the
+icon. Embed the icon, assign a bundle identifier, sign the launcher, and
+rebuild its Dock entry.
+
+### Does this modify the installed Codex app?
+
+No. The normal Codex installation remains unchanged. The second launcher only
+starts another isolated Codex process.
+
+More: [OpenAI Codex guides](/topics/codex/).
 
 ---
 
