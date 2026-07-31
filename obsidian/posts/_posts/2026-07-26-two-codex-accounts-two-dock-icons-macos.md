@@ -21,7 +21,7 @@ faq:
   - question: "Do the two Codex profiles share chats, projects, or usage limits?"
     answer: "No. Each profile uses its own ChatGPT account and local application state. This setup does not merge chats, projects, billing, or usage limits."
   - question: "Why does the Codex Second Dock icon disappear or turn blank?"
-    answer: "A Script Editor launcher can lose its Dock identity when it lacks a stable bundle identifier or when its signature becomes invalid after changing the icon. Embed the icon, assign a bundle identifier, sign the launcher, and rebuild its Dock entry."
+    answer: "Older Script Editor launchers can lose their Dock identity or invalidate their signature after an icon change. The native launcher in this guide embeds the icon before signing and uses a stable bundle identifier."
   - question: "Does this modify the installed Codex app?"
     answer: "No. The normal Codex installation remains unchanged. The second launcher only starts another isolated Codex process."
 ---
@@ -52,81 +52,39 @@ open -n -a Codex \
 
 A second Codex window should open. Sign into your other ChatGPT account.
 
-## create one Dock launcher
+## create a permanent Dock launcher
 
-Open Script Editor and paste:
+The stable version is a tiny native macOS launcher. It avoids Script Editor,
+does not need permission to control System Events, and keeps its identity after
+Dock or Mac restarts.
 
-```applescript
-set homePath to system attribute "HOME"
-set codexHome to "CODEX_HOME=" & homePath & "/.codex-work"
-set appData to homePath & "/Library/Application Support/Codex Second"
-set processPattern to "^/Applications/ChatGPT\\.app/Contents/MacOS/ChatGPT --user-data-dir=" & appData & "($| )"
-set findProcess to "/usr/bin/pgrep -f " & quoted form of processPattern & " | /usr/bin/head -n 1 || true"
-set secondPid to do shell script findProcess
-
-if secondPid is "" then
-  do shell script "/bin/mkdir -p " & quoted form of (homePath & "/.codex-work") & " " & quoted form of appData & " && /usr/bin/open -n -a Codex --env " & quoted form of codexHome & " --args " & quoted form of ("--user-data-dir=" & appData)
-
-  repeat 20 times
-    delay 0.25
-    set secondPid to do shell script findProcess
-    if secondPid is not "" then exit repeat
-  end repeat
-end if
-
-if secondPid is not "" then
-  tell application "System Events" to set frontmost of first application process whose unix id is (secondPid as integer) to true
-end if
-```
-
-Choose **File → Save**, set **File Format** to **Application**, and save it as:
-
-```text
-~/Applications/Codex Second.app
-```
-
-The focus section matters. Clicking the pinned launcher will bring the isolated Codex window forward instead of making you click its temporary running-process icon.
-
-macOS may ask whether `Codex Second` can control System Events. Allow it so the launcher can focus the correct window.
-
-## optional: repair a blank or disappearing Dock icon
-
-If `Codex Second` stays pinned with the correct icon, skip this step.
-
-If its icon becomes blank or disappears from the Dock after a restart, the
-launcher likely has no stable bundle identifier or its signature was
-invalidated when the icon was pasted through Finder.
-
-Embed the installed icon, give the launcher a stable bundle identifier, then
-sign the completed launcher:
+Download and run the installer:
 
 ```zsh
-launcher="$HOME/Applications/Codex Second.app"
+curl -fsSL \
+  https://edihasaj.com/assets/scripts/install-codex-second.zsh \
+  -o "$HOME/Downloads/install-codex-second.zsh"
 
-cp /Applications/ChatGPT.app/Contents/Resources/icon-chatgpt.icns \
-  "$launcher/Contents/Resources/applet.icns"
-
-/usr/libexec/PlistBuddy \
-  -c "Delete :CFBundleIdentifier" \
-  "$launcher/Contents/Info.plist" 2>/dev/null || true
-
-/usr/libexec/PlistBuddy \
-  -c "Add :CFBundleIdentifier string com.edihasaj.codex-second" \
-  "$launcher/Contents/Info.plist"
-
-xattr -cr "$launcher"
-codesign --force --deep --sign - \
-  --identifier com.edihasaj.codex-second "$launcher"
-codesign --verify --deep --strict --verbose=2 "$launcher"
+zsh "$HOME/Downloads/install-codex-second.zsh"
 ```
 
-Remove any older `Codex Second` Dock entry, then drag the repaired launcher from
-`~/Applications` beside the normal Codex icon. Keep using the installed Codex
-icon for your primary account.
+If `swiftc` is unavailable, install Apple's Command Line Tools first:
 
-The first launch after assigning the bundle identifier may ask again whether
-`Codex Second` can control System Events. Allow it so the launcher can focus the
-isolated window.
+```zsh
+xcode-select --install
+```
+
+The installer:
+
+- creates a native `~/Applications/Codex Second.app`;
+- assigns the stable bundle ID `com.edihasaj.codex-second`;
+- embeds the installed ChatGPT icon before signing;
+- applies a valid local ad-hoc signature;
+- moves an older launcher to the Trash so it remains recoverable.
+
+Remove an older `Codex Second` entry from the Dock. Open `~/Applications` in
+Finder and drag the newly generated app beside the normal Codex icon. Keep
+using the installed Codex icon for your primary account.
 
 ## verify both accounts
 
@@ -166,10 +124,9 @@ This setup does not merge chats, projects, billing, or usage limits.
 
 ### Why does the Codex Second Dock icon disappear or turn blank?
 
-A Script Editor launcher can lose its Dock identity when it lacks a stable
-bundle identifier or when its signature becomes invalid after changing the
-icon. Embed the icon, assign a bundle identifier, sign the launcher, and
-rebuild its Dock entry.
+Older Script Editor launchers can lose their Dock identity or invalidate their
+signature after an icon change. The native launcher above embeds the icon
+before signing and uses a stable bundle identifier.
 
 ### Does this modify the installed Codex app?
 
@@ -182,6 +139,7 @@ More: [OpenAI Codex guides](/topics/codex/).
 
 Sources:
 
+- [Codex Second native installer](/assets/scripts/install-codex-second.zsh)
 - [Codex environment variables](https://learn.chatgpt.com/docs/config-file/environment-variables)
 - [Codex configuration and state locations](https://learn.chatgpt.com/docs/config-file/config-advanced#config-and-state-locations)
 - [Codex authentication](https://learn.chatgpt.com/docs/auth)
