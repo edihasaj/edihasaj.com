@@ -2,399 +2,197 @@
 
 set -euo pipefail
 
-destination="${CODEX_SECOND_APP_PATH:-$HOME/Applications/Codex Second.app}"
-primary_destination="${CODEX_PRIMARY_APP_PATH:-$HOME/Applications/Codex Primary.app}"
-bundle_identifier="com.edihasaj.codex-second"
-primary_bundle_identifier="com.edihasaj.codex-primary"
-install_primary=false
+asset_base="${CODEX_SWITCHER_ASSET_BASE:-https://edihasaj.com/assets/scripts/codex-account-switcher}"
+source_override="${CODEX_SWITCHER_SOURCE_DIR:-}"
+destination="$HOME/Applications/Codex Account Switcher.app"
+launch_agent="$HOME/Library/LaunchAgents/com.edihasaj.codex-account-switcher.plist"
+label="com.edihasaj.codex-account-switcher"
+lsregister_bin="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
 
-case "${1:-}" in
-  "") ;;
-  --with-primary) install_primary=true ;;
-  *)
-    print -u2 "Usage: ${0:t} [--with-primary]"
-    exit 2
-    ;;
-esac
-
-if [[ -d /Applications/ChatGPT.app ]]; then
-  chatgpt_app="/Applications/ChatGPT.app"
-elif [[ -d "$HOME/Applications/ChatGPT.app" ]]; then
-  chatgpt_app="$HOME/Applications/ChatGPT.app"
+if [[ -x /Applications/ChatGPT.app/Contents/MacOS/ChatGPT ]]; then
+  codex_app="/Applications/ChatGPT.app"
+elif [[ -x "$HOME/Applications/ChatGPT.app/Contents/MacOS/ChatGPT" ]]; then
+  codex_app="$HOME/Applications/ChatGPT.app"
 else
-  print -u2 "Codex is not installed in /Applications or ~/Applications."
+  print -u2 "The signed ChatGPT/Codex app was not found."
   exit 1
 fi
 
-if [[ ! -x /usr/bin/swiftc ]]; then
+if ! xcrun --find swiftc >/dev/null 2>&1; then
   print -u2 "Swift is unavailable. Run: xcode-select --install"
   exit 1
 fi
 
-icon="$chatgpt_app/Contents/Resources/icon-chatgpt.icns"
-if [[ ! -f "$icon" ]]; then
-  print -u2 "Codex icon not found at: $icon"
-  exit 1
-fi
-
-build_directory="$(mktemp -d "${TMPDIR%/}/codex-second.XXXXXX")"
-staged_app="$build_directory/Codex Second.app"
+codex_app_url="file://$codex_app/"
+codex_icon="$codex_app/Contents/Resources/icon-chatgpt.icns"
+[[ -f "$codex_icon" ]] || codex_icon="$codex_app/Contents/Resources/app.icns"
+build_root="$(mktemp -d "${TMPDIR%/}/codex-account-switcher.XXXXXX")"
+source_root="$build_root/sources"
+staged_app="$build_root/Codex Account Switcher.app"
 
 cleanup() {
-  [[ ! -d "$build_directory" ]] || rm -rf -- "$build_directory"
+  [[ "$build_root" == "${TMPDIR%/}/codex-account-switcher."* ]] || return
+  [[ ! -d "$build_root" ]] || /bin/rm -rf -- "$build_root"
 }
 trap cleanup EXIT HUP INT TERM
 
-mkdir -p "$staged_app/Contents/MacOS" "$staged_app/Contents/Resources"
+mkdir -p "$source_root"
+source_files=(
+  CodexAccountSwitcher.swift
+  CodexLauncher.swift
+  Info.plist
+  Launcher-Info.plist
+  com.edihasaj.codex-account-switcher.plist
+)
+for source_file in "${source_files[@]}"; do
+  if [[ -n "$source_override" ]]; then
+    cp "$source_override/$source_file" "$source_root/$source_file"
+  else
+    curl --proto '=https' --tlsv1.2 -fsSL \
+      "$asset_base/$source_file" -o "$source_root/$source_file"
+  fi
+done
 
-cat > "$build_directory/main.swift" <<'SWIFT'
-import AppKit
-import Foundation
+plutil -lint \
+  "$source_root/Info.plist" \
+  "$source_root/Launcher-Info.plist" \
+  "$source_root/com.edihasaj.codex-account-switcher.plist" >/dev/null
 
-let home = FileManager.default.homeDirectoryForCurrentUser.path
-let codexHome = "\(home)/.codex-work"
-let appData = "\(home)/Library/Application Support/Codex Second"
-let executableCandidates = [
-    "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
-    "\(home)/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
-]
-
-guard let chatGPTExecutable = executableCandidates.first(
-    where: { FileManager.default.isExecutableFile(atPath: $0) }
-) else {
-    fatalError("The installed Codex executable could not be found.")
-}
-
-let chatGPTApp = URL(fileURLWithPath: chatGPTExecutable)
-    .deletingLastPathComponent()
-    .deletingLastPathComponent()
-    .deletingLastPathComponent()
-    .path
-
-func run(_ executable: String, arguments: [String]) throws -> (Int32, String) {
-    let process = Process()
-    let output = Pipe()
-    process.executableURL = URL(fileURLWithPath: executable)
-    process.arguments = arguments
-    process.standardOutput = output
-    process.standardError = FileHandle.nullDevice
-    try process.run()
-    process.waitUntilExit()
-    let data = output.fileHandleForReading.readDataToEndOfFile()
-    return (process.terminationStatus, String(decoding: data, as: UTF8.self))
-}
-
-func secondProcessID() -> pid_t? {
-    let executable = NSRegularExpression.escapedPattern(for: chatGPTExecutable)
-    let dataDirectory = NSRegularExpression.escapedPattern(for: appData)
-    let pattern = "^\(executable) --user-data-dir=\(dataDirectory)($| )"
-
-    guard let result = try? run("/usr/bin/pgrep", arguments: ["-f", pattern]),
-          result.0 == 0,
-          let firstLine = result.1.split(separator: "\n").first,
-          let pid = pid_t(firstLine)
-    else {
-        return nil
-    }
-
-    return pid
-}
-
-func showFailure(_ message: String) {
-    NSApplication.shared.setActivationPolicy(.accessory)
-    NSApplication.shared.activate(ignoringOtherApps: true)
-    let alert = NSAlert()
-    alert.messageText = "Codex Second could not open"
-    alert.informativeText = message
-    alert.alertStyle = .warning
-    alert.runModal()
-}
-
-do {
-    try FileManager.default.createDirectory(
-        atPath: codexHome,
-        withIntermediateDirectories: true
-    )
-    try FileManager.default.createDirectory(
-        atPath: appData,
-        withIntermediateDirectories: true
-    )
-
-    var pid = secondProcessID()
-    if pid == nil {
-        let result = try run(
-            "/usr/bin/open",
-            arguments: [
-                "-n",
-                chatGPTApp,
-                "--env", "CODEX_HOME=\(codexHome)",
-                "--args", "--user-data-dir=\(appData)",
-            ]
-        )
-        guard result.0 == 0 else {
-            showFailure("The installed Codex app could not be launched.")
-            exit(1)
-        }
-
-        for _ in 0..<20 {
-            Thread.sleep(forTimeInterval: 0.25)
-            pid = secondProcessID()
-            if pid != nil {
-                break
-            }
-        }
-    }
-
-    guard let pid else {
-        showFailure("The isolated Codex process did not start.")
-        exit(1)
-    }
-
-    if let application = NSRunningApplication(processIdentifier: pid) {
-        application.activate(options: [.activateAllWindows])
-    }
-} catch {
-    showFailure(error.localizedDescription)
-    exit(1)
-}
-SWIFT
-
-cat > "$staged_app/Contents/Info.plist" <<'PLIST'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>CFBundleDevelopmentRegion</key>
-  <string>en</string>
-  <key>CFBundleDisplayName</key>
-  <string>Codex Second</string>
-  <key>CFBundleExecutable</key>
-  <string>CodexSecond</string>
-  <key>CFBundleIconFile</key>
-  <string>CodexSecond.icns</string>
-  <key>CFBundleIdentifier</key>
-  <string>com.edihasaj.codex-second</string>
-  <key>CFBundleInfoDictionaryVersion</key>
-  <string>6.0</string>
-  <key>CFBundleName</key>
-  <string>Codex Second</string>
-  <key>CFBundlePackageType</key>
-  <string>APPL</string>
-  <key>CFBundleShortVersionString</key>
-  <string>2.0</string>
-  <key>CFBundleVersion</key>
-  <string>3</string>
-  <key>LSMinimumSystemVersion</key>
-  <string>14.0</string>
-  <key>LSUIElement</key>
-  <true/>
-  <key>NSHighResolutionCapable</key>
-  <true/>
-</dict>
-</plist>
-PLIST
-
-/usr/bin/swiftc -O "$build_directory/main.swift" \
-  -o "$staged_app/Contents/MacOS/CodexSecond"
-cp "$icon" "$staged_app/Contents/Resources/CodexSecond.icns"
-
+mkdir -p "$staged_app/Contents/MacOS"
+xcrun swiftc -O -framework AppKit -framework Carbon \
+  "$source_root/CodexAccountSwitcher.swift" \
+  -o "$staged_app/Contents/MacOS/CodexAccountSwitcher"
+cp "$source_root/Info.plist" "$staged_app/Contents/Info.plist"
 xattr -cr "$staged_app"
-codesign --force --deep --sign - \
-  --identifier "$bundle_identifier" "$staged_app"
+codesign --force --sign - "$staged_app"
 codesign --verify --deep --strict "$staged_app"
 
-mkdir -p "${destination:h}"
+xcrun swiftc -O -framework AppKit \
+  "$source_root/CodexLauncher.swift" \
+  -o "$build_root/CodexLauncher"
 
-if [[ -e "$destination" ]]; then
-  backup_name="Codex Second old $(date +%Y%m%d-%H%M%S)-$$.app"
-  if [[ "$destination" == "$HOME/Applications/Codex Second.app" ]]; then
-    mv "$destination" "$HOME/.Trash/$backup_name"
-    print "Previous launcher moved to ~/.Trash/$backup_name"
-  else
-    mv "$destination" "${destination}.old-$(date +%Y%m%d-%H%M%S)-$$"
-  fi
-fi
+stage_launcher() {
+  local display_name="$1"
+  local bundle_identifier="$2"
+  local action="$3"
+  local launcher_app="$build_root/$display_name.app"
 
+  mkdir -p "$launcher_app/Contents/MacOS" "$launcher_app/Contents/Resources"
+  cp "$build_root/CodexLauncher" "$launcher_app/Contents/MacOS/CodexLauncher"
+  sed \
+    -e "s|__DISPLAY_NAME__|$display_name|g" \
+    -e "s|__BUNDLE_IDENTIFIER__|$bundle_identifier|g" \
+    -e "s|__ACTION__|$action|g" \
+    "$source_root/Launcher-Info.plist" > "$launcher_app/Contents/Info.plist"
+  cp "$codex_icon" "$launcher_app/Contents/Resources/AppIcon.icns"
+  xattr -cr "$launcher_app"
+  codesign --force --sign - "$launcher_app"
+  codesign --verify --deep --strict "$launcher_app"
+}
+
+stage_launcher "Codex Primary" "com.edihasaj.codex-primary-launcher" primary
+stage_launcher "Codex Secondary" "com.edihasaj.codex-secondary-launcher" secondary
+stage_launcher "Codex Open Both" "com.edihasaj.codex-open-both-launcher" both
+
+move_existing_to_trash() {
+  local target="$1"
+  [[ -e "$target" ]] || return 0
+  local base_name="${target:t:r}"
+  local extension="${target:e}"
+  local trash_target="$HOME/.Trash/$base_name old $(date +%Y%m%d-%H%M%S)-$$.$extension"
+  "$lsregister_bin" -u "$target" 2>/dev/null || true
+  mkdir -p "$HOME/.Trash"
+  mv "$target" "$trash_target"
+  print "Previous app moved to: $trash_target"
+}
+
+launchctl bootout "gui/$UID/$label" 2>/dev/null || true
+move_existing_to_trash "$destination"
+mkdir -p "$HOME/Applications" "$HOME/Library/LaunchAgents" "$HOME/Library/Logs"
 mv "$staged_app" "$destination"
-touch "$destination"
 
-print "Installed: $destination"
-print "Bundle ID: $bundle_identifier"
+for launcher_name in "Codex Primary" "Codex Secondary" "Codex Open Both"; do
+  launcher_destination="$HOME/Applications/$launcher_name.app"
+  move_existing_to_trash "$launcher_destination"
+  mv "$build_root/$launcher_name.app" "$launcher_destination"
+done
+move_existing_to_trash "$HOME/Applications/Codex Second.app"
 
-if $install_primary; then
-  primary_staged_app="$build_directory/Codex Primary.app"
-  mkdir -p \
-    "$primary_staged_app/Contents/MacOS" \
-    "$primary_staged_app/Contents/Resources"
+sed "s|__HOME__|$HOME|g" \
+  "$source_root/com.edihasaj.codex-account-switcher.plist" \
+  > "$build_root/launch-agent.plist"
+plutil -lint "$build_root/launch-agent.plist" >/dev/null
+cp "$build_root/launch-agent.plist" "$launch_agent"
 
-  cat > "$build_directory/primary.swift" <<'SWIFT'
-import AppKit
-import Foundation
+dock_plist="$build_root/dock.plist"
+defaults export com.apple.dock "$dock_plist" >/dev/null
+removed=0
+changed=0
+chatgpt_kept=0
+for index in {100..0}; do
+  label_value=$(plutil -extract \
+    "persistent-apps.$index.tile-data.file-label" raw -o - \
+    "$dock_plist" 2>/dev/null) || continue
+  url_value=$(plutil -extract \
+    "persistent-apps.$index.tile-data.file-data._CFURLString" raw -o - \
+    "$dock_plist" 2>/dev/null || true)
 
-let home = FileManager.default.homeDirectoryForCurrentUser.path
-let codexHome = "\(home)/.codex"
-let executableCandidates = [
-    "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
-    "\(home)/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
-]
+  case "$label_value" in
+    ChatGPT)
+      if [[ "$url_value" == "$codex_app_url" ]] && (( chatgpt_kept == 0 )); then
+        chatgpt_kept=1
+      else
+        plutil -remove "persistent-apps.$index" "$dock_plist"
+        ((removed += 1))
+        changed=1
+      fi
+      ;;
+    'Codex Primary'|'Codex Second'|'Codex Secondary'|'Codex Open Both')
+      plutil -remove "persistent-apps.$index" "$dock_plist"
+      ((removed += 1))
+      changed=1
+      ;;
+  esac
+done
 
-guard let chatGPTExecutable = executableCandidates.first(
-    where: { FileManager.default.isExecutableFile(atPath: $0) }
-) else {
-    fatalError("The installed Codex executable could not be found.")
-}
-
-let chatGPTApp = URL(fileURLWithPath: chatGPTExecutable)
-    .deletingLastPathComponent()
-    .deletingLastPathComponent()
-    .deletingLastPathComponent()
-    .path
-
-func run(_ executable: String, arguments: [String]) throws -> (Int32, String) {
-    let process = Process()
-    let output = Pipe()
-    process.executableURL = URL(fileURLWithPath: executable)
-    process.arguments = arguments
-    process.standardOutput = output
-    process.standardError = FileHandle.nullDevice
-    try process.run()
-    process.waitUntilExit()
-    let data = output.fileHandleForReading.readDataToEndOfFile()
-    return (process.terminationStatus, String(decoding: data, as: UTF8.self))
-}
-
-func primaryProcessID() -> pid_t? {
-    let executable = NSRegularExpression.escapedPattern(for: chatGPTExecutable)
-    let pattern = "^\(executable)$"
-
-    guard let result = try? run("/usr/bin/pgrep", arguments: ["-f", pattern]),
-          result.0 == 0,
-          let firstLine = result.1.split(separator: "\n").first,
-          let pid = pid_t(firstLine)
-    else {
-        return nil
-    }
-
-    return pid
-}
-
-func showFailure(_ message: String) {
-    NSApplication.shared.setActivationPolicy(.accessory)
-    NSApplication.shared.activate(ignoringOtherApps: true)
-    let alert = NSAlert()
-    alert.messageText = "Codex Primary could not open"
-    alert.informativeText = message
-    alert.alertStyle = .warning
-    alert.runModal()
-}
-
-do {
-    try FileManager.default.createDirectory(
-        atPath: codexHome,
-        withIntermediateDirectories: true
-    )
-
-    var pid = primaryProcessID()
-    if pid == nil {
-        let result = try run(
-            "/usr/bin/open",
-            arguments: [
-                "-n",
-                chatGPTApp,
-                "--env", "CODEX_HOME=\(codexHome)",
-            ]
-        )
-        guard result.0 == 0 else {
-            showFailure("The installed Codex app could not be launched.")
-            exit(1)
-        }
-
-        for _ in 0..<20 {
-            Thread.sleep(forTimeInterval: 0.25)
-            pid = primaryProcessID()
-            if pid != nil {
-                break
-            }
-        }
-    }
-
-    guard let pid else {
-        showFailure("The primary Codex process did not start.")
-        exit(1)
-    }
-
-    if let application = NSRunningApplication(processIdentifier: pid) {
-        application.activate(options: [.activateAllWindows])
-    }
-} catch {
-    showFailure(error.localizedDescription)
-    exit(1)
-}
-SWIFT
-
-  cat > "$primary_staged_app/Contents/Info.plist" <<'PLIST'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>CFBundleDevelopmentRegion</key>
-  <string>en</string>
-  <key>CFBundleDisplayName</key>
-  <string>Codex Primary</string>
-  <key>CFBundleExecutable</key>
-  <string>CodexPrimary</string>
-  <key>CFBundleIconFile</key>
-  <string>CodexPrimary.icns</string>
-  <key>CFBundleIdentifier</key>
-  <string>com.edihasaj.codex-primary</string>
-  <key>CFBundleInfoDictionaryVersion</key>
-  <string>6.0</string>
-  <key>CFBundleName</key>
-  <string>Codex Primary</string>
-  <key>CFBundlePackageType</key>
-  <string>APPL</string>
-  <key>CFBundleShortVersionString</key>
-  <string>2.0</string>
-  <key>CFBundleVersion</key>
-  <string>3</string>
-  <key>LSMinimumSystemVersion</key>
-  <string>14.0</string>
-  <key>LSUIElement</key>
-  <true/>
-  <key>NSHighResolutionCapable</key>
-  <true/>
-</dict>
-</plist>
-PLIST
-
-  /usr/bin/swiftc -O "$build_directory/primary.swift" \
-    -o "$primary_staged_app/Contents/MacOS/CodexPrimary"
-  cp "$icon" "$primary_staged_app/Contents/Resources/CodexPrimary.icns"
-
-  xattr -cr "$primary_staged_app"
-  codesign --force --deep --sign - \
-    --identifier "$primary_bundle_identifier" "$primary_staged_app"
-  codesign --verify --deep --strict "$primary_staged_app"
-
-  mkdir -p "${primary_destination:h}"
-
-  if [[ -e "$primary_destination" ]]; then
-    backup_name="Codex Primary old $(date +%Y%m%d-%H%M%S)-$$.app"
-    if [[ "$primary_destination" == "$HOME/Applications/Codex Primary.app" ]]; then
-      mv "$primary_destination" "$HOME/.Trash/$backup_name"
-      print "Previous launcher moved to ~/.Trash/$backup_name"
-    else
-      mv "$primary_destination" \
-        "${primary_destination}.old-$(date +%Y%m%d-%H%M%S)-$$"
+if (( chatgpt_kept == 0 )); then
+  next_index=0
+  for index in {0..100}; do
+    if plutil -extract "persistent-apps.$index" xml1 -o /dev/null \
+      "$dock_plist" 2>/dev/null; then
+      next_index=$((index + 1))
     fi
-  fi
-
-  mv "$primary_staged_app" "$primary_destination"
-  touch "$primary_destination"
-
-  print "Installed: $primary_destination"
-  print "Bundle ID: $primary_bundle_identifier"
-  print "Next: replace old Codex Dock entries with Codex Primary and Codex Second from ~/Applications."
-else
-  print "Next: remove any old Dock entry, then drag Codex Second from ~/Applications to the Dock."
+  done
+  dock_entry='{"tile-data":{"file-data":{"_CFURLString":"'"$codex_app_url"'","_CFURLStringType":15},"file-label":"ChatGPT","file-type":41},"tile-type":"file-tile"}'
+  plutil -insert "persistent-apps.$next_index" \
+    -json "$dock_entry" "$dock_plist"
+  changed=1
 fi
+
+if (( changed > 0 )); then
+  defaults import com.apple.dock "$dock_plist"
+  killall Dock
+fi
+
+launchctl bootstrap "gui/$UID" "$launch_agent"
+launchctl kickstart -k "gui/$UID/$label"
+
+current_apps=(
+  "$codex_app"
+  "$destination"
+  "$HOME/Applications/Codex Primary.app"
+  "$HOME/Applications/Codex Secondary.app"
+  "$HOME/Applications/Codex Open Both.app"
+)
+for current_app in "${current_apps[@]}"; do
+  "$lsregister_bin" -f "$current_app"
+done
+"$lsregister_bin" -gc
+
+print "Installed menu controller: $destination"
+print "Applications: Codex Primary, Codex Secondary, Codex Open Both"
+print "Official Dock pin: $codex_app"
+print "Removed duplicate/launcher Dock pins: $removed"
+print "Open/focus Primary: Option-Command-1"
+print "Open/focus Secondary: Option-Command-2"
+print "Both profiles remain running until explicitly quit."
