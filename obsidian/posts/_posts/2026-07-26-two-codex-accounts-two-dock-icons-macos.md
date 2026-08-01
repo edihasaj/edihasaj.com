@@ -3,7 +3,7 @@ share: true
 layout: post
 title: "How to Run Two Codex Accounts on macOS with Separate Profiles"
 date: 2026-07-26
-last_modified_at: 2026-07-31
+last_modified_at: 2026-08-01
 published: true
 filename: essay/_posts/2026-07-26-two-codex-accounts-two-dock-icons-macos
 tags:
@@ -23,10 +23,14 @@ faq:
   - question: "Why does the Codex Second Dock icon disappear or turn blank?"
     answer: "Older Script Editor launchers can lose their Dock identity or invalidate their signature after an icon change. The native launcher in this guide embeds the icon before signing and uses a stable bundle identifier."
   - question: "Does this modify the installed Codex app?"
-    answer: "No. The normal Codex installation remains unchanged. The second launcher only starts another isolated Codex process."
+    answer: "No. The installed Codex bundle remains unchanged. The launchers only start the primary or isolated secondary process."
+  - question: "Do I need a Codex Primary launcher?"
+    answer: "No. The installed Codex app already serves the primary account. The optional Primary launcher gives both Dock icons matching names and reliably targets the normal Codex profile."
 ---
 
-Use the installed Codex app for your primary account. You only need one custom launcher for the second account.
+Use the installed Codex app for your primary account. You only need one custom
+launcher for the second account. An optional `Codex Primary` launcher gives you
+two clearly named, matching Dock entries and always targets the normal profile.
 
 The second launcher needs two isolated directories:
 
@@ -68,6 +72,12 @@ curl -fsSL \
 zsh "$HOME/Downloads/install-codex-second.zsh"
 ```
 
+To create both named launchers instead, add `--with-primary`:
+
+```zsh
+zsh "$HOME/Downloads/install-codex-second.zsh" --with-primary
+```
+
 If `swiftc` is unavailable, install Apple's Command Line Tools first:
 
 ```zsh
@@ -82,13 +92,24 @@ The installer:
 - applies a valid local ad-hoc signature;
 - moves an older launcher to the Trash so it remains recoverable.
 
+With `--with-primary`, it also creates
+`~/Applications/Codex Primary.app`, using `~/.codex` and the normal desktop
+application data. The Primary launcher is optional; it does not create another
+profile.
+
 Remove an older `Codex Second` entry from the Dock. Open `~/Applications` in
 Finder and drag the newly generated app beside the normal Codex icon. Keep
 using the installed Codex icon for your primary account.
 
+If you installed both launchers, remove stale Codex or ChatGPT entries from the
+Dock, then drag `Codex Primary` and `Codex Second` from `~/Applications` into
+the Dock together. Do not pin `/Applications/ChatGPT.app` as well, or you will
+have a duplicate primary entry.
+
 ## verify both accounts
 
-Open normal Codex, then click `Codex Second` in the Dock. Run:
+Open normal Codex or `Codex Primary`, then click `Codex Second` in the Dock.
+Run:
 
 ```zsh
 pgrep -alf "ChatGPT.app/Contents/MacOS/ChatGPT"
@@ -130,8 +151,14 @@ before signing and uses a stable bundle identifier.
 
 ### Does this modify the installed Codex app?
 
-No. The normal Codex installation remains unchanged. The second launcher only
-starts another isolated Codex process.
+No. The installed Codex bundle remains unchanged. The launchers only start the
+primary or isolated secondary process.
+
+### Do I need a `Codex Primary` launcher?
+
+No. The installed Codex app already serves the primary account. Use the
+optional launcher when you want two matching, clearly named Dock icons or want
+the primary Dock icon to explicitly target `~/.codex`.
 
 More: [OpenAI Codex guides](/topics/codex/).
 
@@ -139,7 +166,7 @@ More: [OpenAI Codex guides](/topics/codex/).
 
 Sources:
 
-- [Codex Second native installer](/assets/scripts/install-codex-second.zsh)
+- [Codex launcher installer: Secondary and optional Primary](/assets/scripts/install-codex-second.zsh)
 - [Codex environment variables](https://learn.chatgpt.com/docs/config-file/environment-variables)
 - [Codex configuration and state locations](https://learn.chatgpt.com/docs/config-file/config-advanced#config-and-state-locations)
 - [Codex authentication](https://learn.chatgpt.com/docs/auth)
