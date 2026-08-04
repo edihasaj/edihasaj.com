@@ -62,10 +62,6 @@ open_source:
     name: slash-github
     url: https://github.com/edihasaj/slash-github
     desc: "local GitHub CLI: comment on issues and pull requests."
-  - emoji: "🔀"
-    name: Codex Account Switcher
-    url: https://github.com/edihasaj/codex-account-switcher
-    desc: native macOS menu-bar switcher for running two isolated Codex desktop accounts.
   - emoji: "📋"
     name: Klyp
     url: https://github.com/edihasaj/klyp
@@ -86,6 +82,10 @@ open_source:
     name: abx
     url: https://github.com/edihasaj/abx
     desc: "fast headless browser for AI coding agents: Playwright-backed, CLI-first."
+  - emoji: "🔀"
+    name: Codex Account Switcher
+    url: https://github.com/edihasaj/codex-account-switcher
+    desc: native macOS menu-bar switcher for running two isolated Codex desktop accounts.
 
 projects:
   - emoji: "☁️"
