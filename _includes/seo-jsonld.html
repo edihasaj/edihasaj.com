@@ -1,6 +1,12 @@
 {% assign canonical_url = page.url | replace:'index.html','' | absolute_url %}
 {% assign page_description = page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 220 %}
-{% assign page_image = page.image | default: '/images/pages/edi-og.png' | absolute_url %}
+{% assign page_image = '' %}
+{% unless page.og_image == false %}
+  {% assign page_image = page.og_image | default: page.image %}
+{% endunless %}
+{% if page_image and page_image != '' %}
+  {% assign page_image = page_image | absolute_url %}
+{% endif %}
 
 {% if page.layout == 'post' %}
 <script type="application/ld+json">
@@ -14,7 +20,7 @@
     "@type": "WebPage",
     "@id": {{ canonical_url | jsonify }}
   },
-  "image": [{{ page_image | jsonify }}],
+  {% if page_image and page_image != '' %}"image": [{{ page_image | jsonify }}],{% endif %}
   "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
   "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
   "author": {

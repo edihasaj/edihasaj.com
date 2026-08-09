@@ -65,8 +65,14 @@ title: Title of the Post
 featured: true
 tags: [tag-one, tag-two]
 image: '/images/welcome.jpg'
+og_image: '/images/social-card.jpg'
 ---
 ```
+
+`image` is the visible post header and is reused for Open Graph metadata.
+Use `og_image` when the social card should differ from the visible header.
+Pages with neither field emit no image metadata; set `og_image: false` to
+explicitly suppress social image metadata even when a visible `image` exists.
 
 To keep things more organized, add post images to **/images/posts** directory,
 and add page images to **/images/pages** directory.
