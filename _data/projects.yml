@@ -144,6 +144,10 @@ projects:
     name: SettleLoop
     url: http://settle-loop.applifyer.com
     desc: split expenses.
+  - emoji: "🗓️"
+    name: Calbraid
+    url: https://calbraid.com
+    desc: calendar synchronization and scheduling across Google Calendar, Microsoft 365, CalDAV, and ICS.
 
 legacy:
   - emoji: "🔗"
