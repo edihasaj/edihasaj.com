@@ -100,6 +100,10 @@ projects:
     name: Agentic Suite
     url: https://agenticsuite.io
     desc: AI workflow automation platform.
+  - emoji: "⌨️"
+    name: Foretype
+    url: https://foretype.app
+    desc: system-wide, fully-local AI autocompletion for macOS.
   - emoji: "⚖️"
     name: Neni
     url: https://neni.me
