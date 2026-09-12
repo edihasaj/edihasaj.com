@@ -3,7 +3,7 @@
 ## Development
 
 1. `bundle install`
-2. `jekyll serve`
+2. `bundle exec jekyll serve`
 
 For testing Obsidian's obsidian-github-publisher's regex,
 run `bin/test-obsidian-regex`. See `obsidian_regex_publisher.test.js` for more
@@ -43,11 +43,12 @@ LLM index.
 
 ## Theme
 
-The site supports light and dark themes, with light mode as the default. The toggle lives in
-`_includes/header.html`, the saved preference is handled in `js/app.js`, and
-the palette is exposed through CSS variables compiled from the Sass partials.
-Use `var(--theme-*)` tokens for new surfaces so posts, navigation, and footer
-stay readable in both modes.
+The site uses a narrow reading column, Georgia, and a warm paper palette, inspired
+by darioamodei.com. `_sass/_editorial.scss` is the stylesheet entry point.
+Light mode is the default; the header toggle persists dark mode in local storage.
+`js/app.js` handles the toggle without a JavaScript library. All writing remains
+readable with JavaScript disabled. Lists show titles and dates; images stay inside
+articles. Keep new styles on the `--theme-*` tokens.
 
 ### Posts
 
@@ -102,12 +103,8 @@ Things you can change are: `title` and `image` path.
 
 ### Navigation
 
-The navigation on the sidebar will automatically include all the links to the pages you have created.
-
-### Icons Links
-
-Social media links included in `_includes/footer.html` are using
-[Evil Icons](http://evil-icons.io/), which contains very simple and clean icons.
+The header links to Writing and About. The homepage lists recent posts and topic
+hubs. Footer links provide social profiles and RSS.
 
 ### Known Problems
 

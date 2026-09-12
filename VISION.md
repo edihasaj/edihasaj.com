@@ -8,7 +8,7 @@
 - Topic hub pages (`_pages/topics/`, `layout: topic` with `topic_tags`) and standard pages (`_pages/`).
 - Apps/projects list sourced from `_data/projects.yml`, synced to the profile README via `bin/gen-readme.js`.
 - Site UX: layouts (`_layouts/`), includes (`_includes/`), navigation, header/footer, light/dark theme toggle.
-- Styling via Sass partials (`_sass/`) using `var(--theme-*)` CSS variables for both themes.
+- Styling via `_sass/_editorial.scss` using `var(--theme-*)` CSS variables for both themes.
 - Performance: static output, compressed Sass, minimal JS (`js/app.js`).
 - SEO / crawler discovery: `sitemap.xml`, `atom.xml`/`feed.xml`, `robots.txt`, `agents.txt`, `llms.txt`, `_includes/seo-jsonld.html`.
 - Accessibility and readability across light and dark modes.

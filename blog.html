@@ -1,14 +1,17 @@
 ---
 layout: default
-title: Blog
+title: Writing
 permalink: /blog/
 ---
 
-<div class='o-wrapper'>
-  <div class='o-grid'>
-    {% assign posts_list = site.posts | where_exp: "post", "post.categories contains 'posts'" %}
-    {% for post in posts_list %}
-      {% include post-card.liquid %}
-    {% endfor %}
-  </div>
-</div>
+<h1>Writing</h1>
+{% assign posts_list = site.posts | where_exp: "post", "post.categories contains 'posts'" %}
+{% assign years = posts_list | group_by_exp: 'post', "post.date | date: '%Y'" %}
+{% for year in years %}
+  <section aria-labelledby="year-{{ year.name }}">
+    <h2 id="year-{{ year.name }}">{{ year.name }}</h2>
+    <ul class="writing-list">
+      {% for post in year.items %}{% include post-card.liquid %}{% endfor %}
+    </ul>
+  </section>
+{% endfor %}

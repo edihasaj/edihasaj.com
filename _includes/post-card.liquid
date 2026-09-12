@@ -1,35 +1,4 @@
-<div class='o-grid__col o-grid__col--full'>
-
-  <a href='{{ post.url | prepend: site.baseurl }}'
-     class='c-post-card
-            {% if forloop.first == true %} c-post-card--first {% endif %}
-            {% if forloop.last == true %} c-post-card--last {% endif %}
-            '
-    >
-
-    <h3 class='c-post-card__title'>{{ post.title }}</h3>
-
-    {% assign card_image = post.front_page_image | default: post.image %}
-    <div class='c-post-card__body{% if card_image %} c-post-card__body--with-image{% endif %}'>
-      {% if card_image %}
-        <span class='c-post-card__thumb'>
-          <img src='{{ card_image | prepend: site.baseurl }}'
-               loading='lazy' alt='{{ post.title }}'>
-        </span>
-      {% endif %}
-
-      <span class='c-post-card__excerpt'>
-        {% if post.excerpt %}
-          {{ post.excerpt | markdownify }}
-        {% else %}
-          {{ post.content | strip_html | truncatewords:35 }}
-        {% endif %}
-      </span>
-    </div>
-
-    {% comment %}
-      <span class='c-post-card__date'>{{ post.display_date | default: post.date | date: '%d %b %Y' }}</span>
-    {% endcomment %}
-  </a>
-
-</div>
+<li>
+  <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+  <time datetime="{{ post.display_date | default: post.date | date_to_xmlschema }}">{{ post.display_date | default: post.date | date: '%b %Y' }}</time>
+</li>

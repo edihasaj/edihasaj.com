@@ -20,18 +20,11 @@
   <div class='c-page'>
     {% include header.html %}
 
-    {% unless page.url == '/' %}
-      <div class='c-page-stripe'></div>
-    {% endunless %}
-
-    {{ content }}
+    <main id="main" tabindex="-1">{{ content }}</main>
 
     {% include footer.html %}
   </div>
 
-  <script src="{{ '/js/jquery-3.1.1.min.js' | prepend: site.baseurl }}"> </script>
-  <script src="{{ '/js/evil-icons.min.js' | prepend: site.baseurl }}">   </script>
-  <script src="{{ '/js/jquery.fitvids.js' | prepend: site.baseurl }}">   </script>
   <script src="{{ '/js/app.js' | prepend: site.baseurl }}">              </script>
 </body>
 
