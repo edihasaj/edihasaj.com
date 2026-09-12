@@ -124,3 +124,14 @@ Note that tags are not working with GitHub Pages, that's because the used
 [jekyll-tagging ](https://github.com/pattex/jekyll-tagging) plugin is not
 [whitelisted](https://pages.github.com/versions/) by GitHub.  To make this work,
 use [Netlify.com](https://www.netlify.com/) for deployment.
+
+## Browser verification
+
+Start `bundle exec jekyll serve --port 4010`, then run
+`node bin/check-browser.cjs`. It checks every generated-card page at desktop,
+mobile, and narrow mobile widths, including persisted dark mode, overflow,
+headings, broken images, and empty links. Pass a base URL to check another server.
+The script uses the shared `abx` session and changes its viewport and theme.
+
+The old theme partials, jQuery, FitVids, and icon runtime have been removed.
+Responsive video sizing now lives in CSS. `landing` uses the default layout.

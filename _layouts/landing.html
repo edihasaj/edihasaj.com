@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang='en'>
-
-{% include head.html %}
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PMKDVSKH5P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PMKDVSKH5P');
-</script>
-
-<body class="landing-page">
-
-  {% include analytics.html %}
-
-  {{ content }}
-
-  <script src="{{ '/js/jquery-3.1.1.min.js' | prepend: site.baseurl }}"> </script>
-  <script src="{{ '/js/evil-icons.min.js' | prepend: site.baseurl }}">   </script>
-  <script src="{{ '/js/jquery.fitvids.js' | prepend: site.baseurl }}">   </script>
-  <script src="{{ '/js/app.js' | prepend: site.baseurl }}">              </script>
-</body>
-
-</html>
+---
+layout: default
+---
+{{ content }}
