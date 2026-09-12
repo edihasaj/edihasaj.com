@@ -1,9 +1,7 @@
 {% assign canonical_url = page.url | replace:'index.html','' | absolute_url %}
 {% assign page_description = page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 220 %}
-{% assign page_image = '' %}
-{% unless page.og_image == false %}
-  {% assign page_image = page.og_image | default: page.image %}
-{% endunless %}
+{% include social-image.liquid %}
+{% assign page_image = og_image %}
 {% if page_image and page_image != '' %}
   {% assign page_image = page_image | absolute_url %}
 {% endif %}

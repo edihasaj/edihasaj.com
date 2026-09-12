@@ -15,7 +15,6 @@ excerpt: "Some notes from building Neni, a legal research app for Kosovo law, an
 image: /images/posts/neni-statute-atlas-2026-05-05.png
 ---
 
-# Building Neni: legal search that actually has to know the law
 
 I have been working on [neni.me](https://neni.me), a legal research app built on top of Statute Atlas.
 

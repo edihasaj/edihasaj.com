@@ -14,7 +14,6 @@ tags:
 excerpt: "Every project has unwritten rules that don't fit in a .md file, and agents keep forgetting them. So I built Recall, opensourced it, and wired it into the agents I already use without paying for a separate brain."
 ---
 
-# Recall: The Memory My Agents Were Missing
 
 I open sourced [Recall](https://github.com/edihasaj/recall) a while back, and I want to write down why, becuase it is the kind of tool I wish someone else had built so I would not have to.
 

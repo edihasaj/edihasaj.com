@@ -40,6 +40,16 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+  - node_modules
+  - bin
+  - tests
+  - docs
+  - README.md
+  - VISION.md
+  - LICENSE
+  - package.json
+  - yarn.lock
+  - '*.test.js'
 
 # Tags
 tag_page_dir:         tag

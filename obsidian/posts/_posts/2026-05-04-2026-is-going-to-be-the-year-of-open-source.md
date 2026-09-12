@@ -14,7 +14,6 @@ excerpt: "Software is getting cheaper to build, agents are getting better, and t
 image: /images/pages/edi-og.png
 ---
 
-# 2026 is going to be the year of open source
 
 2026 is going to be the year of open source, at least for software builders. Not because everyone suddenly became more kind, but because the market is changing fast and a lot of the easy software is not worth hiding anymore.
 

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+bundle exec ruby bin/generate-og.rb --check
+bundle exec jekyll build
+yarn test --runInBand
+git diff --check

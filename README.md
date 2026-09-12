@@ -70,10 +70,22 @@ og_image: '/images/social-card.jpg'
 ---
 ```
 
-`image` is the visible post header and is reused for Open Graph metadata.
-Use `og_image` when the social card should differ from the visible header.
-Pages with neither field emit no image metadata; set `og_image: false` to
-explicitly suppress social image metadata even when a visible `image` exists.
+Every titled page and post gets a generated 1200 × 630 PNG card: dark serif text
+on warm paper. Run `bundle exec ruby bin/generate-og.rb` after adding a page or
+changing a title. Commit `images/og/` and `_data/og_images.yml` with the content.
+GitHub Pages serves the committed images; it needs no custom plugin or image API.
+
+Generation requires `rsvg-convert` (Homebrew: `brew install librsvg`). The SVG
+uses Georgia when installed, with Liberation Serif and the platform serif as
+fallbacks. Use the same font environment for consistent output. To change card
+design, bump `VERSION` in the generator; image URLs then change for cache refresh.
+`--check` detects missing cards or changed titles; `--force` rerenders existing cards.
+
+`image` remains the visible article image. `og_image` overrides the generated
+social card; `og_image: false` suppresses social images. Pages without a generated
+card fall back to their visible image, then the site's name card. Open Graph,
+Twitter, and JSON-LD share this selection through `_includes/social-image.liquid`.
+Run `bin/check` before publishing.
 
 To keep things more organized, add post images to **/images/posts** directory,
 and add page images to **/images/pages** directory.

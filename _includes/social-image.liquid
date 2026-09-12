@@ -1,0 +1,7 @@
+{% assign social_card = site.data.og_images[page.url] %}
+{% assign default_card = site.data.og_images['/'] %}
+{% assign og_image = '' %}
+{% unless page.og_image == false %}
+  {% assign og_image = page.og_image | default: social_card.image | default: page.image | default: default_card.image %}
+{% endunless %}
+{% assign og_image_alt = page.og_image_alt | default: social_card.title | default: page.image_alt | default: site.title %}

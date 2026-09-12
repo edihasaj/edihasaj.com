@@ -2,8 +2,6 @@
 layout: page
 title: About
 permalink: /about/
-og_image: /images/header-edi.jpg
-og_image_alt: Edi Hasaj
 ---
 
 Software engineer. Building the next layer of software.
