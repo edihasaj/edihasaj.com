@@ -60,6 +60,8 @@
 
   {% include seo-jsonld.html %}
 
+  <link rel="preload" href="{{ '/assets/fonts/newsreader/newsreader-24pt-normal-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+
   <style>
     {% capture inlineCSS %}
       {% include app.scss %}

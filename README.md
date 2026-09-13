@@ -43,8 +43,12 @@ LLM index.
 
 ## Theme
 
-The site uses a narrow reading column, Georgia, and a warm paper palette, inspired
-by darioamodei.com. `_sass/_editorial.scss` is the stylesheet entry point.
+The site uses a narrow reading column, Newsreader, and a warm paper palette, inspired
+by darioamodei.com. `_sass/_editorial.scss` defines the layout.
+`_sass/_fonts.scss` loads self-hosted Newsreader at optical size 24, with variable
+weights 400–700 in roman and italic. Font files come from Google Fonts; their
+SIL Open Font License is in `assets/fonts/newsreader/OFL.txt`.
+The homepage starts with Writing; the biography lives on About.
 Light mode is the default; the header toggle persists dark mode in local storage.
 `js/app.js` handles the toggle without a JavaScript library. All writing remains
 readable with JavaScript disabled. Lists show titles and dates; images stay inside

@@ -23,9 +23,9 @@ html { background: var(--theme-bg); scroll-padding-top: 2rem; }
 body {
   margin: 0;
   color: var(--theme-text);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 19px;
-  line-height: 1.65;
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-wrap: break-word;
 }
@@ -52,8 +52,6 @@ h2 { font-size: 25px; margin: 42px 0 18px; }
 h3 { font-size: 21px; margin: 32px 0 14px; }
 h4 { font-size: 19px; }
 p { margin: 0 0 24px; }
-.intro { margin-bottom: 44px; }
-.intro p:last-child { font-size: 17px; }
 ul, ol { padding-left: 24px; margin: 0 0 24px; }
 li { margin-bottom: 12px; }
 .writing-list { padding-left: 20px; }
