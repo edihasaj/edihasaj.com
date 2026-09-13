@@ -1,0 +1,36 @@
+{
+  "model": "Qwen/Qwen3.5-9B",
+  "experiment_date": "2026-08-21",
+  "training_rows": 270,
+  "evaluation_rows": 30,
+  "task": "Route generated support messages to billing, account or technical teams.",
+  "method": {
+    "name": "QLoRA",
+    "epochs": 1,
+    "rank": 32,
+    "learning_rate": 0.00015,
+    "seed": 42,
+    "optimizer_updates": 135
+  },
+  "results": {
+    "before_correct": 23,
+    "after_correct": 30,
+    "total": 30,
+    "before_valid_labels": 30,
+    "after_valid_labels": 30
+  },
+  "provenance": {
+    "source": "Saved Farka worker evaluation and training specification; counts recomputed from paired predictions.",
+    "evaluation_artifact_sha256": "1c75724fd555836bb4a46e8f6d3826000bffc7a4fc639ae21d797735a1e8d408",
+    "fresh_inference_rerun": false,
+    "legacy_baseline_source_marker_present": false
+  },
+  "limits": [
+    "Generated workflow demonstration, not customer data.",
+    "Evaluation rows also participated in checkpoint evaluation; no separate blind-promotion test.",
+    "Semantic overlap with training patterns was not independently re-audited.",
+    "No CPU or other simpler baseline comparison in this run.",
+    "No measured production accuracy or cost savings.",
+    "Original request texts and trained weights are not included."
+  ]
+}
