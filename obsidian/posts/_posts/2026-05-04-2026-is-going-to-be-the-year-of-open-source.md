@@ -1,4 +1,5 @@
 ---
+writing_section: essays
 share: true
 layout: post
 title: "2026 is going to be the year of open source"

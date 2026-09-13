@@ -84,6 +84,12 @@ class SiteTest < Minitest::Test
     links = archive.css('.writing-list a').map { |link| link['href'] }
     assert_equal posts.map(&:url).sort, links.sort
     assert archive.css('.writing-list a').all? { |link| !link.text.strip.empty? }
+    home = html(SITE.pages.find { |page| page.url == '/' })
+    home_links = home.css('.writing-list a').map { |link| link['href'] }
+    assert_equal posts.map(&:url).sort, home_links.sort
+    essays = posts.select { |post| post.data['writing_section'] == 'essays' }
+    assert_equal essays.map(&:url).sort,
+                 home.css('section[aria-labelledby="essays"] a').map { |link| link['href'] }.sort
   end
 
   def test_social_card_text_is_safe_and_fits_canvas

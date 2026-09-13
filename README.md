@@ -48,7 +48,21 @@ by darioamodei.com. `_sass/_editorial.scss` defines the layout.
 `_sass/_fonts.scss` loads self-hosted Newsreader at optical size 24, with variable
 weights 400–700 in roman and italic. Font files come from Google Fonts; their
 SIL Open Font License is in `assets/fonts/newsreader/OFL.txt`.
-The homepage starts with Writing; the biography lives on About.
+The homepage groups writing into Essays and Notes & guides; the biography lives
+on About. Set `writing_section: essays` in front matter for an essay. Other posts
+appear in Notes & guides. The complete archive remains at `/blog/`.
+
+The palette matches the reference: paper `#f0eee6`, ink `#1f1e1d`, with the
+colours reversed in dark mode. Articles use a 580px reading column and larger
+headings. An optional `subtitle` appears below the article title.
+
+Articles with at least two H2 headings get a generated table of contents through
+`js/toc.js`. On screens at least 1200px wide it sits fixed to the left and opens
+by default. Readers can close and reopen it without moving the article; desktop
+preferences persist. Smaller screens get an inline, initially closed control.
+Links preserve native fragment navigation, show the current section while
+scrolling, and support keyboard focus. Escape closes the panel. Without
+JavaScript, the article stays readable and the empty control stays hidden.
 Light mode is the default; the header toggle persists dark mode in local storage.
 `js/app.js` handles the toggle without a JavaScript library. All writing remains
 readable with JavaScript disabled. Lists show titles and dates; images stay inside
@@ -138,6 +152,8 @@ Start `bundle exec jekyll serve --port 4010`, then run
 mobile, and narrow mobile widths, including persisted dark mode, overflow,
 headings, broken images, and empty links. Pass a base URL to check another server.
 The script uses the shared `abx` session and changes its viewport and theme.
+Run `node bin/check-reader.cjs` to exercise the contents panel, keyboard controls,
+section navigation, saved state, and light/dark palette. It also accepts a base URL.
 
 The old theme partials, jQuery, FitVids, and icon runtime have been removed.
 Responsive video sizing now lives in CSS. `landing` uses the default layout.

@@ -8,7 +8,7 @@ require 'open3'
 require 'tempfile'
 
 ROOT = File.expand_path('..', __dir__)
-VERSION = 'paper-v2'
+VERSION = 'paper-v3'
 
 # Conservative line lengths leave room for wide serif glyphs.
 def title_lines(title)
@@ -33,7 +33,7 @@ def card_svg(title, home: false, description: 'Software, AI and Thinking.')
   <<~SVG
     <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
       <rect width="1200" height="630" fill="#f0eee6"/>
-      <g font-family="Newsreader 24pt" fill="#242320">
+      <g font-family="Newsreader 24pt" fill="#1f1e1d">
         <text class="card-author" x="88" y="#{home ? 250 : 185}" font-size="104">Edi Hasaj</text>
         #{text}
       </g>

@@ -26,6 +26,7 @@
   </div>
 
   <script src="{{ '/js/app.js' | prepend: site.baseurl }}">              </script>
+{% if page.layout == 'post' %}<script src="{{ '/js/toc.js' | relative_url }}"></script>{% endif %}
 </body>
 
 </html>

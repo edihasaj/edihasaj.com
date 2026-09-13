@@ -1,0 +1,36 @@
+.post-toc { margin-bottom: 28px; }
+.toc-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: var(--theme-bg);
+  font-size: 18px;
+  cursor: pointer;
+}
+.toc-toggle__icon { width: 24px; font-size: 24px; text-align: center; }
+.toc-panel { padding: 16px 0; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-list li { margin-bottom: 14px; }
+.toc-list a { color: var(--theme-muted); text-decoration: none; }
+.toc-list a:hover, .toc-list a[aria-current] { color: var(--theme-text); text-decoration: underline; }
+@media (min-width: 1200px) {
+  .post-toc { margin: 0; }
+  .toc-toggle { position: fixed; top: 22px; left: 24px; z-index: 2; }
+  .toc-panel {
+    position: fixed;
+    top: 118px;
+    bottom: 24px;
+    left: 24px;
+    width: min(280px, calc((100vw - 636px) / 2 - 48px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    padding: 0 12px 0 0;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+}
+@media print { .post-toc { display: none; } }

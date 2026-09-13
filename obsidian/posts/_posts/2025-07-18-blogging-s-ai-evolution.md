@@ -1,4 +1,5 @@
 ---
+writing_section: essays
 share: true
 layout: post
 title: "Blogging's AI Evolution: Why Human Stories Matter More Than Ever"

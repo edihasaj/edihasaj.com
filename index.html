@@ -3,16 +3,25 @@ layout: default
 title: Home
 ---
 
-<section aria-labelledby="writing-title">
-  <h2 id="writing-title">Writing</h2>
+{% assign posts_list = site.posts | where_exp: "post", "post.categories contains 'posts'" %}
+<section aria-labelledby="essays">
+  <h2 id="essays">Essays</h2>
   <ul class="writing-list">
-    {% assign posts_list = site.posts | where_exp: "post", "post.categories contains 'posts'" %}
-    {% for post in posts_list limit:8 %}
-      {% include post-card.liquid %}
+    {% for post in posts_list %}
+      {% if post.writing_section == 'essays' %}{% include post-card.liquid %}{% endif %}
     {% endfor %}
   </ul>
-  <p class="archive-link"><a href="{{ '/blog/' | relative_url }}">All writing <span aria-hidden="true">→</span></a></p>
 </section>
+
+<section aria-labelledby="notes">
+  <h2 id="notes">Notes &amp; guides</h2>
+  <ul class="writing-list">
+    {% for post in posts_list %}
+      {% unless post.writing_section == 'essays' %}{% include post-card.liquid %}{% endunless %}
+    {% endfor %}
+  </ul>
+</section>
+<p class="archive-link"><a href="{{ '/blog/' | relative_url }}">All writing <span aria-hidden="true">→</span></a></p>
 
 <section aria-labelledby="topics-title">
   <h2 id="topics-title">Topics</h2>

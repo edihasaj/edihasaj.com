@@ -1,4 +1,5 @@
 ---
+writing_section: essays
 share: true
 layout: post
 title: "Anthropic Pulled Fable. Build Your Own Intelligence."

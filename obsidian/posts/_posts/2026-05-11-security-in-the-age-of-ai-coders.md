@@ -1,4 +1,5 @@
 ---
+writing_section: essays
 share: false
 layout: post
 title: "Security in the age of AI coders"
