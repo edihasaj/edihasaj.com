@@ -74,14 +74,16 @@ og_image: '/images/social-card.jpg'
 ---
 ```
 
-Every titled page and post gets a generated 1200 × 630 PNG card: dark serif text
-on warm paper. Run `bundle exec ruby bin/generate-og.rb` after adding a page or
+Every titled page and post gets a generated 1200 × 630 PNG card on warm paper.
+“Edi Hasaj” appears above the page title in large Newsreader type. The title below
+uses a prominent 60px size, reduced only for long titles. The homepage uses the
+site description beneath the name. Run `bundle exec ruby bin/generate-og.rb` after adding a page or
 changing a title. Commit `images/og/` and `_data/og_images.yml` with the content.
 GitHub Pages serves the committed images; it needs no custom plugin or image API.
 
 Generation requires `rsvg-convert` (Homebrew: `brew install librsvg`). The SVG
-uses Georgia when installed, with Liberation Serif and the platform serif as
-fallbacks. Use the same font environment for consistent output. To change card
+uses the bundled Newsreader TTF through an isolated Fontconfig file, so rendering
+does not depend on installed system fonts. To change card
 design, bump `VERSION` in the generator; image URLs then change for cache refresh.
 `--check` detects missing cards or changed titles; `--force` rerenders existing cards.
 

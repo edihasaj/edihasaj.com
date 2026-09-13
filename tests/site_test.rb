@@ -100,4 +100,17 @@ class SiteTest < Minitest::Test
     paths = SITE.static_files.map(&:relative_path)
     refute paths.any? { |path| path.match?(%r{/(node_modules|tests|bin)/|\.test\.js$}) }
   end
+
+  def test_author_sits_above_readable_page_titles
+    SITE.data.fetch('og_images').each do |url, card|
+      svg = Nokogiri::XML(card_svg(card['title'], home: url == '/'))
+      author = svg.at_css('.card-author')
+      assert_equal 'Edi Hasaj', author.text
+      svg.css('.card-title').each do |line|
+        assert_operator line['y'].to_f, :>, author['y'].to_f + 50
+        assert_operator line['font-size'].to_f, :>=, 48
+        assert_operator line['font-size'].to_f, :<, author['font-size'].to_f
+      end
+    end
+  end
 end
