@@ -8,7 +8,7 @@ require 'open3'
 require 'tempfile'
 
 ROOT = File.expand_path('..', __dir__)
-VERSION = 'paper-v3'
+VERSION = 'paper-v4'
 
 # Conservative line lengths leave room for wide serif glyphs.
 def title_lines(title)
@@ -26,7 +26,9 @@ def card_svg(title, home: false, description: 'Software, AI and Thinking.')
   lines = title_lines(home ? description : title)
   size = [60, (260.0 / [lines.length, 1].max / 1.18).floor].min
   line_height = size * 1.18
-  first_y = home ? 355 : 295
+  # Bottom-align the whole text block, leaving unused space above it.
+  first_y = 530 - (lines.length - 1) * line_height
+  author_y = first_y - 110
   text = lines.each_with_index.map do |line, index|
     %(<text class="card-title" x="88" y="#{first_y + index * line_height}" font-size="#{size}">#{CGI.escapeHTML(line)}</text>)
   end.join
@@ -34,7 +36,7 @@ def card_svg(title, home: false, description: 'Software, AI and Thinking.')
     <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
       <rect width="1200" height="630" fill="#f0eee6"/>
       <g font-family="Newsreader 24pt" fill="#1f1e1d">
-        <text class="card-author" x="88" y="#{home ? 250 : 185}" font-size="104">Edi Hasaj</text>
+        <text class="card-author" x="88" y="#{author_y}" font-size="104">Edi Hasaj</text>
         #{text}
       </g>
     </svg>

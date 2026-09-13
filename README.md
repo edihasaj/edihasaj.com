@@ -91,7 +91,8 @@ og_image: '/images/social-card.jpg'
 
 Every titled page and post gets a generated 1200 × 630 PNG card on warm paper.
 “Edi Hasaj” appears above the page title in large Newsreader type. The title below
-uses a prominent 60px size, reduced only for long titles. The homepage uses the
+uses a prominent 60px size, reduced only for long titles. The text block is aligned
+to the bottom with consistent padding, leaving empty space above. The homepage uses the
 site description beneath the name. Run `bundle exec ruby bin/generate-og.rb` after adding a page or
 changing a title. Commit `images/og/` and `_data/og_images.yml` with the content.
 GitHub Pages serves the committed images; it needs no custom plugin or image API.

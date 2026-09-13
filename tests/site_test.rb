@@ -112,6 +112,7 @@ class SiteTest < Minitest::Test
       svg = Nokogiri::XML(card_svg(card['title'], home: url == '/'))
       author = svg.at_css('.card-author')
       assert_equal 'Edi Hasaj', author.text
+      assert_in_delta 530, svg.css('.card-title').last['y'].to_f, 0.01
       svg.css('.card-title').each do |line|
         assert_operator line['y'].to_f, :>, author['y'].to_f + 50
         assert_operator line['font-size'].to_f, :>=, 48
