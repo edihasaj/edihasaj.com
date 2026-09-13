@@ -88,22 +88,46 @@ open_source:
     desc: native macOS menu-bar switcher for running two isolated Codex desktop accounts.
 
 projects:
-  - emoji: "☁️"
-    name: Recall Cloud
-    url: https://app.recallmemory.dev
-    desc: hosted memory sync, search, and team access for agents.
   - emoji: "🐙"
     name: Oktapod
     url: https://oktapod.ai
     desc: personal agent runtime.
+  - emoji: "🔥"
+    name: Farka
+    url: https://farka.ai
+    desc: fine-tune specialized AI models from your own data.
+  - emoji: "💬"
+    name: Answerplane
+    url: https://answerplane.com
+    desc: governed, source-backed answers over your connected data.
   - emoji: "🤖"
     name: Agentic Suite
     url: https://agenticsuite.io
     desc: AI workflow automation platform.
+  - emoji: "🗣️"
+    name: ChirpGo
+    url: https://chirpgo.app
+    desc: offline macOS voice-to-text.
   - emoji: "⌨️"
     name: Foretype
     url: https://foretype.app
     desc: system-wide, fully-local AI autocompletion for macOS.
+  - emoji: "🗓️"
+    name: Calbraid
+    url: https://calbraid.com
+    desc: calendar synchronization and scheduling across Google Calendar, Microsoft 365, CalDAV, and ICS.
+  - emoji: "☁️"
+    name: Recall Cloud
+    url: https://app.recallmemory.dev
+    desc: hosted memory sync, search, and team access for agents.
+  - emoji: "📺"
+    name: Teleprompt Overlay
+    url: https://teleprompt.applifyer.com
+    desc: teleprompter overlay.
+  - emoji: "📶"
+    name: BLE Priority
+    url: https://play.google.com/store/apps/details?id=com.applifyer.blepriority
+    desc: BLE device management.
   - emoji: "⚖️"
     name: Neni
     url: https://neni.me
@@ -116,52 +140,36 @@ projects:
     name: Eunifyer
     url: https://eunifyer.com
     desc: cloud solution for Europe.
-  - emoji: "🗣️"
-    name: ChirpGo
-    url: https://chirpgo.app
-    desc: offline macOS voice-to-text.
   - emoji: "🚀"
     name: Starterbase
     url: https://starterbase.dev
     desc: SaaS base for agent-built apps.
-  - emoji: "🧾"
-    name: Invoicing
-    url: https://invoicing.applifyer.com
-    desc: AI invoices and expenses.
-  - emoji: "📺"
-    name: Teleprompt Overlay
-    url: https://teleprompt.applifyer.com
-    desc: teleprompter overlay.
-  - emoji: "🐛"
-    name: Zapfeed
-    url: https://zapfeed.io
-    desc: bug board and help center.
   - emoji: "🧩"
     name: Problem Digest
     url: https://problemdigest.com
     desc: problem discovery.
+  - emoji: "🐛"
+    name: Zapfeed
+    url: https://zapfeed.io
+    desc: bug board and help center.
   - emoji: "🏢"
     name: KosovoBiz
     url: https://kosovobiz.com
     desc: Kosovo business registry.
+  - emoji: "🧾"
+    name: Invoicing
+    url: https://invoicing.applifyer.com
+    desc: AI invoices and expenses.
   - emoji: "💸"
     name: SettleLoop
     url: http://settle-loop.applifyer.com
     desc: split expenses.
-  - emoji: "🗓️"
-    name: Calbraid
-    url: https://calbraid.com
-    desc: calendar synchronization and scheduling across Google Calendar, Microsoft 365, CalDAV, and ICS.
 
 legacy:
   - emoji: "🔗"
     name: EmbedLink
     url: https://embed-link.com
     desc: link embedding.
-  - emoji: "📶"
-    name: BLE Priority
-    url: https://play.google.com/store/apps/details?id=com.applifyer.blepriority
-    desc: BLE device management.
   - emoji: "🗺️"
     name: leaflet-coord-projection
     url: https://github.com/edihasaj/leaflet-coord-projection
@@ -182,10 +190,6 @@ legacy:
     name: cash-display-toshiba
     url: https://github.com/edihasaj/cash-display-toshiba
     desc: Toshiba cash display.
-  - emoji: "📊"
-    name: MetricShot
-    url: http://metricshot.dev
-    desc: metric snapshots.
   - emoji: "💰"
     name: Price&Promotion Engine
     url: https://pricepromoengine.com
