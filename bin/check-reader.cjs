@@ -43,6 +43,7 @@ assert.equal(js("getComputedStyle(document.body).color"), 'rgb(240, 238, 230)');
 run('goto', base);
 assert.equal(js("document.querySelector('#essays').textContent"), 'Essays');
 assert.equal(js("document.querySelector('#notes').textContent"), 'Notes & guides');
-assert.equal(js("!!document.querySelector('.intro')"), false);
+assert.equal(js("document.querySelector('main > :first-child').className"), 'intro');
+assert(js("document.querySelector('.intro').textContent.includes('Edi Hasaj is a software engineer')"));
 assert.equal(js("!!document.querySelector('.post-toc')"), false);
 console.log('Reading controls passed: desktop, mobile, anchors, keyboard, persistence, palette, and homepage sections.');

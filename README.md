@@ -48,8 +48,9 @@ by darioamodei.com. `_sass/_editorial.scss` defines the layout.
 `_sass/_fonts.scss` loads self-hosted Newsreader at optical size 24, with variable
 weights 400–700 in roman and italic. Font files come from Google Fonts; their
 SIL Open Font License is in `assets/fonts/newsreader/OFL.txt`.
-The homepage groups writing into Essays and Notes & guides; the biography lives
-on About. Set `writing_section: essays` in front matter for an essay. Other posts
+The homepage opens with a short third-person introduction, followed by Essays
+and Notes & guides. The full biography lives on About.
+Set `writing_section: essays` in front matter for an essay. Other posts
 appear in Notes & guides. The complete archive remains at `/blog/`.
 
 The palette matches the reference: paper `#f0eee6`, ink `#1f1e1d`, with the
