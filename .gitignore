@@ -7,3 +7,6 @@ _drafts
 node_modules
 yarn-error.log
 .obsidian
+# Generated during local builds and GitHub Actions deployments.
+/_data/og_images.yml
+/images/og/*.png

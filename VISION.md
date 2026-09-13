@@ -12,7 +12,7 @@
 - Performance: static output, compressed Sass, minimal JS (`js/app.js`).
 - SEO / crawler discovery: `sitemap.xml`, `atom.xml`/`feed.xml`, `robots.txt`, `agents.txt`, `llms.txt`, `_includes/seo-jsonld.html`.
 - Accessibility and readability across light and dark modes.
-- Build tooling: Jekyll build/serve (`bundle`, `bin/serve`, `bin/setup`), `_config.yml`, redirects (`jekyll-redirect-from`).
+- Build tooling: Jekyll build/serve (`bundle`, `bin/build`, `bin/serve`, `bin/setup`), automatic social cards and GitHub Actions Pages deployment, `_config.yml`, redirects (`jekyll-redirect-from`).
 - The Obsidian publisher regex tooling and its test (`obsidian_regex_publisher.test.js`, `bin/test-obsidian-regex`).
 
 ## Out of Scope
@@ -51,7 +51,7 @@
 - Keep SEO surfaces (sitemap, `llms.txt`, `agents.txt`, JSON-LD) consistent as posts and topics are added.
 - Ensure `_data/projects.yml` and the generated profile README stay in sync (`gen-readme.js --check`).
 - Verify light/dark theme parity for any new surfaces via `var(--theme-*)` tokens.
-- Address the known GitHub Pages / `jekyll-tagging` whitelist limitation via the Netlify deploy path.
+- Keep the GitHub Actions build aligned with local Jekyll and test gates.
 
 ### Long-term
 - Grow the writing catalog across the core topic hubs (AI agents, MCP, open source, security, software).

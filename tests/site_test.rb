@@ -121,3 +121,5 @@ class SiteTest < Minitest::Test
     end
   end
 end
+
+require_relative 'social_cards_test'

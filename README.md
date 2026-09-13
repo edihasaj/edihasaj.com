@@ -3,7 +3,7 @@
 ## Development
 
 1. `bundle install`
-2. `bundle exec jekyll serve`
+2. `bin/serve`
 
 For testing Obsidian's obsidian-github-publisher's regex,
 run `bin/test-obsidian-regex`. See `obsidian_regex_publisher.test.js` for more
@@ -93,15 +93,29 @@ Every titled page and post gets a generated 1200 × 630 PNG card on warm paper.
 “Edi Hasaj” appears above the page title in large Newsreader type. The title below
 uses a prominent 60px size, reduced only for long titles. The text block is aligned
 to the bottom with consistent padding, leaving empty space above. The homepage uses the
-site description beneath the name. Run `bundle exec ruby bin/generate-og.rb` after adding a page or
-changing a title. Commit `images/og/` and `_data/og_images.yml` with the content.
-GitHub Pages serves the committed images; it needs no custom plugin or image API.
+site description beneath the name.
 
-Generation requires `rsvg-convert` (Homebrew: `brew install librsvg`). The SVG
-uses the bundled Newsreader TTF through an isolated Fontconfig file, so rendering
-does not depend on installed system fonts. To change card
-design, bump `VERSION` in the generator; image URLs then change for cache refresh.
-`--check` detects missing cards or changed titles; `--force` rerenders existing cards.
+Cards are generated automatically before every deployment. Push a new or edited
+post to `main`; `.github/workflows/pages.yml` generates cards, builds with the
+locked Jekyll version, runs tests, and deploys the resulting site to GitHub Pages.
+Pull requests run the same build and tests without deploying.
+
+Card URLs depend on the rendered SVG and bundled font. New titles, layout changes,
+and font changes generate new PNGs; body-only edits reuse the existing card.
+GitHub Actions restores generated PNGs from a cache between builds. If the cache
+is missing, the build regenerates the required cards. The workflow also has a
+manual Run workflow button. It never commits generated files back to the repo.
+
+For local work, `bin/build` generates cards and builds the site. `bin/serve`
+generates them before starting the preview server. `bin/check` runs generation,
+build, and tests together. The generated `_data/og_images.yml` and new PNGs are
+ignored by Git; older committed PNGs remain available for existing shared links.
+
+Generation requires `rsvg-convert` (Homebrew: `brew install librsvg`, Ubuntu:
+`apt-get install librsvg2-bin fontconfig`). The SVG uses the bundled Newsreader
+TTF through an isolated Fontconfig file, independent of installed system fonts.
+`bundle exec ruby bin/generate-og.rb --check` checks freshness without rendering;
+`--force` regenerates every current card.
 
 `image` remains the visible article image. `og_image` overrides the generated
 social card; `og_image: false` suppresses social images. Pages without a generated
@@ -149,7 +163,7 @@ use [Netlify.com](https://www.netlify.com/) for deployment.
 
 ## Browser verification
 
-Start `bundle exec jekyll serve --port 4010`, then run
+Start `bin/serve --port 4010`, then run
 `node bin/check-browser.cjs`. It checks every generated-card page at desktop,
 mobile, and narrow mobile widths, including persisted dark mode, overflow,
 headings, broken images, and empty links. Pass a base URL to check another server.
