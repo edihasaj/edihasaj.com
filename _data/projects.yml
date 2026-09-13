@@ -132,10 +132,6 @@ projects:
     name: Neni
     url: https://neni.me
     desc: Kosovo law RAG with citations.
-  - emoji: "📊"
-    name: Dialekt AI
-    url: https://dialektai.com
-    desc: AI over business data.
   - emoji: "🇪🇺"
     name: Eunifyer
     url: https://eunifyer.com
