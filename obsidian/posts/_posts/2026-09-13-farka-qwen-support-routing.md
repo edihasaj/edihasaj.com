@@ -43,20 +43,6 @@ The evaluation rows also participated in checkpoint evaluation. There was no sep
 
 There was also no comparison with a simple classifier in this run. Improving a language model does not establish that it is the best tool for the task. Rules, a classifier or better prompting may be enough.
 
-## Inspect the evidence
-
-You can download the [30 paired predictions](/assets/evidence/farka-qwen-support-routing/paired-predictions.csv), the [evaluation summary and training settings](/assets/evidence/farka-qwen-support-routing/evaluation.json), and a [small Python audit script](/assets/evidence/farka-qwen-support-routing/check_predictions.py).
-
-Put those three files in one folder and run:
-
-```sh
-python3 check_predictions.py
-```
-
-It should print `before: 23/30` and `after: 30/30`. The [evidence notes](/assets/evidence/farka-qwen-support-routing/README.txt) explain the provenance and omissions; [checksums](/assets/evidence/farka-qwen-support-routing/checksums.json) identify the files.
-
-The CSV contains row hashes and recorded labels, not the original request text. The weights are not included. This lets you audit the reported counts, but it is not a complete reproduction package or an independent check of the labels.
-
 ## Where Farka fits
 
 The part I want Farka to make easier is that comparison loop. Start with a task you can describe and examples you have permission to use. Keep a meaningful test separate. See whether training helps before deciding to use the model.
