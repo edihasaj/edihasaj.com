@@ -27,6 +27,14 @@ Sitemap: {{ '/sitemap.xml' | absolute_url }}
 - [MCP]({{ '/topics/mcp/' | absolute_url }}) - Model Context Protocol and agent-tool interfaces.
 - [Software]({{ '/topics/software/' | absolute_url }}) - Product engineering and practical software work.
 
+## Apps and Projects
+
+{% for item in site.data.projects.projects %}- {{ item.name }} ({{ item.url }}) - {{ item.desc }}
+{% endfor %}
+### Open Source
+
+{% for item in site.data.projects.open_source %}- {{ item.name }} ({{ item.url }}) - {{ item.desc }}
+{% endfor %}
 ## Blog Posts
 
 {% assign public_posts = site.posts | sort: 'date' | reverse %}
