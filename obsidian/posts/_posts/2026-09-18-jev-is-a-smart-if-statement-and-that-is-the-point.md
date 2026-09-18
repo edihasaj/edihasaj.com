@@ -3,7 +3,7 @@ share: true
 layout: post
 title: "Jev is a smart if statement, and that is the point"
 subtitle: "For a year we used language models as decision functions. TypeSafe just shipped an actual decision model."
-date: 2026-09-19
+date: 2026-09-18
 published: true
 permalink: /jev-is-a-smart-if-statement/
 tags: [AI, software]
@@ -44,7 +44,7 @@ Every one of those is a frontier model call today. Each one is a candidate for a
 
 ## Where it stops
 
-It is four days old, and the "cannot hallucinate" line in the marketing is doing more work than it should. The output shape cannot be wrong. The answer still can. It cannot do arithmetic, compare dates, write code, or reason in more than one hop, and TypeSafe says so themselves. Text only, no images.
+It is three days old, and the "cannot hallucinate" line in the marketing is doing more work than it should. The output shape cannot be wrong. The answer still can. It cannot do arithmetic, compare dates, write code, or reason in more than one hop, and TypeSafe says so themselves. Text only, no images.
 
 So it is not a replacement for the language model. It is the thing you put in front of it. The LLM still writes the fix, the reply, the summary. Jev decides whether to, which one, and how sure it is.
 
