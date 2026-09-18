@@ -65,6 +65,10 @@ li { margin-bottom: 12px; }
 .site-footer a { color: var(--theme-muted); }
 .site-footer .ask-ai { margin-top: 20px; }
 .ask-ai-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--theme-muted); margin: 0 0 8px; }
+.site-footer .ask-ai nav { align-items: center; gap: 10px 20px; }
+.site-footer .ask-ai a { display: inline-flex; opacity: 0.6; transition: opacity 140ms ease; }
+.site-footer .ask-ai a:hover { opacity: 1; }
+.site-footer .ask-ai svg { width: 22px; height: 22px; }
 .c-post__meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--theme-muted); font-size: 15px; margin-bottom: 16px; }
 .c-post__hero { margin-bottom: 32px; }
 .c-post__title { font-size: clamp(36px, 4.5vw, 62px); line-height: 1.1; letter-spacing: 0; text-wrap: pretty; margin-bottom: 24px; }
