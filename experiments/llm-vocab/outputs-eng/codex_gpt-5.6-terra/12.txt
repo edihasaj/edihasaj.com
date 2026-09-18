@@ -1,0 +1,9 @@
+Hi Edi — clear payment logging makes failures traceable without exposing sensitive data.
+
+Add structured, privacy-safe logging to the payment service to improve visibility into transaction flow, failures, and operational health. Each payment attempt should emit a consistent event containing a request or correlation ID, payment provider, operation type, outcome, latency, retry count, and relevant error category.
+
+Never log card numbers, CVVs, bank details, access tokens, or full customer PII. Store provider transaction IDs only where needed for support and reconciliation, with appropriate access controls and retention limits.
+
+Introduce dashboards and alerts for elevated failure rates, provider timeouts, duplicate-payment attempts, webhook verification failures, and unusual retry patterns. Logs should support tracing a payment from initiation through provider response and webhook completion.
+
+Roll out behind a feature flag, validate log volume and data redaction in staging, then enable progressively in production.

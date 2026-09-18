@@ -1,0 +1,12 @@
+Here's a quick guide to reviewing a pull request:
+
+1. **Understand the context** – Read the PR description and linked issue/ticket to know what problem it's solving and why.
+2. **Check the diff size and scope** – Make sure changes are focused; flag PRs that mix unrelated concerns.
+3. **Read the code carefully** – Look for correctness bugs, edge cases, error handling, and security issues (input validation, secrets, injection risks).
+4. **Check tests** – Confirm new logic has test coverage and existing tests still pass.
+5. **Assess readability/maintainability** – Naming, duplication, complexity, adherence to project conventions.
+6. **Pull it locally if risky** – For non-trivial changes, run the app to verify behavior firsthand rather than trusting the diff alone.
+7. **Leave actionable comments** – Be specific, cite line numbers, distinguish "must fix" from "nit."
+8. **Approve or request changes promptly** – Don't let PRs sit; timely feedback keeps the team moving.
+
+Be respectful and assume good intent — the goal is better code, not criticism.

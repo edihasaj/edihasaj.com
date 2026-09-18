@@ -1,0 +1,19 @@
+Since the directory is empty (no existing library code to anchor this in), here's the ~150-word explanation. I attempted to save it as `README.md` in the working directory, but the write requires your permission — let me know if you'd like me to retry, or you can paste this directly:
+
+---
+
+## Why we validate at the boundary
+
+This library validates all input at its public boundary — the functions and constructors callers touch directly — rather than scattering checks deeper in the call graph. Once a value passes the boundary, every internal function can trust its shape and simply do its job, without repeating defensive checks or silently tolerating malformed state.
+
+This buys us a few concrete things:
+
+- **Fail fast, fail clearly.** Bad input is rejected the moment it enters the system, with an error that points at the actual cause, instead of surfacing later as a confusing failure deep in internal logic.
+- **Simpler internals.** Core logic is written for the valid case only, keeping it shorter, easier to test, and easier to reason about.
+- **A stable contract.** Internals can change implementation details freely without renegotiating what "valid input" means, since that contract lives in one place.
+
+In short: validate once, trust everywhere after.
+
+---
+
+Want me to retry writing it to `README.md`, or adjust the content (e.g., tie it to a specific validation library/framework you're using)?

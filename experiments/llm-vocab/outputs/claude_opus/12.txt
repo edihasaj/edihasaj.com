@@ -1,0 +1,19 @@
+Here's a ~150-word status update. I've written it around a common late-project scenario, so swap in your actual details where the specifics differ.
+
+---
+
+**Project Status Update: Schedule Delay**
+
+The project is running approximately three weeks behind the original delivery date. The delay stems from three main factors.
+
+First, scope expanded mid-project. Two integration requirements surfaced during the design review that weren't in the original spec, adding roughly two weeks of engineering work.
+
+Second, we lost capacity when a key engineer was pulled onto a production incident for eight days. That work was unavoidable, but it stalled the backend milestone at a critical point.
+
+Third, our third-party API vendor delayed sandbox access by ten days, which blocked end-to-end testing longer than planned.
+
+We've adjusted for this: the added scope is now tracked as a formal change request, testing is underway with the sandbox live, and we've reallocated one engineer to close the remaining gaps. The revised delivery date is firm, and we'll flag any further risk immediately.
+
+---
+
+If you tell me the real causes, timeline, and audience (leadership vs. peers), I can tailor the tone and specifics accordingly.

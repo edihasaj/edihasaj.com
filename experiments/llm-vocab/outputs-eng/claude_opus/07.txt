@@ -1,0 +1,15 @@
+Here's a message you can send:
+
+---
+
+Hey — quick note on the schema change. I know editing the schema by hand feels faster, but I'd really like us to add a migration instead. A few reasons:
+
+**Reproducibility.** A migration is a versioned, replayable record of *how* the database got from state A to state B. A hand edit lives only on your machine; everyone else's local DB, CI, staging, and prod silently drift out of sync until something breaks.
+
+**Safe deploys.** Migrations run in a known order and can be reviewed in the PR alongside the code that depends on them. Hand edits can't be code-reviewed, tested, or rolled back cleanly.
+
+**History.** Six months from now, someone will ask "why does this column exist?" `git blame` on a migration answers that. A manual `ALTER TABLE` leaves no trace.
+
+**Onboarding.** New teammates should be able to run one command and get a working schema.
+
+It's five extra minutes now versus a debugging session later. Happy to pair on it if useful.

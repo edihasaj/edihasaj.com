@@ -1,0 +1,5 @@
+A database index is a separate data structure that a database maintains alongside a table to speed up data retrieval. Rather than scanning every row to find matches (a "full table scan"), the database consults the index, which maps column values to the physical locations of the corresponding rows — much like a book's index points you to page numbers instead of forcing you to read every page.
+
+Most indexes are implemented as B-trees, which keep values sorted and allow lookups, range queries, and ordering in logarithmic time. Other types exist for specialized workloads, such as hash indexes for exact matches or full-text indexes for searching documents.
+
+The trade-off is that indexes cost storage space and slow down writes, since every `INSERT`, `UPDATE`, or `DELETE` must also update the affected indexes. So the goal is to index columns that are frequently queried, filtered, joined, or sorted — not every column indiscriminately.

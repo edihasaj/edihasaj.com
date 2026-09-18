@@ -1,0 +1,12 @@
+Write a pull request description for a change that adds retries to an HTTP client. About 150 words.
+Write a commit message body explaining why a cache was moved from memory to Redis. About 150 words.
+Write a code review comment asking the author to split a large function. About 150 words.
+Write a short design note proposing a background job for sending emails. About 150 words.
+Write an incident update for a team channel about a database that ran out of disk. About 150 words.
+Explain in a README why this library validates input at the boundary. About 150 words.
+Explain to a teammate why the team should add a migration instead of editing the schema by hand. About 150 words.
+Write a status update explaining that a feature is delayed because of flaky tests. About 150 words.
+Describe how a request flows through a web app from the browser to the database. About 150 words.
+Write release notes for a version that fixes a date parsing bug and adds a config flag. About 150 words.
+Write a reply to a bug report saying you reproduced the issue and found the cause. About 150 words.
+Write a short proposal to add logging to a payment service. About 150 words.

@@ -1,0 +1,7 @@
+We should add a migration instead of editing the schema by hand because the database structure is part of the application’s history. A migration records the exact change, keeps it in version control, and applies it consistently in local, test, staging, and production environments.
+
+Manual edits create hidden state. Your database may work while everyone else’s remains unchanged. The next deployment can then fail because the code expects a table, column, or index that does not exist. Manual changes are also hard to review, reproduce, or reverse.
+
+A migration gives reviewers a clear description of what will change. It can include data backfills, constraints, indexes, and rollback steps in the correct order. Our deployment process can run it automatically and report failures.
+
+Even for a small schema change, the migration is the safer and faster path overall. It prevents environment drift, gives us an audit trail, and lets another developer rebuild the database from scratch with the same result.

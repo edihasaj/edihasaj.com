@@ -1,0 +1,15 @@
+# rn — rename files without the drama
+
+`rn` is a small command-line tool for renaming files in bulk. Point it at a folder, tell it what to change, and it does the rest — no scripting, no clicking through dialogs one file at a time.
+
+It handles the everyday cases well: swapping a substring, applying a regex, changing case, adding a prefix or suffix, or numbering files in sequence. Every operation runs as a dry run first, showing exactly what will change before anything is touched. Nothing is renamed until you confirm.
+
+`rn` is a single binary with no dependencies. It works on macOS, Linux, and Windows, and plays nicely with pipes, so you can feed it output from `find` or `ls` when you need something more specific.
+
+```
+rn --replace "IMG_" "vacation-" ./photos
+rn --regex '(\d+)\.txt' 'note-$1.md' ./notes
+rn --lowercase --ext jpg ./exports
+```
+
+If a rename would overwrite an existing file, `rn` stops and tells you.

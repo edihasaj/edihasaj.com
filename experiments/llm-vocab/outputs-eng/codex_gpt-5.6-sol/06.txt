@@ -1,0 +1,13 @@
+Hi Edi — the README copy is ready, but the workspace is read-only, so I couldn’t create `README.md`.
+
+```markdown
+# Validate at the Boundary
+
+This library validates input as soon as it crosses a trust boundary: when data enters through a public API, configuration file, command-line argument, or external service. At that point, values are still untrusted and errors have the clearest context.
+
+Early validation turns loosely shaped input into a known internal representation. The rest of the code can then rely on explicit invariants instead of repeatedly checking for missing fields, unsupported values, or malformed data. That keeps core logic smaller, easier to read, and easier to test.
+
+Boundary validation also produces better failures. Callers receive a specific, actionable error close to the source of the problem, rather than an unrelated exception several layers later. Invalid input cannot partially update state or reach code that was never designed to handle it.
+
+Internal functions may still assert important programmer invariants, but they should not duplicate public validation. Validate once at entry, normalize once, and let trusted code operate on trusted data.
+```

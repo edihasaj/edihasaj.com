@@ -1,0 +1,11 @@
+Hi Edi — thoughtful reviews make the whole team stronger.
+
+Start by reading the pull request description and linked issue. Understand the problem, intended solution, scope, and testing evidence before opening the code.
+
+Review the changes in small sections. Check that the implementation matches the stated goal and follows existing project patterns. Look for incorrect assumptions, missing edge cases, security risks, unclear names, unnecessary complexity, and tests that do not cover important behaviour.
+
+Run the relevant checks locally when practical. Test the changed behaviour, including one failure case. Do not rely only on the author’s screenshots or passing CI.
+
+Write comments that explain the problem and its impact. Suggest a concrete fix when you have one. Mark blocking issues clearly. Use questions for genuine uncertainty, not indirect criticism. Avoid comments about personal style when the code already follows team conventions.
+
+Before approving, confirm the code, tests, documentation, and migration or rollout steps agree. Approve only when it is safe to merge.

@@ -1,0 +1,7 @@
+Hi Edi — migrations keep database changes safe, repeatable, and reviewable.
+
+We should add a migration rather than edit the schema by hand because the database is shared state. A manual change may work locally but leave staging, production, CI, or another developer’s environment different. A migration records the exact change in version control, applies it consistently everywhere, and gives us a clear history of how the data model evolved.
+
+It also makes deployment safer: the application code and database change can be reviewed together, tested in a clean environment, and rolled out in a predictable order. If something goes wrong, we have an auditable path to diagnose it—and often a defined rollback or forward-fix route.
+
+Manual edits create invisible drift and make future migrations unreliable. A migration turns a one-off database action into documented, executable team knowledge.

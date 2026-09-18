@@ -1,0 +1,15 @@
+# Design Note: Background Email Sending Job
+
+**Problem:** Sending emails synchronously during request handling blocks user-facing flows and fails outright if the mail provider is slow or down.
+
+**Proposal:** Introduce a queued background job for email delivery. When application code needs to send an email, it enqueues a job (payload: recipient, template, template data, priority) instead of calling the mail provider inline. A worker process pulls jobs from the queue and dispatches them via the provider's API.
+
+**Key features:**
+- **Retry with backoff** — transient provider errors retry up to N times before moving to a dead-letter queue.
+- **Idempotency key** per job to prevent duplicate sends on retry.
+- **Rate limiting** to stay under provider quotas.
+- **Observability** — structured logs and metrics for queue depth, send latency, and failure rate.
+
+**Tech options:** existing task queue (e.g., Sidekiq, BullMQ, Celery) or a simple DB-backed queue table if infra is minimal.
+
+**Open questions:** batching for bulk sends, template rendering location (enqueue-time vs. worker-time), and alerting thresholds for the dead-letter queue.

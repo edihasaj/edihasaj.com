@@ -1,0 +1,17 @@
+**Release Notes — v1.2.1**
+
+This release fixes a date parsing bug and introduces a new configuration option.
+
+**Bug Fixes**
+
+- **Date parsing:** Dates in `DD/MM/YYYY` format were previously interpreted as `MM/DD/YYYY` in some locales, causing incorrect timestamps for days 1–12 of each month. Parsing now respects the configured locale consistently, and ambiguous inputs fall back to ISO 8601 (`YYYY-MM-DD`) rather than silently guessing. Existing stored data is unaffected; only newly parsed input is changed.
+
+**New Features**
+
+- **`strict_dates` config flag:** When enabled, any date that cannot be parsed unambiguously raises an error instead of being coerced. Defaults to `false` to preserve current behavior. Set it in your config file or via `--strict-dates` on the command line.
+
+**Upgrade Notes**
+
+No breaking changes. If you relied on the old date-parsing behavior, review any inputs that use slash-separated formats.
+
+Full changelog available in the repository.

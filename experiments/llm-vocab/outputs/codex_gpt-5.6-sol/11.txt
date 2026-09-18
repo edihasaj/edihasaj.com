@@ -1,0 +1,13 @@
+# Rename
+
+Rename is a small command-line tool for changing file names quickly and consistently. Use it to clean up downloads, standardise project assets, add prefixes or suffixes, replace unwanted text, and rename groups of files in one pass.
+
+```sh
+rename "IMG_*" --replace "IMG_" "holiday-"
+```
+
+Before making changes, Rename shows what each file will become. You can review the result, catch mistakes, and confirm when everything looks right. A dry-run mode lets you preview larger operations without touching the files on disk.
+
+Rename works well in scripts, shell pipelines, and everyday terminal sessions. Its output is clear, its rules are predictable, and errors identify the file that caused the problem. It also avoids overwriting existing files unless you explicitly allow it.
+
+Whether you need to fix one awkward name or organise a directory with hundreds of files, Rename keeps the task fast, visible, and repeatable. Run `rename --help` to see the available patterns and options.

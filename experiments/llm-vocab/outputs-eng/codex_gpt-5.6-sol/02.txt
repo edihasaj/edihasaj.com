@@ -1,0 +1,5 @@
+The cache now uses Redis instead of process memory so all application instances share the same entries. The in-memory cache worked on a single instance, but each instance built and expired its own copy after we scaled the service horizontally. Requests routed to another instance often missed the cache, repeated expensive work, and produced inconsistent results until every local cache refreshed.
+
+Redis provides one cache across the deployment. It preserves useful entries when an instance restarts or is replaced, and it applies expiration rules consistently. This reduces duplicate computation and avoids the cold-cache spike caused by deployments and autoscaling events.
+
+The cache remains disposable. The application still falls back to the source of truth when Redis is unavailable or an entry has expired. Keys include the data version and relevant request inputs, which prevents stale values from crossing incompatible changes. This change adds a network lookup, but the shared hit rate and predictable invalidation outweigh that cost.

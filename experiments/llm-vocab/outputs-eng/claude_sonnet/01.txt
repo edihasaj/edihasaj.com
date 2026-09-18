@@ -1,0 +1,17 @@
+## Add retry logic to HTTP client
+
+### Summary
+
+This PR adds automatic retry support to our HTTP client to improve resilience against transient failures (timeouts, connection resets, 5xx responses, and rate limiting). Previously, any failed request would immediately bubble up as an error, even for conditions that typically resolve on a subsequent attempt.
+
+### Changes
+
+- Wrap outgoing requests with a configurable retry policy (max attempts, base delay, exponential backoff with jitter).
+- Retry only on idempotent methods (GET, HEAD, PUT, DELETE) and on a defined set of retryable status codes (429, 502, 503, 504) plus network-level errors.
+- Respect `Retry-After` headers when present.
+- Add sane defaults (3 attempts, 200ms base delay) while allowing callers to override via client options.
+- Add unit tests covering success-after-retry, exhausted retries, non-retryable errors, and backoff timing.
+
+### Why
+
+Intermittent upstream failures were causing avoidable errors downstream. Retrying transient failures reduces noise and improves overall reliability without masking genuine, persistent errors.

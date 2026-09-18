@@ -1,0 +1,13 @@
+Here's a draft status update explaining the delay:
+
+---
+
+**Project Status Update: Timeline Delay**
+
+The project's original delivery date has slipped due to a combination of factors. Early in development, we uncovered scope gaps during integration testing that required additional design work to resolve properly rather than patching around them. This was compounded by a dependency on an external vendor/API whose delivery timeline shifted, pushing back our own testing window. We also had reduced bandwidth for part of the cycle due to team members split across a concurrent priority.
+
+Rather than cut corners to hit the original date, we chose to preserve quality and address the root issues, which added roughly [X weeks] to the schedule. We've since adjusted resourcing and tightened scope to prevent similar slippage going forward, and the revised target date is now [new date]. We'll continue to flag risks earlier in future sprints to avoid last-minute surprises.
+
+---
+
+Want me to tailor this with real specifics (actual cause, dates, project name) — just share the details and I'll adjust the tone (more technical, more executive-facing, etc.) and length.

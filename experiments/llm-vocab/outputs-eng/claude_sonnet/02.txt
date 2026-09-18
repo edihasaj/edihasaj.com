@@ -1,0 +1,22 @@
+Here's a commit message body explaining the cache migration:
+
+```
+The in-memory cache didn't survive across server restarts or deploys,
+forcing a full cache warm-up (and a burst of slow downstream calls)
+every time the process restarted. It also meant each instance kept its
+own copy of cached data, so horizontally scaled deployments had
+inconsistent cache state and wasted memory duplicating the same
+entries across processes.
+
+Moving to Redis gives us a shared cache layer that persists
+independently of application restarts and is consistent across all
+instances. This eliminates the cold-start penalty, reduces redundant
+computation/queries when multiple instances need the same data, and
+lets us scale horizontally without cache fragmentation. It also opens
+the door to TTL-based eviction and memory limits managed centrally,
+rather than tuning per-process heap usage, and reduces GC pressure on
+individual app instances since large cached payloads no longer live
+in their heap.
+```
+
+Feel free to trim or adjust specifics (e.g., what's being cached) to match the actual change.

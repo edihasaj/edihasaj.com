@@ -1,0 +1,14 @@
+**Status Update: [Feature Name] – Delayed**
+
+The rollout of [feature name] is being pushed back due to flaky tests in our CI pipeline. Over the past few days, we've seen intermittent failures in the integration test suite that aren't tied to actual code regressions — tests pass locally but fail unpredictably in CI, and re-runs often succeed without any changes. This makes it unsafe to merge with confidence, since we can't reliably distinguish real failures from noise.
+
+We're currently investigating the root cause, which appears related to test isolation/timing issues rather than the feature logic itself. Once stabilized, we'll re-run the full suite and proceed with the planned release.
+
+**Impact:** Estimated delay of [X days/a few days] from the original timeline.
+**Next steps:** Root-cause the flaky tests, add retry/quarantine logic where appropriate, and confirm a stable green build before merging.
+
+We'll share an updated ETA once we have more clarity. Thanks for your patience.
+
+— Edi
+
+Let me know if you'd like me to tailor the tone (more casual/formal), adjust the length, or fill in specifics like the feature name or estimated delay.

@@ -1,0 +1,19 @@
+Hi Edi — retries make transient failures much less noisy.
+
+## Summary
+
+Adds retry handling to the HTTP client for transient request failures.
+
+The client now retries eligible requests when it receives temporary server errors or encounters recoverable network failures. Retries use a bounded attempt count and backoff delay, reducing avoidable failures while preventing requests from retrying indefinitely.
+
+## Changes
+
+- Added configurable retry attempts and delay/backoff behaviour.
+- Retries transient network errors and retryable HTTP responses.
+- Preserves the final error/response when all attempts are exhausted.
+- Avoids retrying non-recoverable failures.
+- Added coverage for successful retry, exhausted attempts, and non-retryable errors.
+
+## Why
+
+Short-lived network issues and temporary upstream failures should not immediately surface as user-visible errors. This makes the client more resilient without changing normal successful-request behaviour.

@@ -1,0 +1,9 @@
+## Proposal: Payment Service Logging
+
+Add structured logging to the payment service to improve incident response and payment tracing. Each request should emit consistent events for payment creation, provider submission, status changes, retries, and failures.
+
+Logs should include a request ID, payment ID, provider, operation, result, duration, and error code. They must never contain card numbers, security codes, access tokens, customer names, email addresses, or other sensitive data. We should document approved fields and add automated tests that prevent restricted fields from being logged.
+
+Use log levels consistently: `info` for normal payment events, `warn` for retries and recoverable provider issues, and `error` for failed or inconsistent transactions. Send logs to the existing monitoring platform with retention and access controls that meet our compliance requirements.
+
+The rollout should begin in a staging environment, where we can verify log coverage, searchability, cost, and redaction. After production release, dashboards and alerts should track payment failures, latency, and unusual retry rates.

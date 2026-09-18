@@ -1,0 +1,21 @@
+## Version X.Y.Z
+
+This release fixes a date parsing bug and adds a new configuration option for greater control over application behavior.
+
+### Fixed
+
+Dates with ambiguous or partially specified formats could be parsed incorrectly, resulting in the wrong day, month, or timezone. The parser now validates date components more carefully and handles supported formats consistently. Invalid dates return a clear error instead of producing an unexpected value.
+
+This fix is backward compatible for correctly formatted dates. Applications that relied on unsupported or ambiguous formats may need to update their input.
+
+### Added
+
+A new `[configFlag]` setting lets you enable or disable the related behavior without changing application code. The default value preserves the behavior from previous versions, so existing installations do not require configuration changes.
+
+Add the flag to your configuration file:
+
+```yaml
+configFlag: true
+```
+
+We recommend testing date-heavy workflows after upgrading, especially imports, scheduled jobs, and integrations that receive dates from external systems.

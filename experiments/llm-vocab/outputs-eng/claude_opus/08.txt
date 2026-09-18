@@ -1,0 +1,17 @@
+**Status Update: [Feature Name] – Release Delayed**
+
+Hi team,
+
+Quick update on [Feature Name]: we're pushing the release back by roughly one week, from [original date] to [new date].
+
+The feature itself is functionally complete and has passed code review. The holdup is our CI pipeline. Over the past several days, a handful of integration tests have been failing intermittently — passing on retry without any code changes. We've traced most of the flakiness to timing assumptions and shared test state, not to defects in the feature, but we're not comfortable shipping while the signal from our test suite is unreliable.
+
+What we're doing:
+- Isolating and fixing the flaky tests (about 60% resolved so far)
+- Adding retry logging to distinguish genuine failures from noise
+- Running the full suite nightly to confirm stability before release
+
+No action needed from anyone right now. I'll share another update by [day] or sooner if anything changes.
+
+Thanks for your patience,
+[Your name]

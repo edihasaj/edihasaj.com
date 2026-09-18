@@ -1,0 +1,12 @@
+Hi,
+
+Thanks for the detailed report — it made this easy to track down.
+
+I was able to reproduce the issue following your steps, and it behaves exactly as you described. After digging in, I found the root cause: a race condition in the initialization sequence. Under certain timing conditions, the component attempts to read state before the setup has fully completed, which produces the incorrect result you observed. It's intermittent because it depends on how quickly the prior step resolves, which explains why it didn't show up in our existing test coverage.
+
+The fix is straightforward: we need to await the setup step properly and add a guard so the read can't happen early. I've got a patch in progress and will add a regression test that reproduces the timing scenario so this doesn't slip back in.
+
+I'll update this thread once the fix is merged and available. Thanks again for reporting it.
+
+Best,
+Edi

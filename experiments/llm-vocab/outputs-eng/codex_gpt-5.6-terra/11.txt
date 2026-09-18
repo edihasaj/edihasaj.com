@@ -1,0 +1,7 @@
+Hi, thanks for reporting this. I reproduced the issue and found the cause.
+
+The failure happens when the request is processed before the related data has finished loading. The app then tries to use an empty value, which causes the error you saw.
+
+I have confirmed this locally using the same steps from the report. The fix will make the app wait for the required data and handle missing values safely if loading fails or takes longer than expected.
+
+I’m working on the patch now and will add a regression test so this case stays covered.

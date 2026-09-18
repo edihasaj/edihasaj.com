@@ -1,0 +1,7 @@
+Hi Edi — smaller functions make reviews, tests, and future changes much easier.
+
+This function is doing several distinct jobs at once: input validation, data transformation, persistence, and response/error handling. Could we split it into a few focused helpers, each named for the stage it owns? For example, one helper could validate and normalize the input, another could build the payload or perform the transformation, and a final helper could handle the write and map failures to the appropriate result.
+
+That would make the main function read more like an orchestration flow, reduce nesting, and let us unit-test the important branches without setting up the entire workflow each time. It should also make future changes safer—for instance, adding another validation rule or changing the persistence layer would stay localized.
+
+No need to over-abstract it; extracting the natural stages into private helpers should be enough.

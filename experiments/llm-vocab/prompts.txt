@@ -1,0 +1,12 @@
+Write a short message to a friend explaining why you can't make dinner on Friday. About 150 words.
+Write a product description for a wooden desk lamp. About 150 words.
+Explain to a new teammate how to review a pull request. About 150 words.
+Write a short blog intro about why you started running. About 150 words.
+Summarize the pros and cons of working from home. About 150 words.
+Write an email to a landlord about a broken heater. About 150 words.
+Explain what a database index is. About 150 words.
+Write a two-paragraph reflection on learning to cook. About 150 words.
+Give advice to someone starting their first job. About 150 words.
+Describe your ideal Sunday. About 150 words.
+Write a README intro for a small command-line tool that renames files. About 150 words.
+Explain why a project was late, for a team status update. About 150 words.

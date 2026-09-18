@@ -1,0 +1,7 @@
+## Background email job
+
+Send email through a background job rather than during the user request. The app stores each message as a job with the recipient, template, data, and a unique delivery key. A worker picks up queued jobs and sends them through the email provider.
+
+The worker retries temporary failures, such as provider timeouts, with increasing delays. After a fixed number of failed attempts, it marks the job as failed and alerts the team. Permanent failures, such as an invalid address, do not retry.
+
+The delivery key prevents duplicate sends when a request or worker runs twice. The job records its status, attempts, provider response, and timestamps so support can trace an email from request to outcome. The request returns once the job is queued, which keeps the product responsive even when the email provider is slow.

@@ -1,0 +1,5 @@
+The feature will be delayed while we resolve instability in the test suite. The implementation is complete, but several automated tests are failing intermittently. The same code can pass one run and fail the next, which makes it difficult to confirm that the feature is safe to release.
+
+We are investigating the failing tests and separating genuine defects from problems in the test setup. We have not found evidence of a production issue so far, but releasing without reliable test results would create unnecessary risk.
+
+Our priority is to make the affected tests consistent, run the full test suite successfully, and complete a final review. We will share a revised delivery date once we understand the remaining work. In the meantime, the feature will stay out of the release. This delay is frustrating, but it gives us the time needed to ship with confidence and avoid passing instability on to users.

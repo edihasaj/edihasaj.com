@@ -1,0 +1,11 @@
+Here's how to review a pull request:
+
+**1. Read the description first.** Understand what the PR claims to do and why. Check the linked issue or ticket if there is one. If the intent isn't clear, ask before diving into code.
+
+**2. Check out the branch and run it.** Don't just read the diff. Pull it locally, run the tests, and exercise the change yourself. Bugs often hide in behavior the diff doesn't show.
+
+**3. Review for correctness, then clarity.** Does it do what it says? Edge cases, error handling, race conditions. Then: is it readable? Consistent with the codebase's conventions? Are tests meaningful, not just present?
+
+**4. Leave clear, kind comments.** Distinguish blockers ("this breaks X") from suggestions ("nit: consider…"). Explain *why*, not just *what*. Ask questions rather than issuing commands when unsure.
+
+**5. Approve or request changes decisively.** Don't leave a PR in limbo. If it's good enough, approve — perfect is the enemy of merged.

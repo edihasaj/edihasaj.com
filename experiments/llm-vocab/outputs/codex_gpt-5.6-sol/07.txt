@@ -1,0 +1,9 @@
+Hi Edi — this clicks quickly once you picture the analogy.
+
+A database index is like the index at the back of a book. Instead of reading every page to find a topic, you look it up in the index and jump directly to the relevant pages.
+
+Without an index, a database may need to scan every row in a table to answer a query. With an index on a column—such as `email`—the database maintains an additional, ordered data structure that helps it locate matching rows much faster.
+
+Indexes improve searches, sorting, joins, and uniqueness checks. However, they have costs: they consume storage and must be updated whenever rows are inserted, changed, or deleted. Too many indexes can therefore slow down writes.
+
+Good candidates for indexing include columns frequently used in `WHERE`, `JOIN`, and `ORDER BY` clauses. Columns with very few distinct values, such as a boolean field, often benefit less. The goal is balance: index the access patterns that matter, not every column.

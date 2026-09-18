@@ -1,0 +1,7 @@
+Could you split this function into a few smaller functions before we merge? It currently handles validation, data transformation, persistence, and error handling in one place. That makes the main flow difficult to follow and forces readers to keep too much state in mind.
+
+Please keep the top-level function focused on coordinating the steps. Extract each distinct operation into a well-named helper, such as validating the input, preparing the data, and saving the result. Each helper should have one clear responsibility and return a value or error that the caller can handle directly.
+
+This will also make the behavior easier to test. We can cover each branch without setting up every dependency used by the full function. It should reduce the chance that a later change to one step breaks another step by accident.
+
+The behavior does not need to change as part of this refactor. The goal is a shorter, clearer main path with isolated implementation details.

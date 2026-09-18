@@ -1,0 +1,14 @@
+Here's a code review comment:
+
+---
+
+This function is doing a lot — it's grown to handle multiple responsibilities (validation, data transformation, and the actual business logic all in one place), which makes it harder to read, test, and maintain. Right now it's tricky to reason about all the branches at once, and any future change risks breaking something unrelated further down.
+
+Could you split this into smaller, focused functions? A few ideas:
+- Extract the input validation/sanitization into its own helper.
+- Pull the data transformation/mapping logic into a separate function.
+- Keep the core logic as a thin orchestrator that calls these helpers in sequence.
+
+This would let each piece be unit-tested independently, make the intent of each step clearer from the function names alone, and reduce the diff size/risk of future changes. It'll also make it easier to spot duplicate logic if any of these steps are reused elsewhere in the codebase.
+
+Not blocking, but I'd like to see this addressed before merging if possible — happy to pair on the refactor if useful.

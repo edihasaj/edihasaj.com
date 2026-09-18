@@ -1,0 +1,15 @@
+**Design Note: Background Job for Email Delivery**
+
+**Problem.** Sending emails synchronously inside request handlers couples response latency to SMTP/provider availability and turns transient provider errors into user-facing failures.
+
+**Proposal.** Introduce an `EmailJob` processed by a background worker. Request handlers enqueue a job containing recipient, template ID, and rendered payload; the worker dequeues, renders, and sends via the provider client.
+
+**Key details.**
+- **Queue:** Persistent (e.g., Redis/Postgres-backed), so jobs survive restarts.
+- **Retries:** Exponential backoff, max 5 attempts; failures land in a dead-letter queue for inspection.
+- **Idempotency:** Each job carries a unique key to prevent duplicate sends on retry.
+- **Observability:** Emit metrics for enqueue rate, latency, success/failure counts.
+
+**Trade-offs.** Delivery becomes eventually consistent (seconds of delay), and we add an operational component (worker + queue). In exchange, requests stay fast and email failures become recoverable instead of fatal.
+
+**Next step.** Prototype with one low-risk email type (e.g., welcome message) before migrating transactional flows.

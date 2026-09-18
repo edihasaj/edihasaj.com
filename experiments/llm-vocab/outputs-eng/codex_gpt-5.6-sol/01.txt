@@ -1,0 +1,18 @@
+## Summary
+
+Adds automatic retries to the HTTP client for temporary failures, including connection errors, timeouts, and retryable server responses.
+
+Retries use exponential backoff with jitter, which increases the delay between attempts and prevents many clients from retrying at the same time. The client stops after the configured attempt limit and returns the final error to the caller. Non-retryable responses, such as most client errors, still fail immediately.
+
+The retry count and delay settings are configurable, with defaults that preserve reasonable request latency. Each retry is logged with its attempt number and failure reason to help diagnose persistent problems.
+
+## Why
+
+Short network interruptions and brief service outages currently cause requests to fail immediately. Retrying these failures improves reliability without requiring each caller to implement its own retry logic.
+
+## Test plan
+
+- Confirm a temporary failure succeeds on a later attempt.
+- Confirm retries stop at the configured limit.
+- Confirm non-retryable responses fail immediately.
+- Confirm backoff delays and cancellation work as expected.

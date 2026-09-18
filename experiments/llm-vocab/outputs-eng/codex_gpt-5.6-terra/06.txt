@@ -1,0 +1,9 @@
+## Input validation
+
+This library validates input at the boundary: the point where data enters from a caller, file, network request, or environment variable. That keeps invalid data from spreading through the rest of the code.
+
+Once an input passes validation, internal functions can rely on clear assumptions about its shape, type, and allowed values. They do not need to repeat checks or guess how to handle missing fields, malformed identifiers, or unexpected options. The result is simpler code and fewer inconsistent error paths.
+
+Boundary validation also gives callers useful feedback early. Instead of failing later with an unrelated internal error, the library can say which value is invalid and what it expects. This makes integrations easier to debug.
+
+Validation is not a substitute for defensive design. Internal code should still handle failures from external systems. But validating at the boundary establishes a trusted contract: untrusted input is checked once, then the library works with data it understands.

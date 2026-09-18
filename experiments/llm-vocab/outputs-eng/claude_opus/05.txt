@@ -1,0 +1,16 @@
+**Incident Update: Primary DB disk exhaustion (INC-0918)**
+
+**Status:** Mitigated — monitoring
+
+**What happened:** At 09:42 UTC, the primary Postgres instance hit 100% disk utilization. Writes began failing, and the API returned 5xx errors on any endpoint that touched the database. Reads were mostly unaffected. Root cause was WAL files accumulating after a stalled replication slot on the reporting replica prevented cleanup.
+
+**Impact:** ~38 minutes of degraded service (09:42–10:20 UTC). Roughly 12% of requests failed during the window. No data loss confirmed; a handful of queued jobs will be retried automatically.
+
+**What we did:** Dropped the stale replication slot, freed ~180 GB of WAL, and expanded the volume from 500 GB to 1 TB as a buffer. Replica has been resynced.
+
+**Next steps:**
+- Add alerting at 80% disk and on replication slot lag
+- Review WAL retention settings
+- Full postmortem by Friday
+
+Ping me here with questions.

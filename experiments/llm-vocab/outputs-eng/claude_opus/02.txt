@@ -1,0 +1,18 @@
+Move vocab embedding cache from in-process memory to Redis
+
+The in-memory LRU worked while we ran a single worker, but it broke down
+once the API moved to multiple replicas. Each process kept its own copy of
+the cache, so the effective hit rate dropped to roughly 1/N and the
+embedding backend saw the same hot terms recomputed repeatedly across
+workers. Deploys and autoscaling events also wiped everything, causing a
+cold-start latency spike every time a pod restarted.
+
+Redis gives us a single shared cache that survives restarts and is warm for
+every replica from the first request. It also lets us set per-key TTLs
+instead of relying on the LRU eviction order, which was unpredictable under
+memory pressure.
+
+The trade-off is an extra network hop (~0.5 ms on the same VPC) versus a
+map lookup, but that is negligible next to the 200-400 ms embedding call it
+avoids. If Redis is unreachable we fall back to computing directly rather
+than failing the request.

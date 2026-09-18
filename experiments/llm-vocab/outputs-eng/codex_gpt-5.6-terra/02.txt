@@ -1,0 +1,7 @@
+Move the cache to Redis so it is shared across application instances instead of living inside one process.
+
+The in-memory cache worked only while requests reached the same server. In a scaled deployment, each instance built its own cache. This caused duplicate work, uneven response times, and inconsistent cache behaviour after a deploy or restart.
+
+Redis provides one cache for all instances. Any server can read an entry created by another server, so repeated requests avoid recomputing the same data. Cache entries also survive individual process restarts, which reduces cold-cache spikes during deploys and recoveries.
+
+Redis gives us central control over expiry and invalidation. It also makes cache use observable in one place, rather than requiring inspection of each application process. This change keeps the existing cache semantics while making them reliable in multi-instance environments.

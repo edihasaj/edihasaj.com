@@ -1,0 +1,13 @@
+Here's a review comment you can adapt (swap in the real function name and line references):
+
+---
+
+**Suggestion: split `processOrder()` into smaller functions**
+
+This function is doing a lot — at ~180 lines it validates input, computes pricing, applies discounts, writes to the DB, and sends notifications. That makes it hard to review in one pass, and any change to one concern risks side effects in the others. It's also difficult to unit test individual steps without setting up the whole pipeline.
+
+Could you break it into focused helpers along those seams? Something like `validateOrder()`, `calculateTotals()`, `applyDiscounts()`, `persistOrder()`, and `sendNotifications()`, with `processOrder()` orchestrating them. Each piece would be independently testable, and the top-level function would read as a clear summary of the flow.
+
+The nested `try/except` around the discount logic (lines ~85–120) is a good first candidate — it has its own error handling and doesn't touch state outside that block.
+
+Happy to pair on this if useful.

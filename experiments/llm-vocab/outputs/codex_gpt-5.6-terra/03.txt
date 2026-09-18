@@ -1,0 +1,9 @@
+Hi Edi — good PR reviews keep quality high and make teammates stronger.
+
+Start by reading the PR description and linked issue: understand the problem, intended behavior, and scope. Scan the diff for structure before diving into details. Check that the change is focused, readable, and consistent with existing patterns.
+
+Then verify correctness: follow key user flows, consider edge cases, error handling, security, performance, and backwards compatibility. Run the relevant tests or try the feature locally when practical. Confirm tests cover meaningful new behavior, especially regressions.
+
+Leave comments that are specific and constructive. Explain the concern, point to the relevant code, and suggest an alternative when helpful. Separate blocking issues from optional improvements; avoid requesting stylistic changes already handled by tooling.
+
+Before approving, re-read the final diff and ensure the PR description, docs, and tests match what shipped. If something is unclear, ask a question rather than guessing. The goal is not to find every tiny flaw—it’s to help land a safe, maintainable change.

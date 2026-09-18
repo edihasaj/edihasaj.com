@@ -1,0 +1,7 @@
+Hi Edi — here’s a clear, neutral draft:
+
+The project was delivered later than planned due to a combination of scope refinement, dependency delays, and additional quality assurance work. Early in the delivery cycle, several requirements needed clarification, which changed the implementation approach and added work not reflected in the original estimate. We also encountered delays in receiving inputs and approvals from dependent teams, affecting the sequence of planned tasks.
+
+As development progressed, testing identified edge cases that needed to be resolved to ensure the release met reliability and usability expectations. The team prioritised addressing these issues rather than shipping with known risks.
+
+We have incorporated the lessons into the plan: earlier requirement validation, clearer dependency ownership and checkpoints, and more contingency for testing. The project is now complete / on track against the revised timeline.

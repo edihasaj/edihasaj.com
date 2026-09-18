@@ -1,0 +1,9 @@
+Hi Edi — a clear intro makes a tiny tool immediately useful.
+
+# File Renamer
+
+A small, focused command-line tool for renaming files without the usual shell gymnastics. It helps you apply consistent naming rules across one file or many: replace text, add prefixes or suffixes, normalize casing, and preview changes before anything is renamed.
+
+Built for the everyday cleanup jobs—photo batches, exported reports, messy downloads, and project assets—it keeps the workflow simple and predictable. Run it against explicit files or directories, inspect the proposed results, then confirm the rename when everything looks right.
+
+The tool is designed to be safe by default: it avoids accidental overwrites, surfaces naming conflicts clearly, and supports dry runs so you can verify a batch before changing it. Use it when a one-off rename is too tedious, but a custom script would be overkill.

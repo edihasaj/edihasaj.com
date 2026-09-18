@@ -1,0 +1,9 @@
+Thanks for reporting this. I reproduced the issue by following the steps you provided and found the cause.
+
+The problem occurs when [trigger or action] happens before [expected process] has finished. At that point, the application uses [incorrect or stale value] instead of the latest value. This leaves the interface in an inconsistent state and causes [visible symptom]. It explains why the issue appears under the conditions you described but not during the normal flow.
+
+I’m working on a fix that will ensure [process or state] is complete before the application continues. I’ll also add a regression test for this sequence so the same problem cannot return unnoticed.
+
+As a temporary workaround, [workaround, if available]. If that is not practical, avoiding [specific trigger] should prevent the issue until the fix is released.
+
+Thanks again for the clear report and reproduction steps. They made it much easier to trace the problem to its source.

@@ -1,0 +1,22 @@
+## Add retry support to HTTP client
+
+### Summary
+
+This change adds configurable retry logic to the HTTP client so transient failures no longer surface as immediate errors to callers.
+
+### What changed
+
+- Introduced a `RetryPolicy` with `maxAttempts`, `baseDelay`, and `maxDelay` options (defaults: 3 attempts, 200ms base, 5s cap).
+- Retries use exponential backoff with full jitter to avoid thundering-herd behavior.
+- Only idempotent methods (GET, HEAD, PUT, DELETE, OPTIONS) are retried by default; POST/PATCH require an explicit opt-in.
+- Retryable conditions: connection errors, timeouts, and 429/502/503/504 responses. `Retry-After` headers are honored when present.
+- Request bodies are buffered before the first attempt so they can be safely replayed.
+
+### Testing
+
+- Unit tests cover backoff timing, jitter bounds, the idempotency guard, and `Retry-After` parsing.
+- Added an integration test using a mock server that fails twice then succeeds.
+
+### Notes
+
+No behavior change for callers that don't configure a policy—retries are opt-in via `WithRetry(...)`.

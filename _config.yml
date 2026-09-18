@@ -50,6 +50,7 @@ exclude:
   - package.json
   - yarn.lock
   - '*.test.js'
+  - experiments
 
 # Tags
 tag_page_dir:         tag

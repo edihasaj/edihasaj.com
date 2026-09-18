@@ -1,0 +1,9 @@
+Hi Edi — clear updates keep incidents calm and moving.
+
+We’re investigating a database availability incident caused by the host running out of disk space. The database began failing writes and some requests may have returned errors or timed out.
+
+We’ve identified disk exhaustion as the immediate cause and are working to safely reclaim capacity, restore normal database operation, and confirm data integrity. We’re also reviewing recent growth and retention patterns to understand why available space was depleted.
+
+Current impact: write-dependent functionality is degraded; reads may be intermittently affected depending on retries and connection state.
+
+Next update: within 30 minutes, or sooner if service is fully restored. We’ll follow up with a root-cause summary and prevention steps, including improved disk-capacity alerting and safeguards.

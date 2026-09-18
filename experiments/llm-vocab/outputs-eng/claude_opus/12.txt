@@ -1,0 +1,14 @@
+**Proposal: Structured Logging for the Payment Service**
+
+**Problem:** The payment service currently emits minimal, unstructured logs, making it difficult to trace failed transactions, diagnose gateway timeouts, or reconstruct events during incident reviews and audits.
+
+**Proposal:** Introduce structured JSON logging across the payment service with a consistent schema: timestamp, correlation ID, payment ID, user ID (hashed), event type, status, latency, and error details. Log at each critical boundary — request received, gateway call, gateway response, and final outcome.
+
+**Requirements:**
+- Never log card numbers, CVVs, or full PII; enforce redaction at the logger layer.
+- Propagate correlation IDs from upstream services for end-to-end tracing.
+- Ship logs to our central aggregator with 90-day retention for compliance.
+
+**Effort:** Approximately one sprint — logging library integration, redaction middleware, and updates to the four main handlers.
+
+**Benefits:** Faster incident resolution, clearer audit trails, and the foundation for alerting on failure-rate spikes.

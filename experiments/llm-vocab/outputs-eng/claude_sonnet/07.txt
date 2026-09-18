@@ -1,0 +1,11 @@
+Here's a quick explanation you can share with your teammate:
+
+---
+
+Hey — quick reason to use a migration instead of hand-editing the schema: migrations give us a **reproducible, versioned history** of every change. If you edit the schema directly on your local DB (or worse, on staging/prod), that change lives nowhere except your machine — nobody else can replay it, review it, or roll it back cleanly.
+
+Migrations also keep every environment (dev, CI, staging, prod) in sync. Without them, we get schema drift: your local DB has a column that prod doesn't, tests pass locally but fail in CI, and eventually someone spends hours debugging a "works on my machine" issue that's actually just an out-of-sync table.
+
+They're also reviewable — a migration file shows up in the PR diff, so teammates can catch a bad default, a missing index, or a risky `NOT NULL` before it ships. And if something goes wrong, we can roll back with a down-migration instead of manually reverse-engineering what changed.
+
+Basically: migrations make schema changes trackable, reviewable, and repeatable — hand edits make them invisible and fragile.

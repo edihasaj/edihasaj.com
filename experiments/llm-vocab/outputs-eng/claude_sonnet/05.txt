@@ -1,0 +1,25 @@
+**Incident Update: Database Disk Space Exhaustion**
+
+**Status:** Investigating → Mitigated
+
+At approximately [TIME] today, our primary database ran out of disk space, causing write failures and degraded performance for [affected service(s)]. Reads were [impacted/not impacted].
+
+**What happened:** Disk usage on the primary DB instance hit 100%, blocking new writes and causing errors across dependent services.
+
+**Immediate actions:**
+- Freed up space by [clearing old logs / archiving old data / expanding volume]
+- Confirmed writes are succeeding again as of [TIME]
+- Monitoring disk usage and error rates closely
+
+**Impact:** [X minutes] of degraded/failed writes affecting [feature/users].
+
+**Next steps:**
+- Root-cause the disk growth (log retention, table bloat, unbounded table, etc.)
+- Set up alerting on disk usage thresholds to catch this earlier
+- Evaluate increasing allocated storage or adding automated cleanup
+
+Will post a follow-up once we've confirmed full stability and identified the root cause. Thanks for your patience — reach out in this channel with any questions.
+
+—
+
+I filled in placeholders (time, affected service, root cause) since I don't have those specifics — let me know the actual details and I can plug them in.

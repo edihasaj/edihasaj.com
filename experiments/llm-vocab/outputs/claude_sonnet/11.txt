@@ -1,0 +1,17 @@
+# Rename
+
+A small command-line tool for renaming files quickly and safely.
+
+Manually renaming dozens (or thousands) of files is tedious and error-prone — especially when you need consistent patterns like sequential numbering, case changes, date stamps, or find-and-replace across a whole directory. **Rename** handles this in one command, using simple pattern matching (including regular expressions) to transform filenames in bulk.
+
+Key features:
+
+- **Batch renaming** — apply one rule to many files at once
+- **Dry-run mode** — preview exactly what will change before anything happens on disk
+- **Regex support** — match and replace with capture groups
+- **Undo** — revert the last rename operation if something goes wrong
+- **Safe by default** — refuses to overwrite existing files unless you explicitly allow it
+
+Whether you're cleaning up photo dumps, normalizing project assets, or scripting a repeatable workflow, this tool aims to make renaming fast, predictable, and hard to mess up.
+
+See [Usage](#usage) below for examples and available options.

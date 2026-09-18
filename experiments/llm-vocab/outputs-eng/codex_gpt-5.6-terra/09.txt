@@ -1,0 +1,7 @@
+Hi Edi — here’s a compact mental model.
+
+A browser sends an HTTP request when someone loads a page, submits a form, or calls an API. DNS directs it to the app’s server, often through a CDN, load balancer, and security layer. The web server routes the request to the relevant application endpoint.
+
+The application authenticates the user, validates input, applies business rules, and calls any needed services. If data is required, it uses a database driver or ORM to issue a parameterized query. The database parses the query, checks permissions, finds or updates records—using indexes, transactions, and locks where needed—and returns results.
+
+The app transforms that result into HTML or JSON, sets headers/cookies as appropriate, and sends the response back through the network. The browser receives it, renders the page or updates the interface, and may cache assets or data for future requests.

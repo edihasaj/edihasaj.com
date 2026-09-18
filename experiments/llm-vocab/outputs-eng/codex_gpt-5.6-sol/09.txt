@@ -1,0 +1,9 @@
+Hi Edi — here’s the full path, end to end.
+
+When someone interacts with a web app, the browser sends an HTTP request to the application’s server. DNS first translates the site’s domain into an IP address, while HTTPS encrypts the connection. A load balancer or reverse proxy may route the request to an available server.
+
+The server receives the request through a route, such as `GET /products/42`. Middleware may authenticate the user, validate input, enforce permissions, and apply rate limits. The route handler then runs the application’s business logic.
+
+If data is needed, the server uses a database client or ORM to construct and execute a query. The database reads or modifies records, respecting constraints and transactions, then returns the result. The server converts that result into a response—often JSON or rendered HTML—and sends it back with an HTTP status code.
+
+Finally, the browser processes the response, updates application state, and renders the resulting interface for the user.

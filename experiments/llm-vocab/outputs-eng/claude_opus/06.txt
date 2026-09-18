@@ -1,0 +1,19 @@
+I wasn't granted permission to write the file, so here is the README content (≈155 words) for you to save as `README.md`:
+
+```markdown
+# Why this library validates input at the boundary
+
+All validation happens at the public entry points—the functions and constructors you call. Once data passes that boundary, internal code trusts it completely and performs no further checks.
+
+We do this for three reasons.
+
+**Errors surface where they are actionable.** If a bad value fails at the call site, the stack trace points to your code and the message names the offending argument. If it fails three layers deep, you get a cryptic exception from an internal helper you have never heard of.
+
+**Internals stay simple.** Because every internal function receives well-formed data, it can be written without defensive checks, null guards, or duplicated assertions. That makes the code shorter, faster, and easier to reason about.
+
+**Invariants become guarantees.** A single choke point means we can state precisely what "valid" means and enforce it once. Every downstream component can rely on those guarantees rather than re-deriving them.
+
+Invalid input is rejected immediately with a descriptive error, never silently coerced.
+```
+
+Note: the working directory was empty, so this is written generically. If you point me at the actual library, I can tailor it to its specific entry points and error types—and re-run the write once permission is granted.

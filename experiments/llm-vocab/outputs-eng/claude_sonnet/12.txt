@@ -1,0 +1,20 @@
+**Proposal: Structured Logging for Payment Service**
+
+To improve observability and reduce time-to-resolution for payment issues, I propose adding structured logging to the payment service.
+
+**Scope:**
+- Log key lifecycle events: payment initiated, authorized, captured, failed, and refunded.
+- Include correlation/transaction IDs, user ID, amount, currency, and status on every log line.
+- Use structured JSON output for compatibility with our log aggregation tooling.
+- Redact sensitive fields (card numbers, CVV, tokens) before logging.
+- Add error-level logs with stack traces for failed transactions and external gateway timeouts.
+
+**Benefits:**
+- Faster debugging of failed or disputed payments.
+- Better auditability for compliance and finance reconciliation.
+- Foundation for metrics/alerting (e.g., failure rate spikes).
+
+**Next steps:**
+Define log schema, pick a logging library, add redaction middleware, and roll out behind a feature flag with monitoring in staging before production release.
+
+Want me to tailor this to a specific stack (e.g., Node/Winston, Python/structlog) or expand any section?

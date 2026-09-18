@@ -1,0 +1,7 @@
+A request begins when the browser resolves the app's domain via DNS and opens a TCP connection, usually secured with TLS. It sends an HTTP request containing a method, path, headers, and possibly a body.
+
+The request typically hits a load balancer or reverse proxy (like nginx), which forwards it to an application server. There, middleware runs first, handling concerns like logging, authentication, rate limiting, and parsing the body.
+
+A router matches the URL and method to a controller or handler. The handler validates input, then calls business logic in a service layer. That layer, often through an ORM or query builder, opens a pooled database connection and executes SQL queries.
+
+The database parses, plans, and executes the query, returning rows. The application maps them to objects, applies any transformations, and serializes a response, commonly JSON or rendered HTML. The response travels back through the same layers to the browser, which renders it or updates the page.

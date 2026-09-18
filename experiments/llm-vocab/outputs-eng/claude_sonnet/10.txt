@@ -1,0 +1,12 @@
+## Release Notes — v1.4.2
+
+**Bug Fixes**
+- Fixed an issue where dates in non-ISO formats (e.g. `MM/DD/YYYY` or dates with two-digit years) were parsed incorrectly, sometimes silently shifting values by a day or a century. Date parsing now correctly normalizes ambiguous formats and falls back gracefully when a format cannot be determined, rather than producing incorrect results.
+
+**New Features**
+- Added a new configuration flag, `strictDateParsing`, to give teams control over parsing behavior. When enabled, the app will reject ambiguous or malformed date strings outright instead of attempting a best-effort parse — useful for pipelines where silent data corruption is worse than a hard failure. The flag defaults to `false` to preserve existing behavior for current users.
+
+**Recommended Action**
+We recommend reviewing any code paths that rely on date parsing from user input or external data sources, and enabling `strictDateParsing` in staging environments to catch malformed input early before rolling out broadly.
+
+Thanks for using the product — as always, feedback and bug reports are welcome!

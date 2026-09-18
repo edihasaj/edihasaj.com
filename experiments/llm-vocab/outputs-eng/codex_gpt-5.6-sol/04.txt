@@ -1,0 +1,11 @@
+Hi Edi — keep the request path fast; move delivery off-thread.
+
+## Background Email Delivery
+
+Email sending should run as a background job rather than inside the request that triggers it. The application will validate the request, persist an email job, and immediately return success. A worker will then claim queued jobs and send messages through the configured email provider.
+
+Each job should include the template, recipient, template data, creation time, attempt count, and a stable idempotency key. The worker should retry transient failures with exponential backoff and jitter, while permanent failures move to a dead-letter queue for inspection. Limit retries and redact message content from logs.
+
+Persist job state so restarts do not lose work. Use atomic claiming or queue-provided visibility timeouts to prevent concurrent processing. Provider timeouts and rate limits must be explicit. Metrics should cover queue depth, delivery latency, success rate, retries, and terminal failures.
+
+Initially, one worker and a durable queue are sufficient. The design should allow worker concurrency to scale independently as email volume grows.

@@ -1,0 +1,7 @@
+Hi Edi — clarity now makes the next delivery stronger.
+
+The project finished later than planned due to a combination of underestimated technical complexity, shifting requirements, and dependencies taking longer than expected. During implementation, we uncovered edge cases that required changes to the original approach. At the same time, several requirements were clarified or expanded, creating additional development and testing work. Progress was also affected by delayed inputs and approvals from dependent teams.
+
+We chose to address these issues before release rather than ship known gaps that could create reliability or support problems. However, we should have identified and communicated the schedule impact earlier. Our initial estimate did not include enough contingency for discovery, integration, and review.
+
+The team has now completed the remaining work and captured the lessons from the delay. For future projects, we will validate assumptions earlier, define requirements more firmly before implementation, add explicit buffers for external dependencies, and flag timeline risks as soon as they emerge.

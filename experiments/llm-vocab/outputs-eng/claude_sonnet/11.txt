@@ -1,0 +1,20 @@
+I don't have details about the specific bug yet — could you share what the reported issue is and what you found to be the actual cause? With that, I can draft a ~150-word reply. In the meantime, here's a template you can adapt:
+
+---
+
+Hi [reporter's name],
+
+Thanks for the detailed report — I was able to reproduce the issue on my end using the steps you provided. [Describe reproduction: e.g., "After [action], the [component/feature] indeed [unexpected behavior] instead of [expected behavior]."]
+
+I dug into it and found the root cause: [explain cause, e.g., "the [function/module] wasn't properly handling [edge case/condition], which led to [effect]." ]. This appears to have been introduced [when/where, if known, e.g., "in a recent change to X" or "has likely been present since Y"].
+
+I'm working on a fix now — [brief plan, e.g., "will update the validation logic and add a regression test to prevent this from recurring"]. I'll follow up here once it's ready for review/testing.
+
+Thanks again for flagging this — let me know if you noticed any other related behavior while reproducing it.
+
+Best,
+Edi
+
+---
+
+Send me the actual bug/cause details and I'll tailor it precisely.

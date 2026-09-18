@@ -1,0 +1,7 @@
+Hi Edi — clear, honest status keeps expectations steady.
+
+The feature is delayed due to flaky test failures in the current validation suite. The implementation is largely complete, but inconsistent test results make it difficult to confirm that the change is stable and safe to release. Rather than shipping with uncertainty, we’re investigating the failures, isolating the source of the instability, and strengthening the affected tests.
+
+This work includes reproducing the intermittent failures, checking for timing or environment-dependent behaviour, and adding coverage where needed. Once the suite is reliable, we’ll rerun the full validation process and confirm the feature behaves consistently across expected scenarios.
+
+We’re treating this as a short-term delay, but the exact release date depends on resolving the test instability with confidence. We’ll share another update once the failures are understood and we have a dependable timeline.

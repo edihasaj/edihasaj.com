@@ -1,0 +1,14 @@
+Incident update: The production database ran out of disk space at [time], causing increased errors and failed requests for [affected services].
+
+We restored service at [time] by increasing the available storage and restarting affected database operations. The database is stable, and error rates have returned to normal. We are monitoring disk use, query performance, and replication closely.
+
+The immediate cause was [rapid data growth/log accumulation/a failed cleanup process]. Existing alerts did not give the team enough time to respond before the disk filled. We are still investigating why storage grew faster than expected and whether any data or scheduled jobs were affected.
+
+Next steps:
+
+- Confirm data integrity and replay any failed jobs.
+- Add earlier disk-capacity alerts.
+- Review retention and cleanup settings.
+- Add automatic storage expansion or a tested emergency runbook.
+
+We will share the full timeline and root cause when the investigation is complete. Next update by [time].

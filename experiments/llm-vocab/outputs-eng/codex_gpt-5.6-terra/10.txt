@@ -1,0 +1,7 @@
+## Release notes
+
+This release fixes an issue that could parse some dates incorrectly, especially when input formats were ambiguous. Dates now follow the expected format consistently, so scheduled actions and reports use the intended day.
+
+It also adds a new configuration flag for controlling the related behaviour. Teams can enable or disable the option without changing application code, making rollout and testing simpler across environments.
+
+No data migration is required. Existing configurations continue to work as before unless you choose to set the new flag.
