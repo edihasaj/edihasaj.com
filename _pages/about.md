@@ -4,11 +4,11 @@ title: About
 permalink: /about/
 ---
 
-Software engineer and technical founder.
+Software engineer and technical founder. Cloud and infrastructure at the core, applied to AI and agentic systems.
 
-Over a decade of building the software businesses run on: ERPs, internal platforms, integrations, APIs, and the cloud and infrastructure underneath. Retail, legal, government, and SaaS. I have moved companies off legacy systems, kept production running, and shipped products of my own, some that worked and some that did not.
+For over a decade I have built and run the software businesses depend on: ERPs, internal platforms, integrations, and APIs, across retail, legal, government, and SaaS. That includes moving companies off legacy systems, keeping production stable, and shipping products of my own, some that worked and some that did not.
 
-Now I apply that to AI. Agents, memory, and workflow patterns that connect to real business systems, plus the sharp little tools that replace bloated SaaS. Open-sourced where useful.
+Today I connect that experience to AI: agents, memory, and workflow patterns that plug into real business systems, plus small focused tools that replace bloated SaaS. Open-sourced where useful.
 
 I bet on software that is practical, local, and open. Based in Prishtinë. Mostly online.
 
