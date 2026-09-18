@@ -41,5 +41,3 @@ Open source, products, and the odd legacy thing. New apps land here as I ship th
 - GitHub: [edihasaj](https://github.com/edihasaj)
 - X: [@hasajedi](https://x.com/hasajedi)
 - LinkedIn: [edihasaj](https://www.linkedin.com/in/edihasaj/)
-
-If you want to talk systems, products, agents, or shipping, reach out on any of these.
