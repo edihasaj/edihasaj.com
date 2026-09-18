@@ -3,7 +3,7 @@ share: true
 layout: post
 title: "Jev is a smart if statement, and that is the point"
 subtitle: "For a year we used language models as decision functions. TypeSafe just shipped an actual decision model."
-date: 2026-09-18
+date: 2026-09-18 20:00:00 +0200
 published: true
 permalink: /jev-is-a-smart-if-statement/
 tags: [AI, software]
