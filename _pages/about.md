@@ -18,24 +18,24 @@ Open source, products, and the odd legacy thing. New apps land here as I ship th
 
 ### Open Source
 
-{% for p in site.data.projects.open_source %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** — {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
+{% for p in site.data.projects.open_source %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** - {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
 {% endfor %}
 
 ### Projects
 
-{% for p in site.data.projects.projects %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** — {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
+{% for p in site.data.projects.projects %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** - {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
 {% endfor %}
 
 ### Legacy
 
-{% for p in site.data.projects.legacy %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** — {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
+{% for p in site.data.projects.legacy %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** - {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
 {% endfor %}
 
 ## What I'm Doing
 
-- **Building and running products** — from business software to AI agents that plug into it.
-- **Opening more code** — agent, memory, and workflow tooling that others can reuse.
-- **Writing on [edihasaj.com](/)** — engineering, building companies, and AI.
+- **Building and running products** - from business software to AI agents that plug into it.
+- **Opening more code** - agent, memory, and workflow tooling that others can reuse.
+- **Writing on [edihasaj.com](/)** - engineering, building companies, and AI.
 
 ## Connect
 
