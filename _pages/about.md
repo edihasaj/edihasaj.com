@@ -31,12 +31,6 @@ Open source, products, and the odd legacy thing. New apps land here as I ship th
 {% for p in site.data.projects.legacy %}- {{ p.emoji }} **[{{ p.name }}]({{ p.url }})** — {{ p.desc }}{% if p.source %} ([source]({{ p.source }})){% endif %}
 {% endfor %}
 
-## GitHub Activity
-
-<a href="https://github.com/edihasaj">
-  <img src="https://ghchart.rshah.org/fd8f0f/edihasaj" alt="edihasaj GitHub contributions" style="max-width:100%;">
-</a>
-
 ## What I'm Doing
 
 - **Building and running products** — from business software to AI agents that plug into it.
