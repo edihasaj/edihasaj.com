@@ -2,79 +2,38 @@
 share: true
 layout: post
 title: "The delve era is over. The em dash is not."
-subtitle: "96 answers from four current models, measured against 72,000 words of human engineering prose."
+subtitle: "Models stopped using the words we mocked. They kept the habits nobody named."
 date: 2026-09-18
 published: true
 permalink: /the-delve-era-is-over-the-em-dash-is-not/
 tags: [AI, writing]
-excerpt: "I asked Claude and Codex models to write 96 short texts and counted words and punctuation against pre-ChatGPT commit messages. The famous LLM words are gone. The habits that replaced them are shared by both labs."
+excerpt: "The big models are trained more and more on text that models wrote. I think that is why they all sound the same, and why the tell moved from vocabulary to punctuation. A small test with Claude and Codex."
 ---
 
-There is a claim I keep hearing and kept believing: models write in a register real people rarely use, and they do so because more and more of what they learn from was written by other models. I wanted a number instead of a feeling, so I ran a small test.
+Here is my idea. The newest models are trained on more and more text that other models wrote. Synthetic data, model-graded answers, model-written examples. When a model learns from a model, whatever quirks the teacher had get passed on and amplified. Nobody chose them. They just survive.
 
-## Setup
+If that is true, two things should follow. The models from different labs should sound alike. And the quirks should be the ones nobody put on a list, because the ones on a list get trained away.
 
-Four models: Claude Sonnet, Claude Opus, and Codex with gpt-5.6-sol and gpt-5.6-terra. Each got the same 24 prompts, all asking for about 150 words. Twelve are everyday writing: a message cancelling dinner, an email to a landlord, a product description. Twelve are engineering writing: a pull request description, an incident update, a code review comment. Default settings, run through the `claude` and `codex` command lines from an empty directory.
+I tested it in an afternoon. Four models, Claude Sonnet, Claude Opus, and two Codex models, each answered the same 24 short writing tasks: cancel a dinner, email a landlord, describe a lamp, write a pull request, post an incident update. As a human comparison I used 72,000 words of commit messages written by engineers before ChatGPT existed.
 
-For a human baseline I took commit message bodies from Apache James, tmux and DAVx5 written before June 2022, so before ChatGPT existed. After stripping trailers, URLs and code, that is about 72,000 words of engineers explaining things to other engineers. Everyday word frequencies come from the wordfreq English list.
+## The words we mocked are gone
 
-## The words are gone
+Across all 96 answers there is not a single "delve", "tapestry", "leverage" or "nuanced". The models also did not swap them for other fancy words. Their vocabulary is plainer than the human engineers'. If you are still looking for AI text by its word list, you are looking in the wrong place.
 
-I counted the 2023 vocabulary everyone learned to spot. Across all 96 answers, 14,800 words in total:
+## The habits stayed, and every model has the same ones
 
-| Word | Model answers | Human commits |
-| --- | ---: | ---: |
-| delve | 0 | 0 |
-| tapestry | 0 | 0 |
-| robust | 1 | 3 |
-| leverage | 0 | 9 |
-| nuanced | 0 | 0 |
+| | Claude Opus | Claude Sonnet | Codex sol | Codex terra | Humans |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Answers with an em dash | 71% | 75% | 58% | 71% | 0 in 72k words |
+| Opens with "Here's" | 1 in 4 | 1 in 4 | never | never | never |
+| Ends with an offer to revise | sometimes | sometimes | rarely | rarely | never |
 
-That list has been trained out. The models did not move to rarer words either. On the engineering prompts every model used more common vocabulary than the human engineers did.
+Two labs, one accent. The em dash is in most answers from every model. The humans, in 72,000 words of explaining things to each other, used it zero times. "Otherwise", a word you use when you are actually reasoning about a case, shows up 35 times in the human text and once in the model text.
 
-| Corpus | Share of rare content words |
-| --- | ---: |
-| Human commit bodies | 24.5% |
-| Claude Opus | 20.2% |
-| Claude Sonnet | 15.2% |
-| Codex gpt-5.6-sol | 12.3% |
-| Codex gpt-5.6-terra | 13.1% |
+## What I think this means
 
-Rare here means a word that appears fewer than about three times per million words of English. Part of the human number is project jargon, so treat the gap as direction, not size. But the direction is the opposite of what I expected.
+"Delve" was a public joke, so it was fixed. The em dash and the "Here's" were never a joke, so nothing pushed back, and each generation of models learned them from the last one a little more firmly. That is what training on your own output looks like from the outside: not exotic words, but a shared style that no human writes in and no one decided on.
 
-## The tell moved to punctuation and scaffolding
-
-What separates the model answers from the human ones is not which words they pick. It is how they lay the text out.
-
-| Model | Answers with an em dash | Bullet list | Bold text | Ends with an offer |
-| --- | ---: | ---: | ---: | ---: |
-| Claude Opus | 71% | 29% | 54% | 12% |
-| Claude Sonnet | 75% | 46% | 62% | 25% |
-| Codex gpt-5.6-sol | 58% | 8% | 4% | 0% |
-| Codex gpt-5.6-terra | 71% | 4% | 0% | 4% |
-
-The 72,000 words of human commit bodies contain zero em dashes. Commit messages are typed in a terminal, so that comparison is unfair to the models, but the gap is not small. The models put an em dash in roughly every hundred words.
-
-A few phrases follow the same pattern, shown as occurrences per thousand words:
-
-| Phrase | Model answers | Human commits |
-| --- | ---: | ---: |
-| "Here's" | 1.08 | 0.00 |
-| "let me know" | 0.88 | 0.03 |
-| "otherwise" | 0.07 | 0.49 |
-
-Eleven answers open with "Here's". Human engineers never did. Humans wrote "otherwise" 35 times, a word you use when you are reasoning about a branch. The models used it once.
-
-## Two labs, one accent
-
-The em dash shows up in every model from both labs. Claude adds bold and bullet lists and likes to close with an offer to revise. Codex adds headings instead. Nobody at either company decided to write like this. The register is emergent, and it is shared.
-
-That is the part that supports the original claim, just not at the level I expected. Word lists are easy to fix. People mocked "delve" and it disappeared. Punctuation and layout were never on anyone's list, and if the text models learn from is increasingly model-written and model-rated, those habits reinforce themselves quietly. I cannot prove that from outside the labs. The convergence fits it.
-
-## Limits
-
-Ninety-six short answers is a small sample. Prompts pick the topics, so the raw over-used word lists are mostly topic words like "retry" and "cache". Both command lines know my name from their own memory, which shows up in a few greetings. One Opus run, before I moved to an empty directory, read the folder it was in, found my scripts, and declined to write the README I asked for because it would have been inaccurate. Fair enough. I reran it.
-
-The prompts, raw answers and scripts are in the [experiments folder](https://github.com/edihasaj/edihasaj.com/tree/main/experiments/llm-vocab) of this site's repository.
+I cannot see inside the labs, so this is a reading, not a proof. But the convergence is real and you can check it yourself. Prompts, answers and scripts are in the [experiments folder](https://github.com/edihasaj/edihasaj.com/tree/main/experiments/llm-vocab) of this site.
 
 This post contains no em dashes. It took editing.
