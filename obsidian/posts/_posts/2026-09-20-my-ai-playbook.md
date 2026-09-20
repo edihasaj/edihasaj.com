@@ -15,7 +15,7 @@ People ask me how I use AI. They expect a prompt. It is not a prompt, it is a se
 
 ## One file of rules
 
-Every agent I run reads the same file first. Claude Code, Codex, whatever comes next. The file is public, it is called AGENTS.md, and it lives in one repo with the skills and the commands. Everything else links to it. I learned the hard way that if you keep two copies of a rule, one of them drifts and then breaks quietly.
+Every agent I run reads the same file first. Claude Code, Codex, whatever comes next. The file is public, it is called [AGENTS.md](https://github.com/edihasaj/agent), and it lives in one repo with the skills and the commands. Everything else links to it. I learned the hard way that if you keep two copies of a rule, one of them drifts and then breaks quietly.
 
 The file is boring on purpose. Talk short. Use the repo's package manager, dont swap it. Commit with the helper that only stages the files you name. Never delete, move to trash. Read the docs before you touch code. If CI is red, fix it until it is green. Verify end to end, and if you cant, say exactly what is missing.
 
@@ -25,19 +25,19 @@ That last one is the most important rule I have. An agent that says "should work
 
 Most tools are built for a person with a mouse. Agents dont have a mouse. So a lot of what I built the last year is just giving them hands.
 
-guiport lets an agent see and click a real desktop app. It reads the accesibility tree, finds the button, clicks it, types, and can save that flow as a test. Playwright but for Mac apps, basically.
+[guiport](https://github.com/edihasaj/guiport) lets an agent see and click a real desktop app. It reads the accesibility tree, finds the button, clicks it, types, and can save that flow as a test. Playwright but for Mac apps, basically.
 
-abx is a browser with a command line. Open a page, read it, click, fill a form, no screenshots needed most of the time.
+[abx](https://github.com/edihasaj/abx) is a browser with a command line. Open a page, read it, click, fill a form, no screenshots needed most of the time.
 
-shotport is for when pixels are actually needed. It grabs the text first, and only spends tokens on the image if you ask. Screenshots are expensive for an agent and most of the time the text is enough.
+[shotport](https://github.com/edihasaj/shotport) is for when pixels are actually needed. It grabs the text first, and only spends tokens on the image if you ask. Screenshots are expensive for an agent and most of the time the text is enough.
 
-vmlab is one command to run something on any machine. Docker box, Linux VM, Windows VM, a phone, a simulator. It spins the machine up, runs the thing, collects the evidence, and shuts it down so nothing keeps billing.
+[vmlab](https://github.com/edihasaj/vmlab) is one command to run something on any machine. Docker box, Linux VM, Windows VM, a phone, a simulator. It spins the machine up, runs the thing, collects the evidence, and shuts it down so nothing keeps billing.
 
 None of these started as products. Each one exists because an agent got stuck on something I would do in two seconds.
 
 ## The pipeline that ships
 
-When I want a change, I dont open a chat. I point shipyard at a repo and a task. A Jira key, a GitHub issue, or just a sentence.
+When I want a change, I dont open a chat. I point [shipyard](https://github.com/edihasaj/shipyard) at a repo and a task. A Jira key, a GitHub issue, or just a sentence.
 
 It plans, makes a branch in the repos convention, does the work, runs lint and types and tests, runs a security review, then a second code review, writes the PR description, and stops. For client work it stops PR ready and I push. For my own stuff it opens the PR.
 
@@ -55,7 +55,7 @@ Autoreview watches the other direction. It reads feedback, bug boards and GitHub
 
 ## Memory
 
-Agents forget. The first fix was a markdown file of rules, which grew until nobody read it, me included. The fix now is Recall. When I correct an agent in a conversation, a hook catches it, checks if it is a real rule or a one off, and stores it. Next session, on any machine, the relevant ones get injected. I said "no em dashes" once. Every agent knows it now.
+Agents forget. The first fix was a markdown file of rules, which grew until nobody read it, me included. The fix now is [Recall](https://github.com/edihasaj/recall). When I correct an agent in a conversation, a hook catches it, checks if it is a real rule or a one off, and stores it. Next session, on any machine, the relevant ones get injected. I said "no em dashes" once. Every agent knows it now.
 
 ## What I would tell you
 
