@@ -4,8 +4,8 @@ share: true
 layout: post
 title: "My AI playbook"
 subtitle: "How I actually use agents every day. Rules, tools, and who checks the work."
-date: 2026-09-20
-published: false
+date: 2026-09-20 12:00:00 +0000
+published: true
 permalink: /my-ai-playbook/
 tags: [AI, software]
 excerpt: "No prompt tricks. One file of rules, a few tools built for agents, a pipeline that ships, and two systems that check the work before I do."
