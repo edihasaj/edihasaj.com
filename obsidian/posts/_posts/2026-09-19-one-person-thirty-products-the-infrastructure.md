@@ -10,17 +10,19 @@ tags: [software, infrastructure]
 excerpt: "I run around thirty deployed products and tools by myself. Here is the boring infrastructure that makes that possible, and the rules I ended up with."
 ---
 
-People see the projects list and assume there is a team somewhere. There is not. There is one shared VM, a handful of dedicated ones, a CI box, and a private repo full of runbooks that both I and my agents read. That is the whole company.
+People see the projects list and assume there is a team somewhere. There is not. There is a shared VM I am slowly emptying, a growing set of dedicated ones, a CI box, and a private repo full of runbooks that both I and my agents read. That is the whole company.
 
 This is what it looks like and why it ended up this way.
 
-## One big shared box, not thirty small ones
+## One shared box first, then one per service
 
-Most products live on a single VM with nginx in front and Let's Encrypt for TLS. Node apps run under PM2, Python apps under systemd, a few things under Docker Compose. Landing pages, APIs, dashboards, internal tools, all on the same host.
+For years most products lived on a single VM with nginx in front and Let's Encrypt for TLS. Node apps under PM2, Python apps under systemd, a few things under Docker Compose. Landing pages, APIs, dashboards, internal tools, all on the same host.
 
-That sounds wrong to anyone who learned infrastructure from conference talks. It is the cheapest and calmest setup I have ever run. One machine to patch, one backup job, one place to look when something is slow. A product that gets no traffic costs nothing extra to keep alive, which matters when you ship a lot of things and only some of them take off.
+That sounds wrong to anyone who learned infrastructure from conference talks. It was the cheapest and calmest setup I have ever run. One machine to patch, one backup job, one place to look when something is slow. A product with no traffic cost nothing extra to keep alive, which matters when you ship a lot of things and only some of them take off.
 
-Products get their own VM when they have a reason: a database that needs its own disk, a customer contract, a different trust boundary. Kubernetes only where it earns it. Two customer platforms run on managed clusters, a couple of others on single-node K3s. Everything else does not need a scheduler, so it does not have one.
+I am now moving away from it, one service at a time, to a dedicated VM per service. It costs more. It is also more secure, because one compromised app no longer sits next to twenty others. It is more stable, because one runaway process cannot take the rest down. And it is easier to scale, because you resize the one machine that needs it instead of the one machine everything needs.
+
+The shared box was right for the first thirty things. Dedicated is right once some of them have customers. Kubernetes only where it earns it: two customer platforms on managed clusters, a couple on single-node K3s, everything else on a plain VM with no scheduler.
 
 ## Private network first
 
@@ -58,6 +60,6 @@ That is the part that scales. I cannot remember thirty deploy procedures. I do n
 
 ## The rules I ended up with
 
-Share the box until a product earns its own. Keep everything on a private network and expose two ports. Self-host commodities, but pick the small version. Buy anything that carries legal weight. Write the runbook before you need it, and write it for an agent.
+Start on a shared box, move a service to its own VM once it has customers. Keep everything on a private network and expose two ports. Self-host commodities, but pick the small version. Buy anything that carries legal weight. Write the runbook before you need it, and write it for an agent.
 
 None of it is clever. That is the point.
