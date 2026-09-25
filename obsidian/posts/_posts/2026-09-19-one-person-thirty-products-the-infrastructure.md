@@ -24,9 +24,9 @@ Products get their own VM when they have a reason: a database that needs its own
 
 ## Private network first
 
-Every machine is on a private mesh network: the VMs, the Mac that does builds, the box that coordinates backups. Public ports are 80 and 443 and nothing else. SSH is on a short allowlist, not open to the internet. Internal tools are served on the tailnet only and never get a public DNS record.
+Every machine is on a private mesh network: the VMs, the Mac that does builds, the box that coordinates backups. Public ports are 80 and 443 and nothing else. SSH is on a short allowlist, not open to the internet. Internal tools are served on the private network only and never get a public DNS record.
 
-This one decision removed a whole category of worry. I do not think about who can reach the admin panel because nobody outside the tailnet can.
+This one decision removed a whole category of worry. I do not think about who can reach the admin panel because nobody outside the private network can.
 
 ## CI on my own machine
 
