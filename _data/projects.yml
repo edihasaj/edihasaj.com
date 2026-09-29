@@ -108,6 +108,10 @@ projects:
     name: ChirpGo
     url: https://chirpgo.app
     desc: offline macOS voice-to-text.
+  - emoji: "📌"
+    name: Tacktab
+    url: https://tacktab.com
+    desc: pin an Android tablet or iPad to one web page, controlled from Home Assistant.
   - emoji: "⌨️"
     name: Foretype
     url: https://foretype.app
