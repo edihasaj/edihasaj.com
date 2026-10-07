@@ -36,7 +36,7 @@ layout: default
         <p>Written by <a href='/about/'>Edi Hasaj</a></p>
         <div class='c-tags' aria-label='Post topics'>
           {% for tag in page.tags %}
-            <a href='{{ site.baseurl }}/tag/{{ tag }}'>{{ tag }}</a>
+            <a href='{{ site.baseurl }}/tag/{{ tag | slugify }}'>{{ tag }}</a>
           {% endfor %}
         </div>
       </footer>

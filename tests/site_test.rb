@@ -58,6 +58,19 @@ class SiteTest < Minitest::Test
     end
   end
 
+  def test_post_tag_links_resolve_to_generated_tag_pages
+    urls = SITE.pages.map(&:url)
+    SITE.posts.docs.each do |post|
+      html(post).css('.c-tags a').each do |link|
+        assert_includes urls, link['href'], "#{post.url}: #{link['href']}"
+      end
+    end
+    alias_page = SITE.pages.find { |page| page.url == '/tag/AI/' }
+    refute_nil alias_page
+    assert_equal 'https://edihasaj.com/tag/ai',
+                 html(alias_page).at_css('link[rel="canonical"]')['href']
+  end
+
   def test_image_override_opt_out_and_fallbacks
     portrait = SITE.config['url'] + '/images/header-edi.jpg'
     assert_equal portrait, meta(html(FIXTURES['override']), 'og:image')

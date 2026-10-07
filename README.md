@@ -36,6 +36,11 @@ Public posts are exposed through multiple machine-readable surfaces:
 - `/llms.txt` gives LLMs a concise site index with core pages, topic hubs, and current posts.
 - `/atom.xml` remains the primary RSS/Atom feed.
 
+Post topic links use the generated lowercase tag slug. Previously published
+mixed-case tag URLs retain redirect pages, and known dated post URLs redirect
+to the current post. `tests/site_test.rb` verifies that article topic links
+resolve to generated pages.
+
 Post and topic pages also emit JSON-LD structured data from `_includes/seo-jsonld.html`.
 When adding a new recurring subject area, create a topic page under `_pages/topics/`
 with `layout: topic` and matching `topic_tags` so it appears in the sitemap and

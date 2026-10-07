@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /2026/05/04/2026-is-going-to-be-the-year-of-open-source.html
 writing_section: essays
 share: true
 layout: post

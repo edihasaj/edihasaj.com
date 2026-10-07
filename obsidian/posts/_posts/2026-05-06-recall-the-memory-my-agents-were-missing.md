@@ -75,7 +75,7 @@ Memory for agents is going to be a default feature, not a moat. Everyone buildin
 
 Local first, file based, inspectable, forkable. If you do not like how it ranks memories, change it. If you want a different injection style, override it with an env var. If you want to plug it into a different agent runtime, the hooks and MCP are documented.
 
-This also fits what I was [writing about last week](/2026/05/04/2026-is-going-to-be-the-year-of-open-source.html). The code alone is not the moat. The moat is the context, the workflow, the trust. Open sourcing the memory layer is not giving anything important away. It is making the layer better for everyone, including me.
+This also fits what I was [writing about last week](/posts/2026-is-going-to-be-the-year-of-open-source). The code alone is not the moat. The moat is the context, the workflow, the trust. Open sourcing the memory layer is not giving anything important away. It is making the layer better for everyone, including me.
 
 ## What I Want From It
 
