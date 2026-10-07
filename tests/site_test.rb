@@ -71,6 +71,15 @@ class SiteTest < Minitest::Test
                  html(alias_page).at_css('link[rel="canonical"]')['href']
   end
 
+  def test_legacy_dated_post_redirect_is_published
+    page = SITE.pages.find do |candidate|
+      candidate.url == '/2026/05/04/2026-is-going-to-be-the-year-of-open-source.html'
+    end
+    refute_nil page
+    assert_equal 'https://edihasaj.com/posts/2026-is-going-to-be-the-year-of-open-source',
+                 html(page).at_css('link[rel="canonical"]')['href']
+  end
+
   def test_image_override_opt_out_and_fallbacks
     portrait = SITE.config['url'] + '/images/header-edi.jpg'
     assert_equal portrait, meta(html(FIXTURES['override']), 'og:image')

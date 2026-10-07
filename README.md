@@ -38,7 +38,8 @@ Public posts are exposed through multiple machine-readable surfaces:
 
 Post topic links use the generated lowercase tag slug. Previously published
 mixed-case tag URLs retain redirect pages, and known dated post URLs redirect
-to the current post. `tests/site_test.rb` verifies that article topic links
+to the current post. Known dated redirects live under `_pages/redirects` so
+republishing an Obsidian post cannot remove them. `tests/site_test.rb` verifies that article topic links
 resolve to generated pages.
 
 Post and topic pages also emit JSON-LD structured data from `_includes/seo-jsonld.html`.
